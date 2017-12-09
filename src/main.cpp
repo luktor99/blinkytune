@@ -1,8 +1,7 @@
-
+#include <QtWidgets>
 #include <iostream>
 #include <thread>
-#include <list>
-#include <algorithm>
+
 
 #include "portaudio.h"
 
@@ -16,6 +15,7 @@
 #include <kfr/dft.hpp>
 #include <kfr/dsp.hpp>
 #include <kfr/io.hpp>
+#include "GUI/MainWindow.h"
 
 const char NUM_LEDS = 60;
 
@@ -87,9 +87,9 @@ void threadLed(float **inBuffer) {
     }
 }
 
-int main(void) {
+int main(int argc, char **argv) {
     // Initialize PortAudio
-    AudioInterface::getInstance().initialize();
+    /*AudioInterface::getInstance().initialize();
 
     // Display all input devices
     for (auto dev : AudioInterface::getInstance().getInputDevicesList())
@@ -112,7 +112,7 @@ int main(void) {
 
     // Keep collecting new samples
     for (;;) {
-    //for (int i=0; i < (SAMPLE_RATE/FRAMES_PER_BUFFER)*5; ++i) {
+        //for (int i=0; i < (SAMPLE_RATE/FRAMES_PER_BUFFER)*5; ++i) {
 
         float inBuffer1_[FRAMES_PER_BUFFER] = {0};
         float inBuffer2_[FRAMES_PER_BUFFER] = {0};
@@ -123,7 +123,14 @@ int main(void) {
             std::copy(inBuffer_[0], inBuffer_[0] + FRAMES_PER_BUFFER, inBuffer[0]);
             std::copy(inBuffer_[1], inBuffer_[1] + FRAMES_PER_BUFFER, inBuffer[1]);
         }
-    }
+    }*/
+    QApplication app(argc, argv);
 
-    exit(EXIT_SUCCESS);
+    MainWindow window;
+    window.setFixedSize(200, 80);
+
+    window.show();
+    return app.exec();
+
+    //exit(EXIT_SUCCESS);
 }
