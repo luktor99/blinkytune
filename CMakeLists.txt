@@ -13,3 +13,5 @@ set(SOURCE_FILES src/main.cpp src/UDPSender.cpp src/UDPSender.h src/AudioInterfa
 add_executable(blinkytune ${SOURCE_FILES})
 
 target_link_libraries(blinkytune pthread boost_system boost_thread portaudio python2.7 Qt5::Widgets Qt5::Core Qt5::Gui)
+add_subdirectory(src)
+

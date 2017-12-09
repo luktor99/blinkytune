@@ -11,11 +11,15 @@
 #include "AudioInterface.h"
 #include "AudioInputStream.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 #include <kfr/base.hpp>
 #include <kfr/dft.hpp>
 #include <kfr/dsp.hpp>
 #include <kfr/io.hpp>
+#pragma GCC diagnostic pop
 #include "GUI/MainWindow.h"
+
 
 const char NUM_LEDS = 60;
 
@@ -25,7 +29,7 @@ const char NUM_LEDS = 60;
 std::mutex mtx;
 
 void threadLed(float **inBuffer) {
-//    UDPSender client("192.168.0.105", "4200");
+//    UDPSender client("192.168.1.166", "4200");
     UDPSender client("localhost", "4200");
 
     std::chrono::system_clock::time_point timeLimit;
