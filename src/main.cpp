@@ -1,4 +1,3 @@
-
 #include <iostream>
 
 #include "AudioInterface.h"
@@ -10,8 +9,7 @@
 #include "SamplesCollector.h"
 #include "SpectrumGenerator.h"
 
-
-int main(void) {
+int main(int argc, char **argv) {
     // Initialize PortAudio
     AudioInterface::getInstance().initialize();
 
