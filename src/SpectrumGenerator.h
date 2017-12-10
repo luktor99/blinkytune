@@ -14,14 +14,14 @@
 
 class SpectrumGenerator : public Worker {
 public:
-    SpectrumGenerator(FIFOQueue<StereoSamplesBuffer<FRAMES_PER_BUFFER>> &inputFIFO,
-                      FIFOQueue<StereoSpectrumBuffer<FRAMES_PER_BUFFER>> &outputFIFO);
+    SpectrumGenerator(FIFOQueue<StereoSamplesBuffer> &inputFIFO,
+                      FIFOQueue<StereoSpectrumBuffer> &outputFIFO);
 
     void mainLoop();
 
 private:
-    FIFOQueue<StereoSamplesBuffer<FRAMES_PER_BUFFER>> &inputFIFO_;
-    FIFOQueue<StereoSpectrumBuffer<FRAMES_PER_BUFFER>> &outputFIFO_;
+    FIFOQueue<StereoSamplesBuffer> &inputFIFO_;
+    FIFOQueue<StereoSpectrumBuffer> &outputFIFO_;
 };
 
 

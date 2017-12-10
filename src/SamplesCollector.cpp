@@ -5,7 +5,7 @@
 #include "SamplesCollector.h"
 
 SamplesCollector::SamplesCollector(AudioInputStream &stream,
-                                   FIFOQueue<StereoSamplesBuffer<FRAMES_PER_BUFFER>> &outputFIFO) : stream_(stream),
+                                   FIFOQueue<StereoSamplesBuffer> &outputFIFO) : stream_(stream),
                                                                                                     outputFIFO_(
                                                                                                             outputFIFO) {
 }
@@ -17,5 +17,5 @@ void SamplesCollector::mainLoop() {
 
     stream_.readSamples(&samplesBuffer);
 
-    outputFIFO_.push(new StereoSamplesBuffer<FRAMES_PER_BUFFER>(samplesBufferL, samplesBufferR));
+    outputFIFO_.push(new StereoSamplesBuffer(samplesBufferL, samplesBufferR));
 }

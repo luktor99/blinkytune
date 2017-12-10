@@ -1,0 +1,14 @@
+//
+// Created by luktor99 on 10.12.17.
+//
+
+#ifndef BLINKYTUNE_STEREOANALYSISBUFFER_H
+#define BLINKYTUNE_STEREOANALYSISBUFFER_H
+
+
+class StereoAnalysisBuffer {
+
+};
+
+
+#endif //BLINKYTUNE_STEREOANALYSISBUFFER_H

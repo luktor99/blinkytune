@@ -6,8 +6,21 @@
 #define BLINKYTUNE_SPECTRUMANALYZER_H
 
 
-class SpectrumAnalyzer {
+#include "Worker.h"
+#include "DSPParameters.h"
+#include "StereoSpectrumBuffer.h"
+#include "FIFOQueue.h"
+#include "StereoAnalysisBuffer.h"
 
+class SpectrumAnalyzer : public Worker {
+public:
+    SpectrumAnalyzer(FIFOQueue<StereoSpectrumBuffer> &inputFIFO, FIFOQueue<StereoAnalysisBuffer> &outputFIFO);
+private:
+
+    void mainLoop();
+
+    FIFOQueue<StereoSpectrumBuffer> &inputFIFO_;
+    FIFOQueue<StereoAnalysisBuffer> &outputFIFO_;
 };
 
 

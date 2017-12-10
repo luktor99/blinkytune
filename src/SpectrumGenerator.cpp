@@ -14,21 +14,20 @@
 
 #pragma GCC diagnostic pop
 
-SpectrumGenerator::SpectrumGenerator(FIFOQueue<StereoSamplesBuffer<FRAMES_PER_BUFFER>> &inputFIFO,
-                                     FIFOQueue<StereoSpectrumBuffer<FRAMES_PER_BUFFER>> &outputFIFO) : inputFIFO_(
-        inputFIFO), outputFIFO_(outputFIFO_) {
+SpectrumGenerator::SpectrumGenerator(FIFOQueue<StereoSamplesBuffer> &inputFIFO,
+                                     FIFOQueue<StereoSpectrumBuffer> &outputFIFO) : inputFIFO_(
+        inputFIFO), outputFIFO_(outputFIFO) {
 
 }
 
 void SpectrumGenerator::mainLoop() {
     // Acquire new samples
-    std::unique_ptr<StereoSamplesBuffer<FRAMES_PER_BUFFER>> samples;
+    std::unique_ptr<StereoSamplesBuffer> samples;
 
     try {
         samples = std::move(inputFIFO_.pop());
     }
-    catch (FIFOQueue<StereoSamplesBuffer<FRAMES_PER_BUFFER>>
-           ::TimeoutException &) {
+    catch (FIFOQueue<StereoSamplesBuffer>::TimeoutException &) {
         return;
     }
 
@@ -56,8 +55,13 @@ void SpectrumGenerator::mainLoop() {
     freqR = freqR / FRAMES_PER_BUFFER;
 
     // Get spectrum
-    kfr::univector<float, FRAMES_PER_BUFFER / 2 + 1> spectrumL = kfr::cabs(freqL);
-    kfr::univector<float, FRAMES_PER_BUFFER / 2 + 1> spectrumR = kfr::cabs(freqR);
+    kfr::univector<float, FRAMES_PER_BUFFER / 2 + 1> spectrumRawL = kfr::cabs(freqL);
+    kfr::univector<float, FRAMES_PER_BUFFER / 2 + 1> spectrumRawR = kfr::cabs(freqR);
+
+    std::vector<float> spectrumL(8, 1.23);
+    std::vector<float> spectrumR(8, 1.23);
+
+    outputFIFO_.push(new StereoSpectrumBuffer(spectrumL, spectrumR, std::move(samples)));
 
     std::array<float,8> melSpectrumL = MelFilterBank<FRAMES_PER_BUFFER/2+1, 8>(spectrumL, SAMPLE_RATE).compute();
     /*std::cout

@@ -9,27 +9,26 @@
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 
 #include <kfr/base.hpp>
+#include "DSPParameters.h"
 
 #pragma GCC diagnostic pop
 
-template<std::size_t N>
 class StereoSamplesBuffer {
 public:
     StereoSamplesBuffer() = default;
 
-    StereoSamplesBuffer(const float *samplesL, const float *samplesR) : samplesL(kfr::make_univector(samplesL, N)),
-                                                                        samplesR(kfr::make_univector(samplesR, N)) {};
+    StereoSamplesBuffer(const float *samplesL, const float *samplesR) : samplesL(kfr::make_univector(samplesL, FRAMES_PER_BUFFER)),
+                                                                        samplesR(kfr::make_univector(samplesR, FRAMES_PER_BUFFER)) {};
 
-    kfr::univector<float, N> &getSamplesL() {
+    kfr::univector<float, FRAMES_PER_BUFFER> &getSamplesL() {
         return samplesL;
     }
 
-    kfr::univector<float, N> &getSamplesR() {
+    kfr::univector<float, FRAMES_PER_BUFFER> &getSamplesR() {
         return samplesR;
     }
 
-private:
-    kfr::univector<float, N> samplesL, samplesR;
+    kfr::univector<float, FRAMES_PER_BUFFER> samplesL, samplesR;
 };
 
 

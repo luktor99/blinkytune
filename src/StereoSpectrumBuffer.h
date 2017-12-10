@@ -6,19 +6,18 @@
 #define BLINKYTUNE_STEREOSPECTRUMBUFFER_H
 
 #include <cstddef>
-#include <array>
+#include <vector>
+#include "DSPParameters.h"
+#include "StereoSamplesBuffer.h"
 
-template<std::size_t N>
 class StereoSpectrumBuffer {
 public:
-    StereoSpectrumBuffer(const std::array<float, N> &spectrumL, const std::array<float, N> &spectrumR) : spectrumL_(
-            spectrumL), spectrumR_(spectrumR) {}
+    StereoSpectrumBuffer(const std::vector<float> &spectrumL, const std::vector<float> &spectrumR, std::unique_ptr<StereoSamplesBuffer> &&samples) : spectrumL_(spectrumL), spectrumR_(spectrumR), samples_(std::move(samples)) {}
 
-    StereoSpectrumBuffer(std::array<float, N> &&spectrumL, std::array<float, N> &&spectrumR) : spectrumL_(
-            std::move(spectrumL)), spectrumR_(std::move(spectrumR)) {}
+    StereoSpectrumBuffer(std::vector<float> &&spectrumL, std::vector<float> &&spectrumR, std::unique_ptr<StereoSamplesBuffer> &&samples) : spectrumL_(std::move(spectrumL)), spectrumR_(std::move(spectrumR)), samples_(std::move(samples)) {}
 
-private:
-    std::array<float, N> spectrumL_, spectrumR_;
+    std::vector<float> spectrumL_, spectrumR_;
+    std::unique_ptr<StereoSamplesBuffer> samples_;
 };
 
 
