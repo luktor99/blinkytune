@@ -32,7 +32,7 @@ public:
 
         float deltaMel = abs(hertzToMel(static_cast<float>(sampleRate)) - melMin) / (nOutputValues + 1.0);
 
-        std::vector<float> * melValues = new std::vector<float>(nOutputValues, 0);
+        std::vector<float> melValues(nOutputValues, 0);
 
         for (size_t i = 0; i < nOutputValues; ++i) {
             float lowerBand = melToHertz(melMin);

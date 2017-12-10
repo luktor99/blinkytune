@@ -58,12 +58,14 @@ void SpectrumGenerator::mainLoop() {
     kfr::univector<float, FRAMES_PER_BUFFER / 2 + 1> spectrumRawL = kfr::cabs(freqL);
     kfr::univector<float, FRAMES_PER_BUFFER / 2 + 1> spectrumRawR = kfr::cabs(freqR);
 
-    std::vector<float> spectrumL(8, 1.23);
-    std::vector<float> spectrumR(8, 1.23);
+    MelFilterBank melFilter(SPECTRUM_BARS);
+
+    std::vector<float> spectrumL = melFilter.compute(spectrumRawL, SAMPLE_RATE);
+    std::vector<float> spectrumR = melFilter.compute(spectrumRawR, SAMPLE_RATE);
 
     outputFIFO_.push(new StereoSpectrumBuffer(spectrumL, spectrumR, std::move(samples)));
 
-    std::array<float,8> melSpectrumL = MelFilterBank<FRAMES_PER_BUFFER/2+1, 8>(spectrumL, SAMPLE_RATE).compute();
+
     /*std::cout
             << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - t1).count()
             << std::endl;*/
