@@ -5,7 +5,8 @@
 #ifndef BLINKYTUNE_MELFILTERBANK_H
 #define BLINKYTUNE_MELFILTERBANK_H
 
-#include "kfr/base"
+#include <kfr/base/univector.hpp>
+#include <memory>
 
 #define FRAMES_PER_BUFFER 48000
 
@@ -14,22 +15,19 @@ class MelFilterBank {
 
 public:
 
-    MelFilterBank(unsigned int noOfVals, kfr::univector<float, FRAMES_PER_BUFFER / 2 + 1> &tFreqValues = nullptr);
+    MelFilterBank(kfr::univector<float, FRAMES_PER_BUFFER / 2 + 1> &tFreqValues);
 
-    float melToHertz(const float& item) const;
+    float melToHertz(const float &item) const;
 
-    float hertzToMel(const float& item) const;
+    float hertzToMel(const float &item) const;
 
-    std::vector<float> compute();
+    std::unique_ptr<std::vector<float>> &&compute(const unsigned int &count) const;
 
 
 private:
 
-    kfr::univector<float, FRAMES_PER_BUFFER/2+1> * freqValues;
+    const kfr::univector<float, FRAMES_PER_BUFFER / 2 + 1> &freqValues;
 
-    unsigned int noOfValues;
-
-    std::vector<float> values;
 };
 
 

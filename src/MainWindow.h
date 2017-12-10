@@ -6,7 +6,8 @@
 #define BLINKYTUNE_MAINWINDOW_H
 
 #include <QtWidgets/QWidget>
-#include <QtWidgets/QPushButton>
+
+class QPushButton;
 
 class MainWindow : public QWidget {
 public:
