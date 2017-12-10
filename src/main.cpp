@@ -1,4 +1,4 @@
-#include <QtWidgets>
+//#include <QtWidgets>
 #include <iostream>
 #include <thread>
 
@@ -18,7 +18,7 @@
 #include <kfr/dsp.hpp>
 #include <kfr/io.hpp>
 #pragma GCC diagnostic pop
-#include "GUI/MainWindow.h"
+//#include "GUI/MainWindow.h"
 
 
 const char NUM_LEDS = 60;
@@ -29,8 +29,8 @@ const char NUM_LEDS = 60;
 std::mutex mtx;
 
 void threadLed(float **inBuffer) {
-//    UDPSender client("192.168.1.166", "4200");
-    UDPSender client("localhost", "4200");
+    UDPSender client("192.168.1.166", "4200");
+//    UDPSender client("localhost", "4200");
 
     std::chrono::system_clock::time_point timeLimit;
     for (int ii = 0;; ++ii) {
@@ -93,7 +93,7 @@ void threadLed(float **inBuffer) {
 
 int main(int argc, char **argv) {
     // Initialize PortAudio
-    /*AudioInterface::getInstance().initialize();
+    AudioInterface::getInstance().initialize();
 
     // Display all input devices
     for (auto dev : AudioInterface::getInstance().getInputDevicesList())
@@ -127,14 +127,14 @@ int main(int argc, char **argv) {
             std::copy(inBuffer_[0], inBuffer_[0] + FRAMES_PER_BUFFER, inBuffer[0]);
             std::copy(inBuffer_[1], inBuffer_[1] + FRAMES_PER_BUFFER, inBuffer[1]);
         }
-    }*/
-    QApplication app(argc, argv);
+    }
+    /*QApplication app(argc, argv);
 
     MainWindow window;
     window.setFixedSize(200, 80);
 
     window.show();
-    return app.exec();
+    return app.exec();*/
 
     //exit(EXIT_SUCCESS);
 }
