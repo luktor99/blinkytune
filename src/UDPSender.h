@@ -16,13 +16,7 @@ public:
 
     ~UDPSender();
 
-    void send(const char *msg) {
-        socket_.send(boost::asio::buffer(msg, 180));
-    }
-
-    void send(const boost::asio::mutable_buffer &b) {
-        socket_.send(boost::asio::buffer(b));
-    }
+    void send(const boost::asio::mutable_buffer &b);
 
 private:
     udp::socket socket_;
