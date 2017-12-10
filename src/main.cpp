@@ -12,11 +12,15 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-parameter"
+
 #include <kfr/base.hpp>
 #include <kfr/dft.hpp>
 #include <kfr/dsp.hpp>
 #include <kfr/io.hpp>
+
 #pragma GCC diagnostic pop
+
+#include "MelFilterBank.h"
 
 #include <QApplication>
 
@@ -67,6 +71,15 @@ void threadLed(float **inBuffer) {
         kfr::univector<float, FRAMES_PER_BUFFER / 2 + 1> spectrumL = kfr::cabs(freqL);
         kfr::univector<float, FRAMES_PER_BUFFER / 2 + 1> spectrumR = kfr::cabs(freqR);
 
+        spectrumL[0] = 1.0;
+        spectrumL[1] = 2.0;
+        spectrumL[250] = 3.0;
+
+        std::array<float, 8> melSpectrumL = MelFilterBank<FRAMES_PER_BUFFER / 2 + 1, 8>(spectrumL,
+                                                                                        SAMPLE_RATE).compute();
+        std::array<float, 8> melSpectrumR = MelFilterBank<FRAMES_PER_BUFFER / 2 + 1, 8>(spectrumR,
+                                                                                        SAMPLE_RATE).compute();
+
         char pixel[60 * 3] = {0};
 
 //        for (int i = 0; i < NUM_LEDS * 3; ++i) {
@@ -95,7 +108,7 @@ void threadLed(float **inBuffer) {
 
 int main(int argc, char **argv) {
     // Initialize PortAudio
-   /* AudioInterface::getInstance().initialize();
+    AudioInterface::getInstance().initialize();
 
     // Display all input devices
     for (auto dev : AudioInterface::getInstance().getInputDevicesList())
@@ -129,12 +142,7 @@ int main(int argc, char **argv) {
             std::copy(inBuffer_[0], inBuffer_[0] + FRAMES_PER_BUFFER, inBuffer[0]);
             std::copy(inBuffer_[1], inBuffer_[1] + FRAMES_PER_BUFFER, inBuffer[1]);
         }
-    }*/
-    QApplication app(argc, argv);
+    }
 
-    MainWindow window;
-
-    window.show();
-    return app.exec();
-    //exit(EXIT_SUCCESS);
+    exit(EXIT_SUCCESS);
 }
