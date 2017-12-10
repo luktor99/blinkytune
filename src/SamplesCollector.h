@@ -14,14 +14,14 @@
 
 class SamplesCollector : public Worker {
 public:
-    SamplesCollector(AudioInputStream &stream, FIFOQueue<StereoSamplesBuffer<FRAMES_PER_BUFFER>> &outputFIFO);
+    SamplesCollector(AudioInputStream &stream, FIFOQueue<StereoSamplesBuffer> &outputFIFO);
 
 private:
 
     void mainLoop();
 
     AudioInputStream &stream_;
-    FIFOQueue<StereoSamplesBuffer<FRAMES_PER_BUFFER>> &outputFIFO_;
+    FIFOQueue<StereoSamplesBuffer> &outputFIFO_;
 };
 
 
