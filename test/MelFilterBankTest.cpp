@@ -2,20 +2,19 @@
 // Created by marcin on 11.12.17.
 //
 
-//Link to Boost
+
 #define BOOST_TEST_DYN_LINK
 
-//Define our Module name (prints at testing)
-#define BOOST_TEST_MODULE "BaseClassModule"
+#define BOOST_TEST_MODULE "MelFilterBankTest"
 
-//VERY IMPORTANT - include this last
 #include <boost/test/unit_test.hpp>
 
-#include "../MelFilterBank.h"
-// ------------- Tests Follow --------------
-BOOST_AUTO_TEST_CASE( constructors )
-{
+#include "../src/MelFilterBank.h"
 
-//Check default constructor
-//Use BOOST_CHECK for small equal checks - true or false
+BOOST_AUTO_TEST_SUITE(MelFilterBank)
+
+BOOST_AUTO_TEST_CASE( valid )
+{
+    BOOST_CHECK(true);
 }
+BOOST_AUTO_TEST_SUITE_END()

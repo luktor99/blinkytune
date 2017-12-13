@@ -6,9 +6,9 @@
 
 MelFilterBank::MelFilterBank(const unsigned int &nOut) : nOutputValues(nOut) {};
 
-static float MelFilterBank::melToHertz(const float &freqInMel) { return 700.0 * (pow(10.0, (freqInMel / 2595.0))) - 700.0; }
+float MelFilterBank::melToHertz(const float &freqInMel) { return 700.0 * (pow(10.0, (freqInMel / 2595.0))) - 700.0; }
 
-static float MelFilterBank::hertzToMel(const float &freqInHertz) { return 2595.0 * log10(1 + (freqInHertz / 700.0)); }
+ float MelFilterBank::hertzToMel(const float &freqInHertz) { return 2595.0 * log10(1 + (freqInHertz / 700.0)); }
 
 std::vector<float>
 MelFilterBank::compute(kfr::univector<float, SPECTRUM_LENGTH> &freqValues, const unsigned int &sampleRate) const {
