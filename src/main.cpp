@@ -13,6 +13,9 @@
 
 
 int main(int argc, char **argv) {
+    //Supress warnings:
+    (void) argc;
+    (void) argv;
     // Initialize PortAudio
     AudioInterface::getInstance().initialize();
 

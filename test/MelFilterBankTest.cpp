@@ -1,20 +1,23 @@
 //
 // Created by marcin on 11.12.17.
 //
-
-
+#ifndef WIN32
 #define BOOST_TEST_DYN_LINK
+#endif
 
-#define BOOST_TEST_MODULE "MelFilterBankTest"
-
+#define BOOST_TEST_MODULE MelFilterBankTest
+#include <iostream>
+#include "../src/MelFilterBank.h"
 #include <boost/test/unit_test.hpp>
 
-#include "../src/MelFilterBank.h"
 
-BOOST_AUTO_TEST_SUITE(MelFilterBank)
+BOOST_AUTO_TEST_SUITE(MelFilterBankTest)
 
-BOOST_AUTO_TEST_CASE( valid )
+BOOST_AUTO_TEST_CASE( invalid )
 {
-    BOOST_CHECK(true);
+    BOOST_CHECK(false);
+    BOOST_CHECK(false);
+    std::cout << "bellelele";
+    BOOST_CHECK_EQUAL(2,1);
 }
 BOOST_AUTO_TEST_SUITE_END()

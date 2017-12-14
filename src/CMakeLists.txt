@@ -17,5 +17,6 @@ set(SOURCE_FILES main.cpp UDPSender.cpp UDPSender.h AudioInterface.cpp AudioInte
         SpectrumAnalyzer.cpp SpectrumAnalyzer.h StereoSpectrumBuffer.h MainWindow.cpp MainWindow.h MelFilterBank.h
         MelFilterBank.cpp StereoAnalysisBuffer.h)
 add_executable(blinkytune ${SOURCE_FILES})
+add_dependencies(blinkytune check)
 
 target_link_libraries(blinkytune pthread boost_system boost_thread portaudio Qt5::Core Qt5::Widgets Qt5::Gui)
