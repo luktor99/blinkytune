@@ -1,16 +1,8 @@
-find_package(Boost COMPONENTS unit_test_framework)
-
-if(Boost_FOUND )
-    message("Boost found")
-endif()
-
-include_directories(${Boost_INCLUDE_DIR})
 include_directories(../kfr/include)
-include_directories(../src/)
+include_directories(../src)
 
 add_executable(Tests MelFilterBankTest.cpp)
-target_link_libraries(Tests
-        ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+target_link_libraries(Tests ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} )
 add_test(boostUnitTestsRun Tests)
 
 if (CMAKE_CONFIGURATION_TYPES)

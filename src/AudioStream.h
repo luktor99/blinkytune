@@ -5,7 +5,7 @@
 #ifndef BLINKYTUNE_AUDIOSTREAM_H
 #define BLINKYTUNE_AUDIOSTREAM_H
 
-#include <portaudio.h>
+#include "portaudio.h"
 #include "AudioDevice.h"
 
 class AudioStream {

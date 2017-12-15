@@ -5,7 +5,7 @@
 #ifndef BLINKYTUNE_AUDIODEVICE_H
 #define BLINKYTUNE_AUDIODEVICE_H
 
-#include <portaudio.h>
+#include "portaudio.h"
 
 class AudioDevice {
 public:
