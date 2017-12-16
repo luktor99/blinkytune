@@ -21,7 +21,11 @@ add_executable(blinkytune ${SOURCE_FILES})
 
 add_dependencies(blinkytune check)
 
-set(boost_libs ${boost_system} ${boost_thread})
+if(WIN32)
+    set(boost_libs ${boost_system} ${boost_thread})
+else()
+    set(boost_libs boost_system boost_thread)
+endif()
 
 target_link_libraries(blinkytune ${boost_libs} portaudio_static Qt5::Core Qt5::Widgets Qt5::Gui)
 

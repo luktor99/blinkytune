@@ -9,11 +9,12 @@ link_directories(${Boost_LIBRARY_DIRS})
 
 add_executable(Tests ${SOURCE_FILES})
 
-#if(WIN32)
+if(WIN32)
 target_link_libraries(Tests ${boost_UNIT_TEST_FRAMEWORK_LIBRARY})
-#else()
-#	target_link_libraries(Tests boost_unit_test_framework)
-#endif()
+else()
+	target_link_libraries(Tests boost_unit_test_framework)
+endif()
+
 add_test(NAME boostUnitTestsRun COMMAND Tests)
 
 if (CMAKE_CONFIGURATION_TYPES)
