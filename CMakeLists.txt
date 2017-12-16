@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.5)
 project(blinkytune)
 include(CTest)
 enable_testing()
@@ -12,10 +12,6 @@ else()
 endif()
 
 include(FindPkgConfig)
-
-find_package(Boost 1.55.0 REQUIRED)
-include_directories(${Boost_INCLUDE_DIR})
-link_directories(${Boost_LIBRARY_DIRS})
 
 add_subdirectory(portaudio)
 add_subdirectory(src)
