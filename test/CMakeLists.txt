@@ -1,8 +1,14 @@
 include_directories(../kfr/include)
-include_directories(../src)
+include_directories(../src/)
 
-add_executable(Tests MelFilterBankTest.cpp)
-target_link_libraries(Tests ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+find_package(Boost 1.55.0 REQUIRED)
+include_directories(${Boost_INCLUDE_DIR})
+link_directories(${Boost_LIBRARY_DIRS})
+
+set(SOURCE_FILES MelFilterBankTest.cpp ../src/MelFilterBank.cpp ../src/MelFilterBank.h)
+
+add_executable(Tests ${SOURCE_FILES})
+target_link_libraries(Tests boost_unit_test_framework)
 add_test(NAME boostUnitTestsRun COMMAND Tests)
 
 if (CMAKE_CONFIGURATION_TYPES)

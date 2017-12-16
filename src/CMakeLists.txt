@@ -2,6 +2,10 @@ find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 include_directories(${Qt5_INCLUDE_DIR})
 link_directories(${Qt5_LIBRARY_DIRS})
 
+find_package(Boost 1.55.0 REQUIRED)
+include_directories(${Boost_INCLUDE_DIR})
+link_directories(${Boost_LIBRARY_DIRS})
+
 set(PROJECT_SOURCE_DIR ../kfr)
 include(../kfr/sources.cmake)
 include_directories(../kfr/include)
@@ -14,5 +18,5 @@ set(SOURCE_FILES main.cpp UDPSender.cpp UDPSender.h AudioInterface.cpp AudioInte
         MelFilterBank.cpp StereoAnalysisBuffer.h)
 add_executable(blinkytune ${SOURCE_FILES})
 
-target_link_libraries(blinkytune ${Boost_SYSTEM} ${Boost_THREAD} portaudio_static Qt5::Core Qt5::Widgets Qt5::Gui)
+target_link_libraries(blinkytune boost_system boost_thread portaudio_static Qt5::Core Qt5::Widgets Qt5::Gui)
 add_dependencies(blinkytune check)
