@@ -13,13 +13,11 @@ endif()
 add_test(NAME boostUnitTestsRun COMMAND Tests)
 
 if (CMAKE_CONFIGURATION_TYPES)
-    message("Start testing: ")
     add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND}
             --force-new-ctest-process --output-on-failure
             --build-config "$<CONFIGURATION>"
             DEPENDS Tests)
 else()
-    message("Start testing: ")
     add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND}
             --force-new-ctest-process --output-on-failure
             DEPENDS Tests)
