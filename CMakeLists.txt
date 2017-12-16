@@ -13,7 +13,12 @@ endif()
 include(FindPkgConfig)
 
 add_subdirectory(portaudio)
-set_target_properties(portaudio_static PROPERTIES COMPILE_FLAGS "/w")
+if(WIN32)
+	set_target_properties(portaudio_static PROPERTIES COMPILE_FLAGS "/w")
+else()
+	set_target_properties(portaudio_static PROPERTIES COMPILE_FLAGS "-w")
+endif()
+
 add_subdirectory(src)
 add_subdirectory(test)
 
