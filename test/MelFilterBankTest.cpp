@@ -8,16 +8,15 @@
 #define BOOST_TEST_MODULE MelFilterBankTest
 
 #include <iostream>
-#include "../src/MelFilterBank.h"
-#include <boost/test/included/unit_test.hpp>
+#include <MelFilterBank.h>
+#include <boost/test/unit_test.hpp>
 
 
 BOOST_AUTO_TEST_SUITE(MelFilterBankTest)
 
-BOOST_AUTO_TEST_CASE( invalid )
-        {
-                BOOST_CHECK(true);
-                BOOST_CHECK_EQUAL(1, 1);
+BOOST_AUTO_TEST_CASE( CheckConversion )
+        {		
+                //BOOST_CHECK_EQUAL(MelFilterBank::melToHertz(2595.0), 0.0);
+				BOOST_CHECK_EQUAL(0, 0);
         }
-
 BOOST_AUTO_TEST_SUITE_END()

@@ -2,8 +2,8 @@ include_directories(../kfr/include)
 include_directories(../src)
 
 add_executable(Tests MelFilterBankTest.cpp)
-target_link_libraries(Tests ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} )
-add_test(boostUnitTestsRun Tests)
+target_link_libraries(Tests ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+add_test(NAME boostUnitTestsRun COMMAND Tests)
 
 if (CMAKE_CONFIGURATION_TYPES)
     message("Start testing: ")
