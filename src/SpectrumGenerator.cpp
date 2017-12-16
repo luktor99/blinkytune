@@ -4,15 +4,10 @@
 #include "MelFilterBank.h"
 #include "SpectrumGenerator.h"
 
-#pragma warning(push, 0)
-
 #include <kfr/dft.hpp>
 #include <kfr/dsp.hpp>
 #include <kfr/io.hpp>
 #include <iostream>
-
-#pragma warning(pop)
-
 
 SpectrumGenerator::SpectrumGenerator(FIFOQueue<StereoSamplesBuffer> &inputFIFO,
                                      FIFOQueue<StereoSpectrumBuffer> &outputFIFO) : inputFIFO_(

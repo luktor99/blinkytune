@@ -5,12 +5,9 @@
 #ifndef BLINKYTUNE_STEREOSAMPLESBUFFER_H
 #define BLINKYTUNE_STEREOSAMPLESBUFFER_H
 
-#pragma warning(push, 0)
-
 #include <kfr/base.hpp>
 #include "DSPParameters.h"
 
-#pragma warning(pop)
 
 
 class StereoSamplesBuffer {

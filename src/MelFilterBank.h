@@ -5,12 +5,10 @@
 #ifndef BLINKYTUNE_MELFILTERBANK_H
 #define BLINKYTUNE_MELFILTERBANK_H
 
-#pragma warning(push, 0)
 #undef min
 #undef max
 #include <kfr/base/univector.hpp>
 
-#pragma warning(pop)
 
 #include <memory>
 #include "DSPParameters.h"

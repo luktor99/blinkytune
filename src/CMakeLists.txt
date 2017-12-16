@@ -10,7 +10,7 @@ set(CMAKE_AUTOMOC ON)
 
 set(PROJECT_SOURCE_DIR ../kfr)
 include(../kfr/sources.cmake)
-include_directories(../kfr/include)
+include_directories(SYSTEM ../kfr/include)
 
 set(SOURCE_FILES main.cpp UDPSender.cpp UDPSender.h AudioInterface.cpp AudioInterface.h AudioDevice.cpp AudioDevice.h
         AudioInputStream.cpp AudioInputStream.h AudioStream.cpp AudioStream.h ${KFR_SRC} FIFOQueue.h StereoSamplesBuffer.h

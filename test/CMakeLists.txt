@@ -10,9 +10,9 @@ link_directories(${Boost_LIBRARY_DIRS})
 add_executable(Tests ${SOURCE_FILES})
 
 if(WIN32)
-target_link_libraries(Tests ${boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+    target_link_libraries(Tests ${boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 else()
-	target_link_libraries(Tests boost_unit_test_framework)
+    target_link_libraries(Tests boost_unit_test_framework)
 endif()
 
 add_test(NAME boostUnitTestsRun COMMAND Tests)
