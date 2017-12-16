@@ -5,13 +5,12 @@
 #ifndef BLINKYTUNE_MELFILTERBANK_H
 #define BLINKYTUNE_MELFILTERBANK_H
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma warning(push, 0)
 #undef min
 #undef max
 #include <kfr/base/univector.hpp>
 
-#pragma GCC diagnostic pop
+#pragma warning(pop)
 
 #include <memory>
 #include "DSPParameters.h"

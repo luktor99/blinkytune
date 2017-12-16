@@ -14,7 +14,7 @@ std::vector<float>
 MelFilterBank::compute(kfr::univector<float, SPECTRUM_LENGTH> &freqValues, const unsigned int &sampleRate) const {
     float melMin = hertzToMel(0);
 
-    float deltaMel = abs(hertzToMel(static_cast<float>(sampleRate)) - melMin) / (nOutputValues + 1.0);
+    float deltaMel = fabs(hertzToMel(static_cast<float>(sampleRate)) - melMin) / (nOutputValues + 1.0);
 
     std::vector<float> melValues(nOutputValues, 0);
     float lowerBand, centerBand, upperBand, melValue, aCoeff, tValue;

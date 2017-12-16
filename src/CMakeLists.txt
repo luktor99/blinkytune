@@ -2,9 +2,7 @@ find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 include_directories(${Qt5_INCLUDE_DIR})
 link_directories(${Qt5_LIBRARY_DIRS})
 
-find_package(Boost 1.55.0 REQUIRED)
-include_directories(${Boost_INCLUDE_DIR})
-link_directories(${Boost_LIBRARY_DIRS})
+set(CMAKE_AUTOMOC ON)
 
 set(PROJECT_SOURCE_DIR ../kfr)
 include(../kfr/sources.cmake)
@@ -27,3 +25,18 @@ else()
 endif()
 
 target_link_libraries(blinkytune ${boost_libs} portaudio_static Qt5::Core Qt5::Widgets Qt5::Gui)
+
+message(status $<$<CONFIG:Debug>:DEBUG_MODE>)
+if(WIN32)
+	add_custom_command(
+        TARGET blinkytune POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Widgetsd.dll $<TARGET_FILE_DIR:blinkytune>
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Cored.dll $<TARGET_FILE_DIR:blinkytune>
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Guid.dll $<TARGET_FILE_DIR:blinkytune>
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Widgets.pdb $<TARGET_FILE_DIR:blinkytune>
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Core.pdb $<TARGET_FILE_DIR:blinkytune>
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Gui.pdb $<TARGET_FILE_DIR:blinkytune>
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Widgets.dll $<TARGET_FILE_DIR:blinkytune>
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Core.dll $<TARGET_FILE_DIR:blinkytune>
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Gui.dll $<TARGET_FILE_DIR:blinkytune>)
+endif(WIN32)

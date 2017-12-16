@@ -1,10 +1,6 @@
 include_directories(../kfr/include)
 include_directories(../src/)
 
-find_package(Boost 1.55.0 REQUIRED)
-include_directories(${Boost_INCLUDE_DIR})
-link_directories(${Boost_LIBRARY_DIRS})
-
 set(SOURCE_FILES MelFilterBankTest.cpp ../src/MelFilterBank.cpp ../src/MelFilterBank.h)
 
 add_executable(Tests ${SOURCE_FILES})
