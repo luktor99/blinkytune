@@ -43,7 +43,7 @@ MelFilterBank::compute(kfr::univector<float, SPECTRUM_LENGTH> &freqValues, const
 
 std::size_t MelFilterBank::getLowerIndex(const float &lowerBandFrequency, const unsigned int &sampleRate) const {
     size_t lowerValue = static_cast<size_t>(lowerBandFrequency / (sampleRate / 2) * SPECTRUM_LENGTH);
-    return lowerValue < 0 ? 0 : lowerValue;
+    return lowerValue;
 }
 
 std::size_t MelFilterBank::getUpperIndex(const float &upperBandFrequency, const unsigned int &sampleRate) const {
