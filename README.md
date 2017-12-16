@@ -31,7 +31,7 @@ The other two have to be installed manually.
 #### Linux:
 
 ```
-git clone -recursive https://github.com/luktor99/blinkytune.git
+git clone --recursive https://github.com/luktor99/blinkytune.git
 mkdir cmake-build
 cd cmake-build
 cmake -DQt5_DIR=/path/to/Qt5 ..
