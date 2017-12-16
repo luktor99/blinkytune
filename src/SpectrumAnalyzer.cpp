@@ -12,7 +12,7 @@ SpectrumAnalyzer::SpectrumAnalyzer(FIFOQueue<StereoSpectrumBuffer> &inputFIFO,
 }
 
 void SpectrumAnalyzer::mainLoop() {
-    static int cnt = 0;
+    static unsigned int cnt = 0;
 
     // Acquire new spectrum spectrum
     std::unique_ptr<StereoSpectrumBuffer> spectrum;
