@@ -13,7 +13,7 @@ AudioDevice::AudioDevice(PaDeviceIndex deviceIndex) : deviceIndex_(deviceIndex) 
 }
 
 AudioDevice::AudioDevice() {
-    AudioDevice(Pa_GetDefaultInputDevice());
+    AudioDevice(static_cast<AudioDevice>(Pa_GetDefaultInputDevice()));
 }
 
 const char *AudioDevice::getName() const {
