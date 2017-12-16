@@ -35,8 +35,23 @@ git clone https://github.com/luktor99/blinkytune.git
 mkdir cmake-build
 cd cmake-build
 cmake -DQt5_DIR=/path/to/Qt5 ..
-make
+make -j 4
 ```
+
+#### Windows:
+
+Execute these commands using Visual Studio Command Prompt:
+
+```
+git clone https://github.com/luktor99/blinkytune.git
+mkdir cmake-build
+cd cmake-build
+cmake -G "Visual Studio 14 2015" -DQt5_DIR=/path/to/Qt5 ..
+msbuild blinkytune.sln
+```
+
+## Documentation
+Project code documentation will be generated using Doxygen.  
 
 
 
