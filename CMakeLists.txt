@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 14)
 if(CMAKE_COMPILER_IS_GNUCXX)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W0 /Od")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W2")
 endif()
 
 include(FindPkgConfig)
