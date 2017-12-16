@@ -7,7 +7,8 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-parameter"
-
+#undef min
+#undef max
 #include <kfr/base/univector.hpp>
 
 #pragma GCC diagnostic pop

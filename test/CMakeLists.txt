@@ -8,7 +8,12 @@ link_directories(${Boost_LIBRARY_DIRS})
 set(SOURCE_FILES MelFilterBankTest.cpp ../src/MelFilterBank.cpp ../src/MelFilterBank.h)
 
 add_executable(Tests ${SOURCE_FILES})
-target_link_libraries(Tests boost_unit_test_framework)
+
+if(WIN32)
+	target_link_libraries(Tests ${boost_UNIT_TEST_FRAMEWORK})
+else()
+	target_link_libraries(Tests boost_unit_test_framework)
+endif()
 add_test(NAME boostUnitTestsRun COMMAND Tests)
 
 if (CMAKE_CONFIGURATION_TYPES)
