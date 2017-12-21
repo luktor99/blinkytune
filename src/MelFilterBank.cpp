@@ -3,6 +3,7 @@
 //
 
 #include "MelFilterBank.h"
+#include "math.h"
 
 MelFilterBank::MelFilterBank(const unsigned int &nOut) : nOutputValues(nOut) {};
 
@@ -11,10 +12,10 @@ float MelFilterBank::melToHertz(const float &freqInMel) { return 700.0 * (pow(10
 float MelFilterBank::hertzToMel(const float &freqInHertz) { return 2595.0 * log10(1 + (freqInHertz / 700.0)); }
 
 std::vector<float>
-MelFilterBank::compute(kfr::univector<float, SPECTRUM_LENGTH> &freqValues, const unsigned int &sampleRate) const {
-    float melMin = hertzToMel(0);
+MelFilterBank::compute(kfr::univector<float, SPECTRUM_LENGTH> &freqValues, const unsigned int &sampleRate, float lowerFreq , float upperFreq) const {
+    float melMin = hertzToMel(lowerFreq);
 
-    float deltaMel = fabs(hertzToMel(static_cast<float>(sampleRate)) - melMin) / (nOutputValues + 1.0);
+    float deltaMel = fabs(hertzToMel(static_cast<float>(upperFreq)) - melMin) / (nOutputValues + 1.0);
 
     std::vector<float> melValues(nOutputValues, 0);
     float lowerBand, centerBand, upperBand, melValue, aCoeff, tValue;
@@ -42,11 +43,11 @@ MelFilterBank::compute(kfr::univector<float, SPECTRUM_LENGTH> &freqValues, const
 }
 
 std::size_t MelFilterBank::getLowerIndex(const float &lowerBandFrequency, const unsigned int &sampleRate) const {
-    size_t lowerValue = static_cast<size_t>(lowerBandFrequency / (sampleRate / 2) * SPECTRUM_LENGTH);
+    size_t lowerValue = static_cast<size_t>(lowerBandFrequency / (sampleRate / 2) * (SPECTRUM_LENGTH-1));
     return lowerValue;
 }
 
 std::size_t MelFilterBank::getUpperIndex(const float &upperBandFrequency, const unsigned int &sampleRate) const {
-    size_t upperValue = static_cast<size_t>(upperBandFrequency / (sampleRate / 2) * SPECTRUM_LENGTH);
-    return upperValue > sampleRate / 2 ? sampleRate / 2 : upperValue;
+    size_t upperValue = static_cast<size_t>(upperBandFrequency / (sampleRate / 2) * (SPECTRUM_LENGTH-1));
+    return upperValue > SPECTRUM_LENGTH - 1 ? SPECTRUM_LENGTH - 1 : upperValue;
 }
