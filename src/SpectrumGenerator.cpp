@@ -36,10 +36,6 @@ void SpectrumGenerator::mainLoop() {
     kfr::univector<float, FRAMES_PER_BUFFER> &samplesL = samples->getSamplesL();
     kfr::univector<float, FRAMES_PER_BUFFER> &samplesR = samples->getSamplesR();
 
-//    float volumeL, volumeR;
-//    volumeL = kfr::rms(samplesL);
-//    volumeR = kfr::rms(samplesR);
-
     const auto window = kfr::window_hamming(FRAMES_PER_BUFFER);
     samplesL = samplesL * window;
     samplesR = samplesR * window;
