@@ -5,13 +5,10 @@
 #ifndef BLINKYTUNE_STEREOSAMPLESBUFFER_H
 #define BLINKYTUNE_STEREOSAMPLESBUFFER_H
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-
 #include <kfr/base.hpp>
 #include "DSPParameters.h"
 
-#pragma GCC diagnostic pop
+
 
 class StereoSamplesBuffer {
 public:

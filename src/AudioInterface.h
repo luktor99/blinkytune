@@ -5,7 +5,7 @@
 #ifndef BLINKYTUNE_AUDIOINTERFACE_H
 #define BLINKYTUNE_AUDIOINTERFACE_H
 
-#include <portaudio.h>
+#include "portaudio.h"
 #include "AudioDevice.h"
 #include <list>
 
