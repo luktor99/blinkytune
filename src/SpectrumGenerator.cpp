@@ -25,6 +25,7 @@ void SpectrumGenerator::mainLoop() {
     catch (FIFOQueue<StereoSamplesBuffer>::TimeoutException &) {
         return;
     }
+
     //auto t1 = std::chrono::system_clock::now();
 
     kfr::univector<float, FRAMES_PER_BUFFER> &samplesL = samples->getSamplesL();
@@ -48,18 +49,13 @@ void SpectrumGenerator::mainLoop() {
     kfr::univector<float, FRAMES_PER_BUFFER / 2 + 1> spectrumRawL = kfr::cabs(freqL);
     kfr::univector<float, FRAMES_PER_BUFFER / 2 + 1> spectrumRawR = kfr::cabs(freqR);
 
-	MelFilterBank melFilter(SPECTRUM_BARS);
-
-    //std::vector<float> spectrumL(SPECTRUM_BARS, 0);
-    //std::vector<float> spectrumR(SPECTRUM_BARS, 0);
-   // (void)spectrumRawR;
-    //(void)spectrumRawL;
+    // Apply the mel filter bank to the output
+    MelFilterBank melFilter(SPECTRUM_BARS);
 	std::vector<float> spectrumR = melFilter.compute(spectrumRawR, SAMPLE_RATE);
 	std::vector<float> spectrumL = melFilter.compute(spectrumRawL, SAMPLE_RATE);
 
-
+    // Pass the data to the next thread
     outputFIFO_.push(new StereoSpectrumBuffer(spectrumL, spectrumR, std::move(samples)));
-
 
     /*std::cout
             << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - t1).count()
