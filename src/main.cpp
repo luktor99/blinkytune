@@ -25,10 +25,10 @@ int main(int argc, char **argv) {
 		std::cout << "[" << dev.getID() << "] " << dev.getName() << std::endl;
 	
 	// Select the input device
-	AudioDevice device = AudioDevice(1);//AudioInterface::getInstance().getDefaultInputDevice();
-										// std::cout << "Selected: [" << device.getID() << "] " << device.getName() << std::endl;
+	AudioDevice device = AudioInterface::getInstance().getDefaultInputDevice();
+	std::cout << "Selected: [" << device.getID() << "] " << device.getName() << std::endl;
 
-										// Create an input stream
+	// Create an input stream
 	AudioInputStream stream(device, SAMPLE_RATE, FRAMES_PER_BUFFER);
 
 	// Allocate a FIFO queue for samples
