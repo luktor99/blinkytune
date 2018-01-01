@@ -51,8 +51,8 @@ void SpectrumGenerator::mainLoop() {
 
     // Apply the mel filter bank to the output
     MelFilterBank melFilter(SPECTRUM_BARS);
-	std::vector<float> spectrumR = melFilter.compute(spectrumRawR, SAMPLE_RATE);
-	std::vector<float> spectrumL = melFilter.compute(spectrumRawL, SAMPLE_RATE);
+    std::vector<float> spectrumR = melFilter.compute(spectrumRawR, SAMPLE_RATE, CUTOFF_FREQ_LOW, CUTOFF_FREQ_HIGH);
+    std::vector<float> spectrumL = melFilter.compute(spectrumRawL, SAMPLE_RATE, CUTOFF_FREQ_LOW, CUTOFF_FREQ_HIGH);
 
     // Pass the data to the next thread
     outputFIFO_.push(new StereoSpectrumBuffer(spectrumL, spectrumR, std::move(samples)));

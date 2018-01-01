@@ -25,7 +25,7 @@ public:
     static float hertzToMel(const float &freqInHertz);
 
     std::vector<float>
-    compute(kfr::univector<float, SPECTRUM_LENGTH> &freqValues, const unsigned int &sampleRate, float lowerFreq = 40.0, float upperFreq = 32000) const;
+    compute(kfr::univector<float, SPECTRUM_LENGTH> &freqValues, const unsigned int &sampleRate, float lowerFreq = 0, float upperFreq = SAMPLE_RATE/2) const;
 
 private:
 
