@@ -78,8 +78,8 @@ void SpectrumAnalyzer::mainLoop() {
     auto maxR = std::max_element(data->spectrumR_.begin(), data->spectrumR_.end());
 
     // Update spectrum gains
-    std::transform(data->spectrumL_.begin(), data->spectrumL_.end(), gainsL.begin(), [&maxL](auto const &s) { return s + 0.05f**maxL; });
-    std::transform(data->spectrumR_.begin(), data->spectrumR_.end(), gainsR.begin(), [](auto const &s) { return s; });
+    std::transform(data->spectrumL_.begin(), data->spectrumL_.end(), gainsL.begin(), [](auto const &s) { return std::max(s, 0.05f); });
+    std::transform(data->spectrumR_.begin(), data->spectrumR_.end(), gainsR.begin(), [](auto const &s) { return std::max(s, 0.05f); });
 
     // Scale the spectrum
     std::vector<float> spectrumFilteredL, spectrumFilteredR;
@@ -129,7 +129,10 @@ void SpectrumAnalyzer::mainLoop() {
 //        LEDStrip::clamp(value);
 //        ledStrip.setRGB(i, 0.0f, value, 0.0f);
 
-        ledStrip.setRGB(i, 255.0f*bassL, 255.0f*midL, 255.0f*trebleL); // a test effect
+        if (i < ledStrip.getLength() / 2)
+            ledStrip.setRGB(i, 255.0f * bassL, 255.0f * midL, 255.0f * trebleL);
+        else
+            ledStrip.setRGB(i, 255.0f * bassR, 255.0f * midR, 255.0f * trebleR);
     }
 
     // Display the spectrum every 0.02s
