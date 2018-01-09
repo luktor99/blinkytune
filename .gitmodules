@@ -3,4 +3,4 @@
 	url = https://github.com/kfrlib/kfr.git
 [submodule "portaudio"]
 	path = portaudio
-	url = git://git.assembla.com/portaudio.git
+	url = https://git.assembla.com/portaudio.git
