@@ -5,7 +5,7 @@
 #ifndef BLINKYTUNE_MAINWINDOW_H
 #define BLINKYTUNE_MAINWINDOW_H
 
-#include <QtWidgets/QWidget>
+#include <QWidget>
 
 class QPushButton;
 

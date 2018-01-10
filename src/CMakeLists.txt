@@ -16,7 +16,7 @@ set(SOURCE_FILES main.cpp UDPSender.cpp UDPSender.h AudioInterface.cpp AudioInte
         AudioInputStream.cpp AudioInputStream.h AudioStream.cpp AudioStream.h ${KFR_SRC} FIFOQueue.h StereoSamplesBuffer.h
         Worker.h SpectrumGenerator.cpp SpectrumGenerator.h DSPParameters.h SamplesCollector.cpp SamplesCollector.h
         SpectrumAnalyzer.cpp SpectrumAnalyzer.h StereoSpectrumBuffer.h MainWindow.cpp MainWindow.h MelFilterBank.h
-        MelFilterBank.cpp StereoAnalysisBuffer.h)
+        MelFilterBank.cpp StereoAnalysisBuffer.h CollapseWidget.cpp CollapseWidget.h)
 add_executable(blinkytune ${SOURCE_FILES})
 
 add_dependencies(blinkytune check)
