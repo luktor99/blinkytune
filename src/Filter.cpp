@@ -23,4 +23,5 @@ float Filter::get() const {
 
 Filter &Filter::operator=(const float &value) {
     update(value);
+    return *this;
 }
