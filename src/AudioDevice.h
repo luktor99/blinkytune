@@ -15,6 +15,8 @@ public:
 
     const char *getName() const;
 
+    int getInputChannels() const;
+
     int getID() const;
 
 private:

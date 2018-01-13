@@ -1,4 +1,11 @@
 #include <iostream>
+#include <QApplication>
+#include <QSplashScreen>
+#include <QtCore\qthread.h>
+
+#include "MainWindow.h"
+//#include "CollapseWidget.h"
+
 
 #include "AudioInterface.h"
 #include "AudioInputStream.h"
@@ -18,7 +25,7 @@ int main(int argc, char **argv) {
 	(void)argc;
 	(void)argv;
 	// Initialize PortAudio
-	AudioInterface::getInstance().initialize();
+	/*AudioInterface::getInstance().initialize();
 
 	// Display all input devices
 	for (auto dev : AudioInterface::getInstance().getInputDevicesList())
@@ -55,5 +62,28 @@ int main(int argc, char **argv) {
 	spectrumGenerator.join();
 	spectrumAnalyzer.join();
 
-	exit(EXIT_SUCCESS);
+	exit(EXIT_SUCCESS);*/
+
+	QApplication a(argc, argv);
+
+	QPixmap pixmap("/home/helene/Images/my_image.png");
+	if (pixmap.isNull())
+	{
+		pixmap = QPixmap(300, 300);
+		pixmap.fill(Qt::magenta);
+	}
+
+	QSplashScreen splash(pixmap);
+	splash.show();
+	splash.showMessage("Loaded modules dsjhj");
+	a.processEvents();
+
+	MainWindow w;
+	w.setupUi();
+	w.show();
+	splash.finish(&w);
+	w.pushDeviceToList("ddd", 8);
+	int i = 0;
+	return a.exec();
+
 }

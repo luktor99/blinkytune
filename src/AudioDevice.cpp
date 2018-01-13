@@ -20,6 +20,10 @@ const char *AudioDevice::getName() const {
     return deviceInfo_.name;
 }
 
+int AudioDevice::getInputChannels() const{
+	return deviceInfo_.maxInputChannels;
+};
+
 int AudioDevice::getID() const {
     return deviceIndex_;
 }
