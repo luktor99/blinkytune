@@ -37,6 +37,9 @@ void LEDStrip::setB(int n, float b) {
 }
 
 void LEDStrip::setRGB(int n, float r, float g, float b) {
+    clamp(r);
+    clamp(g);
+    clamp(b);
     bufferFloat_[n * 3] = r;
     bufferFloat_[n * 3 + 1] = g;
     bufferFloat_[n * 3 + 2] = b;
