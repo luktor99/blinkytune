@@ -1,0 +1,41 @@
+//
+// Created by luktor99 on 13.01.18.
+//
+
+#include "StillColor.h"
+
+namespace {
+    const StillColor::Params defaultParams{
+            .R = 255.0f,
+            .G = 120.0f,
+            .B = 0.0f
+    };
+}
+
+StillColor::StillColor() : p_(defaultParams) {
+
+}
+
+void StillColor::tick(LEDStrip &ledStrip, const StereoAnalysisBuffer *) {
+    std::lock_guard<std::mutex> lock(mutex_);
+    for (int i = 0; i < ledStrip.getLength(); ++i)
+        ledStrip.setRGB(i, p_.R, p_.G, p_.B);
+}
+
+void StillColor::populateControls() {
+    // TODO...
+}
+
+void StillColor::readControls() {
+    std::lock_guard<std::mutex> lock(mutex_);
+    // TODO...
+
+    p_.R = rand() % 256;
+    p_.G = rand() % 256;
+    p_.B = rand() % 256;
+}
+
+Effect *StillColor::create() {
+    return new StillColor();
+}
+

@@ -28,6 +28,8 @@ public:
 
     void fade(float &value);
 
+    void clear();
+
 private:
     void updateOutputBuffer();
 

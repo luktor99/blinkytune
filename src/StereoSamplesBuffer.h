@@ -9,13 +9,13 @@
 #include "DSPParameters.h"
 
 
-
 class StereoSamplesBuffer {
 public:
     StereoSamplesBuffer() = default;
 
-    StereoSamplesBuffer(const float *samplesL, const float *samplesR) : samplesL(kfr::make_univector(samplesL, FRAMES_PER_BUFFER)),
-                                                                        samplesR(kfr::make_univector(samplesR, FRAMES_PER_BUFFER)) {};
+    StereoSamplesBuffer(const float *samplesL, const float *samplesR) : samplesL(
+            kfr::make_univector(samplesL, FRAMES_PER_BUFFER)), samplesR(
+            kfr::make_univector(samplesR, FRAMES_PER_BUFFER)) {};
 
     kfr::univector<float, FRAMES_PER_BUFFER> &getSamplesL() {
         return samplesL;
@@ -25,6 +25,7 @@ public:
         return samplesR;
     }
 
+private:
     kfr::univector<float, FRAMES_PER_BUFFER> samplesL, samplesR;
 };
 

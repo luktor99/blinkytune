@@ -64,3 +64,8 @@ void LEDStrip::fade(float &value) {
         bufferFloat_[i] *= value;
 }
 
+void LEDStrip::clear() {
+    for (int i = 0; i < length_ * 3; ++i)
+        bufferFloat_[i] = 0.0f;
+}
+

@@ -1,59 +1,56 @@
 #include <iostream>
 
 #include "AudioInterface.h"
-#include "AudioInputStream.h"
 
 #include "FIFOQueue.h"
 #include "StereoSamplesBuffer.h"
-#include "StereoSpectrumBuffer.h"
-#include "DSPParameters.h"
 #include "SamplesCollector.h"
-#include "SpectrumGenerator.h"
-#include "SpectrumAnalyzer.h"
+#include "EffectsRenderer.h"
+#include "EffectsController.h"
+#include "effects/StillColor.h"
+#include "effects/ColorBeat.h"
+#include "EffectsFactory.h"
 
 
 int main(int argc, char **argv) {
-	
-	//Supress warnings:
-	(void)argc;
-	(void)argv;
-	// Initialize PortAudio
-	AudioInterface::getInstance().initialize();
+    //Supress warnings:
+    (void) argc;
+    (void) argv;
+    // Initialize PortAudio
+    AudioInterface::getInstance().initialize();
 
-	// Display all input devices
-	for (auto dev : AudioInterface::getInstance().getInputDevicesList())
-		std::cout << "[" << dev.getID() << "] " << dev.getName() << std::endl;
-	
-	// Select the input device
-	AudioDevice device = AudioInterface::getInstance().getDefaultInputDevice();
-	std::cout << "Selected: [" << device.getID() << "] " << device.getName() << std::endl;
+    // Display all input devices
+    for (auto dev : AudioInterface::getInstance().getInputDevicesList())
+        std::cout << "[" << dev.getID() << "] " << dev.getName() << std::endl;
 
-	// Create an input stream
-	AudioInputStream stream(device, SAMPLE_RATE, FRAMES_PER_BUFFER);
+    // Select the input device
+    AudioDevice device = AudioInterface::getInstance().getDefaultInputDevice();
+    std::cout << "Selected: [" << device.getID() << "] " << device.getName() << std::endl;
 
-	// Allocate a FIFO queue for samples
-	FIFOQueue<StereoSamplesBuffer> samplesFIFO(FIFO_SIZE);
-	FIFOQueue<StereoSpectrumBuffer> spectrumFIFO(FIFO_SIZE);
-	FIFOQueue<StereoAnalysisBuffer> analysisFIFO(FIFO_SIZE);
+    // List the available effects
+    std::cout << "Registered sound effects:" << std::endl;
+    auto s = EffectsFactory::getInstance().getSoundEffects();
+    std::for_each(s.cbegin(), s.cend(), [](const auto &name){ std::cout << "\t" << name << std::endl; });
+    std::cout << "Registered no sound effects:" << std::endl;
+    auto ns = EffectsFactory::getInstance().getNoSoundEffects();
+    std::for_each(ns.cbegin(), ns.cend(), [](const auto &name){ std::cout << "\t" << name << std::endl; });
 
-	SamplesCollector samplesCollector(stream, samplesFIFO);
-	SpectrumGenerator spectrumGenerator(samplesFIFO, spectrumFIFO);
-	SpectrumAnalyzer spectrumAnalyzer(spectrumFIFO, analysisFIFO);
+    // Start the effects controller
+    EffectsController effectsController;
+    effectsController.connect("192.168.1.166", 60);
+    effectsController.setAudioDevice(device);
 
-	samplesCollector.run();
-	spectrumGenerator.run();
-	spectrumAnalyzer.run();
+    effectsController.setEffect("Color Beat");
+//    effectsController.setEffect("Still Color");
 
-	// Keep collecting new samples
-	getchar();
+    // Just a test for now...
+    getchar();
+    effectsController.getEffect()->readControls();
 
-	samplesCollector.stop();
-	spectrumGenerator.stop();
-	spectrumAnalyzer.stop();
+    // Wait for a key press...
+    getchar();
 
-	samplesCollector.join();
-	spectrumGenerator.join();
-	spectrumAnalyzer.join();
+    effectsController.stop();
 
-	exit(EXIT_SUCCESS);
+    exit(EXIT_SUCCESS);
 }
