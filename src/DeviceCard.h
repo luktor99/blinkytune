@@ -15,16 +15,19 @@ public:
     void setupUi();
     void setDeviceName(const std::string& deviceNameStr);
     void setDeviceInputChannels(const std::string& inputChannels);
+	void setDeviceID(int id);
+	int getID() const;
     bool isChecked() const;
 	QString getName() const;
 
 signals:
-	void clicked(DeviceCard& device);
+	void clicked(const DeviceCard& device);
 
 public:
 	QLabel deviceName;
 	QLabel noOfChannels;
 	QLabel devicePicture;
+	int deviceID;
 	bool checked;
 
 protected:

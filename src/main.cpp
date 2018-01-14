@@ -72,10 +72,9 @@ int main(int argc, char **argv) {
 	mainWin.setWindowTitle("BlinkyTune");
 	mainWin.setWindowIcon(pixmap);
 	mainWin.setupUi();
-	QThread::sleep(2); // splash is shown for 2 seconds
+//	QThread::sleep(2); // splash is shown for 2 seconds
 	mainWin.show();
 	splash.finish(&mainWin);
-	QDir dir; 
 	return app.exec();
 
 }

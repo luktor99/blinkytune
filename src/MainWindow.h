@@ -21,7 +21,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     void setupUi(void);
 	void setupEffectUi();
-    void pushDeviceToList(const char* deviceNameStr, const int& inputChannels);
+	void pushDeviceToList(const char* deviceNameStr, const int& inputChannels, const int& id);
 
 public slots:
 	void deviceClicked(const DeviceCard& device);

@@ -3,6 +3,7 @@
 //
 #include <QPushButton>
 #include <QScrollBar>
+#include <QMessageBox>
 
 #include "MainWindow.h"
 #include "CollapseWidget.h"
@@ -17,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::setupUi(void)
 {
-	// Set main layout:
+	// Set main layout
 	setStyleSheet("color: white; background-color: black;");
 	setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 
@@ -41,7 +42,7 @@ void MainWindow::setupUi(void)
 	std::list<AudioDevice> deviceList_ = AudioInterface::getInstance().getInputDevicesList();
 	for (auto device : deviceList_)
 	{
-		pushDeviceToList(device.getName(), device.getInputChannels());
+		pushDeviceToList(device.getName(), device.getInputChannels(), device.getID());
 	}
 
 	QWidget* connectionWidget = new QWidget(this);
@@ -109,25 +110,32 @@ void MainWindow::setupEffectUi()
 	return;
 }
 
-void MainWindow::pushDeviceToList(const char* deviceNameStr, const int& inputChannels )
+void MainWindow::pushDeviceToList(const char* deviceNameStr, const int& inputChannels , const int& id)
 {
     DeviceCard* addedDevice = new DeviceCard(this);
     addedDevice->setDeviceName(deviceNameStr);
 	addedDevice->setDeviceInputChannels(std::to_string(inputChannels));
+	addedDevice->setDeviceID(id);
 	deviceList.push_back(addedDevice);
 	addedDevice->setupUi();
-	QObject::connect(addedDevice, SIGNAL(clicked(DeviceCard&)), this, SLOT(deviceClicked(const DeviceCard&)));
+	QObject::connect(addedDevice, SIGNAL(clicked(const DeviceCard&)), this, SLOT(deviceClicked(const DeviceCard&)));
 	deviceSelectionAreaLayout->addWidget(addedDevice);
 }
 
 void MainWindow::deviceClicked(const DeviceCard& device) {
 	for (auto item : deviceList){
-		if(item->getName().toStdString() == device.getName().toStdString())
-			item->devicePicture.setStyleSheet("QLabel:hover:!pressed {border: 3px solid red; background-color: white;} \
-								QLabel{ border: 3px solid blue; background-color: gray; }");
+		if (item->getName().toStdString() == device.getName().toStdString()) {
+			item->devicePicture.setStyleSheet("QLabel:hover:!pressed { background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 1, y2 : 1, \
+											   stop: 0 yellow, stop: 1 white); border-style: solid; border-color: black;  border-width: 2px; border-radius: 20px;}" \
+											   "QLabel { background-color:  qlineargradient(x1 : 0, y1 : 0, x2 : 1, y2 : 1, \
+											   stop: 0 darkCyan, stop: 1 blue); border-style: solid; border-color: black;  border-width: 2px; border-radius: 20px; }");
+			EffectsController::getInstance().setAudioDevice(AudioDevice(item->getID()));
+			item->checked = true;
+		}
 		else {
-			item->devicePicture.setStyleSheet("QLabel:hover:!pressed {border: 3px solid red; background-color: white;} \
-								QLabel{ border: none; background-color: black; }");
+			item->devicePicture.setStyleSheet("QLabel:hover:!pressed { background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 1, y2 : 1, \
+											   stop: 0 yellow, stop: 1 white); border-style: solid; border-color: black;  border-width: 2px; border-radius: 20px;} \
+											   QLabel{ border: none; background-color: black; }");
 			item->checked = false;
 		}
 		std::cout << item->isChecked();
@@ -136,7 +144,26 @@ void MainWindow::deviceClicked(const DeviceCard& device) {
 }
 
 void MainWindow::connectDevice(void) {
-	//EffectsController::getInstance().connect(ipLineEdit->text().toStdString(), 60);
-	ipLineEdit->clear();
+	if (connectButton->text() == "Connect") {
+		try {
+			EffectsController::getInstance().connect(ipLineEdit->text().toStdString(), 60);
+		}
+		catch (...) {
+			connectionStatusIndicator->changeColor(Qt::red);
+			QMessageBox* errorDialog = new QMessageBox(this);
+			errorDialog->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+			errorDialog->setText("Error occured. IP address might be incorrect.");
+			errorDialog->exec();
+			return;
+		}
+		EffectsController::getInstance().setEffect("Color Beat");
+		connectButton->setText("Disconnect");
+		connectionStatusIndicator->changeColor(Qt::green);
+	}
+	else {
+		EffectsController::getInstance().stop();
+		connectionStatusIndicator->changeColor(Qt::red);
+		connectButton->setText("Connect");
+	}
 }
 
