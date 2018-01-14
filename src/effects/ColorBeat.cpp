@@ -15,7 +15,6 @@ ColorBeat::ColorBeat() : p_(defaultParams) {
 
 }
 
-
 void ColorBeat::tick(LEDStrip &ledStrip, const StereoAnalysisBuffer *data) {
     std::lock_guard<std::mutex> lock(mutex_);
 
