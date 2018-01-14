@@ -9,6 +9,10 @@
 
 class AudioDevice {
 public:
+    /**
+     *
+     * @param deviceIndex
+     */
     AudioDevice(PaDeviceIndex deviceIndex);
 
     AudioDevice();
