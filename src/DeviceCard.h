@@ -8,7 +8,6 @@
 #include <QHBoxLayout>
 
 
-
 class DeviceCard : public QWidget{
     Q_OBJECT
 public:
@@ -16,12 +15,20 @@ public:
     void setupUi();
     void setDeviceName(const std::string& deviceNameStr);
     void setDeviceInputChannels(const std::string& inputChannels);
-    bool isChecked();
+    bool isChecked() const;
+	QString getName() const;
 
-private:
-    QLabel deviceName;
-    QLabel noOfChannels;
-    QLabel devicePicture;
+signals:
+	void clicked(DeviceCard& device);
+
+public:
+	QLabel deviceName;
+	QLabel noOfChannels;
+	QLabel devicePicture;
+	bool checked;
+
+protected:
+	void mousePressEvent(QMouseEvent* event) override;
 };
 
 #endif // DEVICECARD_H

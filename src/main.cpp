@@ -1,9 +1,12 @@
 #include <iostream>
+
 #include <QApplication>
 #include <QSplashScreen>
+#include <qthread.h>
+#include <QDir>
 
 #include "MainWindow.h"
-//#include "CollapseWidget.h"
+#include "CollapseWidget.h"
 
 
 #include "AudioInterface.h"
@@ -22,6 +25,7 @@ int main(int argc, char **argv) {
     //Supress warnings:
     (void) argc;
     (void) argv;
+	/*
     // Initialize PortAudio
     AudioInterface::getInstance().initialize();
 
@@ -56,7 +60,24 @@ int main(int argc, char **argv) {
     // Wait for a key press...
     getchar();
 
-    effectsController.stop();
+    effectsController.stop();*/
 
-    exit(EXIT_SUCCESS);
+	//Start application
+	QApplication app(argc, argv);
+	//Show splash screen for 2 seconds
+	QPixmap pixmap("../../src/logo.png");
+	QSplashScreen splash(pixmap);
+	splash.showMessage("Loading modules, please wait...");
+	splash.show();
+	app.processEvents();
+	MainWindow mainWin;
+	mainWin.setWindowTitle("BlinkyTune");
+	mainWin.setWindowIcon(pixmap);
+	mainWin.setupUi();
+	QThread::sleep(2); // splash is shown for 2 seconds
+	mainWin.show();
+	splash.finish(&mainWin);
+	QDir dir; 
+	return app.exec();
+
 }

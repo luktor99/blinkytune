@@ -21,7 +21,7 @@ public:
     {
         QHBoxLayout *mainHorizontalLayout = new QHBoxLayout(this);
         mainHorizontalLayout->setSpacing(0);
-        mainHorizontalLayout->setContentsMargins(QMargins(0,0,0,0));
+        mainHorizontalLayout->setContentsMargins(0,0,0,0);
         setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Fixed);
         strip.clear();
         for(unsigned int i = 0; i < numberOfLights; ++i)

@@ -20,5 +20,5 @@ void IndicatorWidget::paintEvent(QPaintEvent *)
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setBrush(m_color);
-    painter.drawRect(0, 0, 10, 10);
+    painter.drawRect(0, 0, 15, 15);
 }
