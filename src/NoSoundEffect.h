@@ -8,6 +8,9 @@
 
 #include "Effect.h"
 
+/**
+ * Represents a light effect that's not sound-reactive. This is an abstract class.
+ */
 class NoSoundEffect : public Effect {
 };
 

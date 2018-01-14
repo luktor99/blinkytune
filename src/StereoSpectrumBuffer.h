@@ -7,9 +7,12 @@
 
 #include <cstddef>
 #include <vector>
-#include "DSPParameters.h"
+#include "Settings.h"
 #include "StereoSamplesBuffer.h"
 
+/**
+ * Represents a buffer that contains left and right channel spectrum data.
+ */
 class StereoSpectrumBuffer {
 public:
     StereoSpectrumBuffer(const std::vector<float> &spectrumL, const std::vector<float> &spectrumR, std::unique_ptr<StereoSamplesBuffer> &&samples) : spectrumL_(spectrumL), spectrumR_(spectrumR), samples_(std::move(samples)) {}

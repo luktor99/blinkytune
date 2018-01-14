@@ -6,9 +6,11 @@
 #define BLINKYTUNE_STEREOSAMPLESBUFFER_H
 
 #include <kfr/base.hpp>
-#include "DSPParameters.h"
+#include "Settings.h"
 
-
+/**
+ * Represents a buffer that contains left and right channel audio samples.
+ */
 class StereoSamplesBuffer {
 public:
     StereoSamplesBuffer() = default;

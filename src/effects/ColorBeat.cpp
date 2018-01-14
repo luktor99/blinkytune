@@ -7,7 +7,7 @@
 namespace {
     const ColorBeat::Params defaultParams = {
             ColorBeat::M_BASS_MID_TREB,
-            false
+            true
     };
 }
 
@@ -108,9 +108,9 @@ void ColorBeat::readControls() {
     // TODO...
 
     p_.mode = M_TREB_MID_BASS;
-    p_.mixChannels = true;
+    p_.mixChannels = false;
 }
 
-Effect *ColorBeat::create(){
+Effect *ColorBeat::create() {
     return new ColorBeat();
 }

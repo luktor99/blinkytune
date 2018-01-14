@@ -7,6 +7,9 @@
 
 #include "StereoSpectrumBuffer.h"
 
+/**
+ * Represents a buffer that contains left and right channel spectrum analysis output.
+ */
 class StereoAnalysisBuffer {
 public:
     StereoAnalysisBuffer() {};

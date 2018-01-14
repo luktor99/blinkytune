@@ -24,18 +24,6 @@ void LEDStrip::update() {
     udpSender_.send(outputBuffer_);
 }
 
-void LEDStrip::setR(int n, float r) {
-    bufferFloat_[n * 3] = r;
-}
-
-void LEDStrip::setG(int n, float g) {
-    bufferFloat_[n * 3 + 1] = g;
-}
-
-void LEDStrip::setB(int n, float b) {
-    bufferFloat_[n * 3 + 2] = b;
-}
-
 void LEDStrip::setRGB(int n, float r, float g, float b) {
     clamp(r);
     clamp(g);

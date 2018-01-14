@@ -8,24 +8,37 @@
 
 #include "../NoSoundEffect.h"
 
+/**
+ * Implements the Still Color effect.
+ */
 class StillColor : public NoSoundEffect {
 public:
+    /**
+     * The constructor.
+     */
     StillColor();
 
     void tick(LEDStrip &ledStrip, const StereoAnalysisBuffer *);
-
-    struct Params {
-        float R;
-        float G;
-        float B;
-    };
 
     void populateControls();
 
     void readControls();
 
-    static Effect * create();
+    /**
+     * Create a new instance of the effect. This function is used by the EffectsFactory class.
+     * @return A pointer to the newly created Effect class object.
+     */
+    static Effect *create();
 
+    /**
+    * The parameters controlling the effect's behaviour.
+    */
+    struct Params {
+        float R;
+        float G;
+        float B;
+    };
+    
 private:
     Params p_;
 };

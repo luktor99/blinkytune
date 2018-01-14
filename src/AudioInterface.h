@@ -16,7 +16,7 @@ class AudioInterface {
 public:
 
     /**
-    * Retrieve a instance of singleton class AudioInterface.
+    * Retrieve an instance of singleton class AudioInterface.
     * @return AudioInterface singleton object.
     */
     static AudioInterface &getInstance();
