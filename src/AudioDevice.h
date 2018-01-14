@@ -13,7 +13,7 @@ public:
      *
      * @param deviceIndex
      */
-    AudioDevice(PaDeviceIndex deviceIndex);
+    AudioDevice(int deviceIndex);
 
     AudioDevice();
 

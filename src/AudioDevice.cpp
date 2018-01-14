@@ -5,7 +5,7 @@
 #include "AudioDevice.h"
 #include <stdexcept>
 
-AudioDevice::AudioDevice(PaDeviceIndex deviceIndex) : deviceIndex_(deviceIndex) {
+AudioDevice::AudioDevice(int deviceIndex) : deviceIndex_(deviceIndex) {
     if (deviceIndex_ == paNoDevice)
         throw std::out_of_range("Audio device not found.");
 
