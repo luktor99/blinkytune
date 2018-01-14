@@ -1,89 +1,62 @@
 #include <iostream>
 #include <QApplication>
 #include <QSplashScreen>
-#include <QtCore\qthread.h>
 
 #include "MainWindow.h"
 //#include "CollapseWidget.h"
 
 
 #include "AudioInterface.h"
-#include "AudioInputStream.h"
 
 #include "FIFOQueue.h"
 #include "StereoSamplesBuffer.h"
-#include "StereoSpectrumBuffer.h"
-#include "DSPParameters.h"
 #include "SamplesCollector.h"
-#include "SpectrumGenerator.h"
-#include "SpectrumAnalyzer.h"
+#include "EffectsRenderer.h"
+#include "EffectsController.h"
+#include "effects/StillColor.h"
+#include "effects/ColorBeat.h"
+#include "EffectsFactory.h"
 
 
 int main(int argc, char **argv) {
-	
-	//Supress warnings:
-	(void)argc;
-	(void)argv;
-	// Initialize PortAudio
-	/*AudioInterface::getInstance().initialize();
+    //Supress warnings:
+    (void) argc;
+    (void) argv;
+    // Initialize PortAudio
+    AudioInterface::getInstance().initialize();
 
-	// Display all input devices
-	for (auto dev : AudioInterface::getInstance().getInputDevicesList())
-		std::cout << "[" << dev.getID() << "] " << dev.getName() << std::endl;
-	
-	// Select the input device
-	AudioDevice device = AudioDevice(1);//AudioInterface::getInstance().getDefaultInputDevice();
-										// std::cout << "Selected: [" << device.getID() << "] " << device.getName() << std::endl;
+    // Display all input devices
+    for (auto dev : AudioInterface::getInstance().getInputDevicesList())
+        std::cout << "[" << dev.getID() << "] " << dev.getName() << std::endl;
 
-										// Create an input stream
-	AudioInputStream stream(device, SAMPLE_RATE, FRAMES_PER_BUFFER);
+    // Select the input device
+    AudioDevice device = AudioInterface::getInstance().getDefaultInputDevice();
+    std::cout << "Selected: [" << device.getID() << "] " << device.getName() << std::endl;
 
-	// Allocate a FIFO queue for samples
-	FIFOQueue<StereoSamplesBuffer> samplesFIFO(FIFO_SIZE);
-	FIFOQueue<StereoSpectrumBuffer> spectrumFIFO(FIFO_SIZE);
-	FIFOQueue<StereoAnalysisBuffer> analysisFIFO(FIFO_SIZE);
+    // List the available effects
+    std::cout << "Registered sound effects:" << std::endl;
+    auto s = EffectsFactory::getInstance().getSoundEffects();
+    std::for_each(s.cbegin(), s.cend(), [](const auto &name){ std::cout << "\t" << name << std::endl; });
+    std::cout << "Registered no sound effects:" << std::endl;
+    auto ns = EffectsFactory::getInstance().getNoSoundEffects();
+    std::for_each(ns.cbegin(), ns.cend(), [](const auto &name){ std::cout << "\t" << name << std::endl; });
 
-	SamplesCollector samplesCollector(stream, samplesFIFO);
-	SpectrumGenerator spectrumGenerator(samplesFIFO, spectrumFIFO);
-	SpectrumAnalyzer spectrumAnalyzer(spectrumFIFO, analysisFIFO);
+    // Start the effects controller
+    EffectsController effectsController;
+    effectsController.connect("192.168.1.166", 60);
+    effectsController.setAudioDevice(device);
 
-	samplesCollector.run();
-	spectrumGenerator.run();
-	spectrumAnalyzer.run();
+    effectsController.setEffect("Color Beat");
+//    effectsController.setEffect("Still Color");
 
-	// Keep collecting new samples
-	getchar();
+    // Just a test for now...
+    getchar();
+    effectsController.getEffect()->readControls();
 
-	samplesCollector.stop();
-	spectrumGenerator.stop();
-	spectrumAnalyzer.stop();
+    // Wait for a key press...
+    getchar();
 
-	samplesCollector.join();
-	spectrumGenerator.join();
-	spectrumAnalyzer.join();
+    effectsController.stop();
 
-	exit(EXIT_SUCCESS);*/
-
-	QApplication a(argc, argv);
-
-	QPixmap pixmap("/home/helene/Images/my_image.png");
-	if (pixmap.isNull())
-	{
-		pixmap = QPixmap(300, 300);
-		pixmap.fill(Qt::magenta);
-	}
-
-	QSplashScreen splash(pixmap);
-	splash.show();
-	splash.showMessage("Loaded modules dsjhj");
-	a.processEvents();
-
-	MainWindow w;
-	w.setupUi();
-	w.show();
-	splash.finish(&w);
-	w.pushDeviceToList("ddd", 8);
-	int i = 0;
-	return a.exec();
-
+    exit(EXIT_SUCCESS);
 }
