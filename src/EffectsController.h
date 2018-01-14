@@ -14,9 +14,18 @@
 #include "SpectrumAnalyzer.h"
 #include "TickGenerator.h"
 
+/**
+ * Represents a facade for the whole audio processing and effect generation system. This is the main component of the
+ * program that controls the whole life cycle of all processing threads and keeps the connection to the LED strip. This
+ * class uses the singleton and facade design pattern.
+ */
 class EffectsController {
 public:
-    EffectsController();
+    /**
+    * Retrieve a instance of singleton class EffectsController.
+    * @return EffectsController singleton object.
+    */
+    static EffectsController &getInstance();
 
     void connect(const std::string &ip, int length);
 
@@ -31,6 +40,20 @@ public:
     void stop();
 
 private:
+    /**
+     * The constructor.
+     */
+    EffectsController();
+
+    /**
+     * The destructor.
+     */
+    ~EffectsController() = default;
+
+    EffectsController(const EffectsController &) = delete;
+
+    EffectsController &operator=(const EffectsController &) = delete;
+
     void startSoundPipeline();
 
     void startNoSoundPipeline();

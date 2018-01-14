@@ -6,6 +6,11 @@
 #include "NoSoundEffect.h"
 #include "EffectsFactory.h"
 
+EffectsController &EffectsController::getInstance() {
+    static EffectsController instance;
+    return instance;
+}
+
 EffectsController::EffectsController() : activePipeline(PIPELINE_NONE), samplesFIFO_(FIFO_SIZE),
                                          spectrumFIFO_(FIFO_SIZE), analysisFIFO_(FIFO_SIZE),
                                          refreshRate_(1.0f / DEFAULT_FPS) {
@@ -157,3 +162,4 @@ void EffectsController::setEffect(const std::string &effectName) {
     auto newEffect = EffectsFactory::getInstance().createEffect(effectName);
     setActiveEffect(newEffect);
 }
+
