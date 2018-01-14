@@ -7,6 +7,9 @@
 
 #include "portaudio.h"
 
+/**
+ * Represents an audio device.
+ */
 class AudioDevice {
 public:
     /*
