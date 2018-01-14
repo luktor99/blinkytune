@@ -67,11 +67,21 @@ Effect *EffectsController::getEffect() const {
 
 void EffectsController::setAudioDevice(const AudioDevice &device) {
     audioDevice_ = device;
+
+    // Stop SamplesCollector if it's already running
+    if (activePipeline == PIPELINE_SOUND) {
+        samplesCollector_->stop();
+        samplesCollector_->join();
+    }
+
+    // Open the new audio stream
     audioStream_.reset(new AudioInputStream(audioDevice_, SAMPLE_RATE, FRAMES_PER_BUFFER));
 
     // Restart SamplesCollector if it's already running (using the new audio device)
-    if (activePipeline == PIPELINE_SOUND)
+    if (activePipeline == PIPELINE_SOUND) {
         samplesCollector_.reset(new SamplesCollector(*audioStream_, samplesFIFO_));
+        samplesCollector_->run();
+    }
 }
 
 void EffectsController::startSoundPipeline() {
