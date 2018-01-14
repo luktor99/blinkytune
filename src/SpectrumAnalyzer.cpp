@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <numeric>
 #include "SpectrumAnalyzer.h"
 #include "Filter.h"
 

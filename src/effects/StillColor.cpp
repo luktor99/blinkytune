@@ -6,9 +6,9 @@
 
 namespace {
     const StillColor::Params defaultParams{
-            .R = 255.0f,
-            .G = 120.0f,
-            .B = 0.0f
+            255.0f,
+            120.0f,
+            0.0f
     };
 }
 

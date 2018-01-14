@@ -2,8 +2,12 @@ find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 include_directories(${Qt5_INCLUDE_DIR})
 link_directories(${Qt5_LIBRARY_DIRS})
 
+find_package(Boost 1.55.0 REQUIRED)
+include_directories(${Boost_INCLUDE_DIR})
+link_directories(${Boost_LIBRARY_DIRS})
+
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W0")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
 
 set(CMAKE_AUTOMOC ON)
@@ -16,7 +20,9 @@ set(SOURCE_FILES main.cpp UDPSender.cpp UDPSender.h AudioInterface.cpp AudioInte
         AudioInputStream.cpp AudioInputStream.h AudioStream.cpp AudioStream.h ${KFR_SRC} FIFOQueue.h StereoSamplesBuffer.h
         Worker.h SpectrumGenerator.cpp SpectrumGenerator.h DSPParameters.h SamplesCollector.cpp SamplesCollector.h
         SpectrumAnalyzer.cpp SpectrumAnalyzer.h StereoSpectrumBuffer.h MainWindow.cpp MainWindow.h MelFilterBank.h
-        MelFilterBank.cpp StereoAnalysisBuffer.h Filter.cpp Filter.h LEDStrip.cpp LEDStrip.h EffectsRenderer.cpp EffectsRenderer.h Effect.cpp Effect.h SoundEffect.cpp SoundEffect.h NoSoundEffect.cpp NoSoundEffect.h effects/ColorBeat.cpp effects/ColorBeat.h EffectsController.cpp EffectsController.h TickGenerator.cpp TickGenerator.h effects/StillColor.cpp effects/StillColor.h EffectsFactory.cpp EffectsFactory.h)
+        MelFilterBank.cpp StereoAnalysisBuffer.h CollapseWidget.cpp CollapseWidget.h IndicatorWidget.cpp IndicatorWidget.h
+		DeviceCard.cpp DeviceCard.h LedStripWidget.cpp LedStripWidget.h Filter.cpp Filter.h LEDStrip.cpp LEDStrip.h EffectsRenderer.cpp EffectsRenderer.h Effect.cpp Effect.h SoundEffect.cpp SoundEffect.h NoSoundEffect.cpp NoSoundEffect.h effects/ColorBeat.cpp effects/ColorBeat.h EffectsController.cpp EffectsController.h TickGenerator.cpp TickGenerator.h effects/StillColor.cpp effects/StillColor.h EffectsFactory.cpp EffectsFactory.h)
+
 add_executable(blinkytune ${SOURCE_FILES})
 
 add_dependencies(blinkytune check)

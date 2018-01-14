@@ -6,14 +6,15 @@
 
 namespace {
     const ColorBeat::Params defaultParams = {
-            .mode = ColorBeat::M_BASS_MID_TREB,
-            .mixChannels = false
+            ColorBeat::M_BASS_MID_TREB,
+            false
     };
 }
 
 ColorBeat::ColorBeat() : p_(defaultParams) {
 
 }
+
 
 void ColorBeat::tick(LEDStrip &ledStrip, const StereoAnalysisBuffer *data) {
     std::lock_guard<std::mutex> lock(mutex_);

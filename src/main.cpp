@@ -1,4 +1,10 @@
 #include <iostream>
+#include <QApplication>
+#include <QSplashScreen>
+
+#include "MainWindow.h"
+//#include "CollapseWidget.h"
+
 
 #include "AudioInterface.h"
 
