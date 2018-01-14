@@ -13,13 +13,11 @@
 #include "SamplesCollector.h"
 #include "EffectsRenderer.h"
 #include "EffectsController.h"
-#include "effects/StillColor.h"
-#include "effects/ColorBeat.h"
 #include "EffectsFactory.h"
 
 
 int main(int argc, char **argv) {
-    //Supress warnings:
+    // Supress warnings:
     (void) argc;
     (void) argv;
     // Initialize PortAudio
@@ -36,13 +34,13 @@ int main(int argc, char **argv) {
     // List the available effects
     std::cout << "Registered sound effects:" << std::endl;
     auto s = EffectsFactory::getInstance().getSoundEffects();
-    std::for_each(s.cbegin(), s.cend(), [](const auto &name){ std::cout << "\t" << name << std::endl; });
+    std::for_each(s.cbegin(), s.cend(), [](const auto &name) { std::cout << "\t" << name << std::endl; });
     std::cout << "Registered no sound effects:" << std::endl;
     auto ns = EffectsFactory::getInstance().getNoSoundEffects();
-    std::for_each(ns.cbegin(), ns.cend(), [](const auto &name){ std::cout << "\t" << name << std::endl; });
+    std::for_each(ns.cbegin(), ns.cend(), [](const auto &name) { std::cout << "\t" << name << std::endl; });
 
     // Start the effects controller
-    EffectsController effectsController;
+    auto &effectsController = EffectsController::getInstance();
     effectsController.connect("192.168.1.166", 60);
     effectsController.setAudioDevice(device);
 
