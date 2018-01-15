@@ -4,7 +4,6 @@
 
 #include <list>
 #include <QCloseEvent>
-#include <QPushButton>
 #include <QMessageBox>
 
 #include "MainWindow.h"
@@ -75,7 +74,8 @@ void MainWindow::setupUi(void)
 	
 	connectButton->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 	connectButton->setContentsMargins(20,20,20,20);
-	connectButton->setMaximumWidth(60);
+	connectButton->setMinimumWidth(70);
+	connectButton->setMaximumWidth(70);
 	connectionSettingsLayout->addWidget(connectButton);
 
 	connectionStatusIndicator = new IndicatorWidget(Qt::red,connectionWidget);
@@ -112,8 +112,9 @@ void MainWindow::setupUi(void)
 	std::for_each(effectsList.begin(), effectsList.end(), [this](auto item) {this->chooseEffectComboBox->addItem(item.c_str()); });
 
 	QLabel* fps = new QLabel(effectWidget);
-	fps->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+	fps->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 	fps->setText("FPS:");
+	fps->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
 	effectLayout->addWidget(fps);
 
 	chooseFPS = new QSpinBox(effectWidget);
@@ -121,6 +122,7 @@ void MainWindow::setupUi(void)
 	chooseFPS->setRange(10, 60);
 	chooseFPS->setSingleStep(1);
 	chooseFPS->setValue(DEFAULT_FPS);
+	chooseFPS->setStyleSheet("QSpinBox {background-color: gray;}");
 	effectLayout->addWidget(chooseFPS);
 
     mAnimationPropertiesPanel = new CollapseWidget("Effects properties", DEFAULT_ANIMATION_DURATION, this);

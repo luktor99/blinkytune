@@ -31,7 +31,7 @@ public:
 	bool checked;
 
 protected:
-	void mousePressEvent(QMouseEvent* event);
+	void mousePressEvent();
 };
 
 #endif // DEVICECARD_H
