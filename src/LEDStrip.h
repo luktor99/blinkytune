@@ -13,6 +13,11 @@
  */
 class LEDStrip {
 public:
+    /**
+     * LED strip disconnected exception.
+     */
+    class DisconnectedException : std::exception {
+    };
 
     /**
      * The constructor.

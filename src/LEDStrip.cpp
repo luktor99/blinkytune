@@ -21,7 +21,13 @@ catch (...) {
 
 void LEDStrip::update() {
     updateOutputBuffer();
-    udpSender_.send(outputBuffer_);
+    try {
+        udpSender_.send(outputBuffer_);
+    }
+    catch (...) {
+        // LED strip connection broke
+        throw DisconnectedException();
+    }
 }
 
 void LEDStrip::setRGB(int n, float r, float g, float b) {
