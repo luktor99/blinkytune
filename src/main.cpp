@@ -21,23 +21,26 @@ int main(int argc, char **argv) {
     (void) argc;
     (void) argv;
 
-	//Start application
+	// Start application
 	QApplication app(argc, argv);
-	//Show splash screen for 2 seconds
+
+	// Show splash screen
 	QPixmap pixmap("../../src/logo.png");
 	QSplashScreen splash(pixmap);
 	splash.show();
 	app.processEvents();
-	//Initialize AudioInterface:
+
+	// Initialize AudioInterface:
 	AudioInterface::getInstance().initialize();
-	//Initialize EffectsController:
+
 	MainWindow mainWin;
 	mainWin.setWindowTitle("BlinkyTune");
 	mainWin.setWindowIcon(pixmap);
 	mainWin.setupUi();
-	QThread::sleep(2); // splash is shown for 2 seconds
+	QThread::sleep(2); // the splash is shown for 2 seconds
 	mainWin.show();
 	splash.finish(&mainWin);
+
 	return app.exec();
 
 }
