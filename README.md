@@ -46,12 +46,12 @@ Execute these commands using Visual Studio Command Prompt:
 git clone --recursive https://github.com/luktor99/blinkytune.git
 mkdir cmake-build
 cd cmake-build
-cmake -G "Visual Studio 14 2015" -DQt5_DIR=/path/to/Qt5 ..
+cmake -G "Visual Studio 14 2015" -DQt5_DIR=C:\path\to\Qt5 ..
 msbuild blinkytune.sln
 ```
 
 ## Documentation
-Project code documentation will be generated using Doxygen.  
+Project code documentation was generated using Doxygen.
 
 
 
