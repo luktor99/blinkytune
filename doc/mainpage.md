@@ -94,9 +94,8 @@ Oprócz tego wykorzystywane są zaawansowane elementy języka C++, takie jak:
 - hierarchiczne dziedziczenie (rodzina klas Effect)
 
 ## Statystyki
-- liczba linii kodu (obliczona za pomocą narzędzia [SLOCCount](https://www.dwheeler.com/sloccount/)): 1757
-- liczba testów jednostkowych: TODO
-- pokrycie kodu: TODO
+- liczba linii kodu (obliczona za pomocą narzędzia [SLOCCount](https://www.dwheeler.com/sloccount/)): 1990
+- liczba testów jednostkowych: 5
 - liczba godzin pracy nad projektem: ~150
 
 ## Napotkane problemy i dalszy rozwoju projektu
