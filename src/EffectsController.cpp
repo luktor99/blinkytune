@@ -14,7 +14,7 @@ EffectsController &EffectsController::getInstance() {
 EffectsController::EffectsController() : activePipeline(PIPELINE_NONE), samplesFIFO_(FIFO_SIZE),
                                          spectrumFIFO_(FIFO_SIZE), analysisFIFO_(FIFO_SIZE),
                                          refreshRate_(1.0f / DEFAULT_FPS) {
-
+	audioStream_.reset(nullptr);
 }
 
 void EffectsController::connect(const std::string &ip, int length) {
