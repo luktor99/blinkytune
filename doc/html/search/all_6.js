@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['gainsr_5f',['gainsR_',['../class_spectrum_analyzer.html#a80017bfdbfa4e9ea08c1be8addc5c393',1,'SpectrumAnalyzer']]],
+  ['get',['get',['../class_filter.html#a36b8c4c98ce5ace4cdb281908734fbe3',1,'Filter']]],
+  ['getdefaultinputdevice',['getDefaultInputDevice',['../class_audio_interface.html#a9d87a606ab11af8b8f7583313e30398c',1,'AudioInterface']]],
+  ['getdeviceslist',['getDevicesList',['../class_audio_interface.html#acdd541787c99e7495ade542ef3b9e385',1,'AudioInterface']]],
+  ['geteffect',['getEffect',['../class_effects_controller.html#a0193063da188ff237f3e0f498d2fd361',1,'EffectsController']]],
+  ['geteffectproperties',['getEffectProperties',['../class_main_window.html#a54b3ce1762cff21aa5cc47898c458500',1,'MainWindow']]],
+  ['getid',['getID',['../class_audio_device.html#af5777ed35f1d0c61eed8777cde533cdd',1,'AudioDevice']]],
+  ['getindicator',['getIndicator',['../class_led_strip_widget.html#adc2aa638b080c12ca7b863f152db92ce',1,'LedStripWidget']]],
+  ['getinputchannels',['getInputChannels',['../class_audio_device.html#ac8b0ddae27d3d65c5a30082501b51a57',1,'AudioDevice']]],
+  ['getinputdeviceslist',['getInputDevicesList',['../class_audio_interface.html#a579f8804c49bbcce45a1b04c9e2a76e4',1,'AudioInterface']]],
+  ['getinstance',['getInstance',['../class_audio_interface.html#afc294fb46b938dd54cf9432fbd5f3da2',1,'AudioInterface::getInstance()'],['../class_effects_controller.html#ad9dfa5b716c9d0c184fd143634af1ea8',1,'EffectsController::getInstance()'],['../class_effects_factory.html#a4322fbe698c2523dab8cbcd10a7e7417',1,'EffectsFactory::getInstance()']]],
+  ['getlength',['getLength',['../class_l_e_d_strip.html#ab47b1d84132be9adbec40c0f69f3799f',1,'LEDStrip']]],
+  ['getlowerindex',['getLowerIndex',['../class_mel_filter_bank.html#a7d38bf0bde6a4f540be9622d19b2892b',1,'MelFilterBank']]],
+  ['getname',['getName',['../class_audio_device.html#a38408a90f82a57e3db9aa753dcdd402e',1,'AudioDevice']]],
+  ['getnosoundeffects',['getNoSoundEffects',['../class_effects_factory.html#af5e6d321c82b1a0df086ed3f52ee1b28',1,'EffectsFactory']]],
+  ['getparametersdata',['getParametersData',['../class_main_window.html#a6d7b6b42552030d1f7484f9e903af954',1,'MainWindow']]],
+  ['getsoundeffects',['getSoundEffects',['../class_effects_factory.html#a43d8a9e0e362c90eea6f337670a256c2',1,'EffectsFactory']]],
+  ['getupperindex',['getUpperIndex',['../class_mel_filter_bank.html#a38af5e011fb84462a838a977c6838ba7',1,'MelFilterBank']]]
+];

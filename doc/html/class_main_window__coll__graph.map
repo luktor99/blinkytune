@@ -1,0 +1,8 @@
+<map id="MainWindow" name="MainWindow">
+<area shape="rect" id="node3" href="$class_indicator_widget.html" title="{IndicatorWidget\n|&#45; m_color\l|+ IndicatorWidget()\l+ changeColor()\l# paintEvent()\l}" alt="" coords="131,205,264,312"/>
+<area shape="rect" id="node4" href="$class_led_strip_widget.html" title="{LedStripWidget\n|&#45; numberOfLights\l|+ LedStripWidget()\l+ setupUi()\l+ getIndicator()\l+ setIndicator()\l}" alt="" coords="273,801,404,923"/>
+<area shape="rect" id="node7" href="$class_device_card.html" title="{DeviceCard\n|+ deviceName\l+ noOfChannels\l+ devicePicture\l+ deviceID\l+ checked\l|+ DeviceCard()\l+ setupUi()\l+ setDeviceName()\l+ setDeviceInputChannels()\l+ setDeviceID()\l+ getID()\l+ isChecked()\l+ getName()\l# mousePressEvent()\l}" alt="" coords="375,132,561,385"/>
+<area shape="rect" id="node8" href="$class_collapse_widget.html" title="{CollapseWidget\n|&#45; mainLayout\l&#45; toggleButton\l&#45; headerLine\l&#45; toggleAnimation\l&#45; contentArea\l&#45; animationDuration\l|+ CollapseWidget()\l+ setContentLayout()\l}" alt="" coords="526,409,671,575"/>
+<area shape="rect" id="node10" title="STL class. " alt="" coords="740,599,820,676"/>
+<area shape="rect" id="node11" title="STL class. " alt="" coords="717,213,843,305"/>
+</map>

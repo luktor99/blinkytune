@@ -18,9 +18,6 @@ Układ ten umożliwia podłączenie urządzenia do domowej sieci WiFi, a następ
 Wykorzystanie łączności bezprzewodowej pozwala na wyświetlanie efektów z dala od komputera.
 Program dla modułu ESP8266, odpowiadający za odbieranie danych od aplikacji i sterowanie paskiem LED, nie wchodzi w skład projektu.
 
-## Interfejs użytkownika
-TODO
-
 ## Zasada działania
 ### Protokół komunikacji z paskiem LED
 Do przesyłania danych o składowych kolorów poszczególnych diod LED wykorzystywany jest protokół UDP.

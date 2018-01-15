@@ -1,0 +1,5 @@
+<map id="StillColor" name="StillColor">
+<area shape="rect" id="node2" href="$class_no_sound_effect.html" title="{NoSoundEffect\n||}" alt="" coords="20,176,131,253"/>
+<area shape="rect" id="node3" href="$class_effect.html" title="{Effect\n|# mutex_\l|+ tick()\l+ populateControls()\l+ readControls()\l}" alt="" coords="5,5,145,112"/>
+<area shape="rect" id="node4" href="$struct_still_color_1_1_params.html" title="{StillColor::Params\n|+ R\l+ G\l+ B\l|}" alt="" coords="155,161,283,268"/>
+</map>

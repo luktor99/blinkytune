@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['chooseeffectcombobox',['chooseEffectComboBox',['../class_main_window.html#a1de9921a04d58bbfcaf9d50cc969f836',1,'MainWindow']]],
+  ['choosefps',['chooseFPS',['../class_main_window.html#a881f11453f07a2aab8d971e73d5a30f6',1,'MainWindow']]],
+  ['clamp',['clamp',['../class_l_e_d_strip.html#a989c69035d833c6e55a02045a8661b43',1,'LEDStrip']]],
+  ['clear',['clear',['../class_l_e_d_strip.html#ac3631da18bcc937a61b7c290bb976511',1,'LEDStrip']]],
+  ['close',['close',['../class_audio_stream.html#af49c072a6e0527e5ecb1412976ad8f4a',1,'AudioStream']]],
+  ['closeevent',['closeEvent',['../class_main_window.html#a4e20a4a065fbb0e4d3532a45a0a91425',1,'MainWindow']]],
+  ['collapsewidget',['CollapseWidget',['../class_collapse_widget.html',1,'']]],
+  ['colorbeat',['ColorBeat',['../class_color_beat.html',1,'ColorBeat'],['../class_color_beat.html#a04ca260d70fd0dc6f4024f1382644446',1,'ColorBeat::ColorBeat()']]],
+  ['colorspectrum',['ColorSpectrum',['../class_color_spectrum.html',1,'ColorSpectrum'],['../class_color_spectrum.html#a5873a2da793868c30a87ab391f666a26',1,'ColorSpectrum::ColorSpectrum()']]],
+  ['compute',['compute',['../class_mel_filter_bank.html#a4cd826f5090a329f091abb63071c5f73',1,'MelFilterBank']]],
+  ['connect',['connect',['../class_effects_controller.html#adabd3923f822590fa2de9829160c987b',1,'EffectsController']]],
+  ['connectbutton',['connectButton',['../class_main_window.html#a8835e774cd6f83d2ee1dd2cf2c05a6bb',1,'MainWindow']]],
+  ['connectdevice',['connectDevice',['../class_main_window.html#a374f921d8e26f9a11483f78948e4cda8',1,'MainWindow']]],
+  ['connectionsettingslayout',['connectionSettingsLayout',['../class_main_window.html#abbaeb02dd18cb3c5c6f55fce157ded05',1,'MainWindow']]],
+  ['connectionstatusindicator',['connectionStatusIndicator',['../class_main_window.html#a7587be2661134ecb301b63e51de8b8fa',1,'MainWindow']]],
+  ['create',['create',['../class_color_beat.html#a8c328fdcf223b08693069c6e479217ea',1,'ColorBeat::create()'],['../class_color_spectrum.html#ad78a7eae35dce9e2d6a9261d448714ff',1,'ColorSpectrum::create()'],['../class_rainbow.html#a2dd28c1b01941e6bfd184a6fe99e1040',1,'Rainbow::create()'],['../class_still_color.html#a1e911dd6ee4ba241dbac14d50b3cceea',1,'StillColor::create()']]],
+  ['createeffect',['createEffect',['../class_effects_factory.html#a9507afcf96fad1507521677c6d117091',1,'EffectsFactory']]],
+  ['cvempty_5f',['cvEmpty_',['../class_f_i_f_o_queue.html#ac73dfc88ffbc547f45e546d32aa6533e',1,'FIFOQueue']]]
+];

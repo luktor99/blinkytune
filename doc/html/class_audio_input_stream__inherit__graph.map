@@ -1,0 +1,3 @@
+<map id="AudioInputStream" name="AudioInputStream">
+<area shape="rect" id="node2" href="$class_audio_stream.html" title="{AudioStream\n|# stream_\l# streamParams_\l# sampleRate_\l# framesPerBuffer_\l|+ readSamples()\l# AudioStream()\l# ~AudioStream()\l# start()\l# close()\l}" alt="" coords="11,5,146,185"/>
+</map>

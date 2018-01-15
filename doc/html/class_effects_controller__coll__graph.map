@@ -1,0 +1,19 @@
+<map id="EffectsController" name="EffectsController">
+<area shape="rect" id="node3" href="$class_spectrum_analyzer.html" title="{SpectrumAnalyzer\n|&#45; spectrumHistory_\l|+ SpectrumAnalyzer()\l&#45; mainLoop()\l}" alt="" coords="252,741,401,833"/>
+<area shape="rect" id="node4" href="$class_worker.html" title="{Worker\n|&#45; stop_\l|+ Worker()\l+ run()\l+ join()\l+ stop()\l&#45; runLoop()\l&#45; mainLoop()\l}" alt="" coords="631,417,726,568"/>
+<area shape="rect" id="node13" href="$class_spectrum_generator.html" title="{SpectrumGenerator\n||+ SpectrumGenerator()\l&#45; mainLoop()\l}" alt="" coords="460,741,614,833"/>
+<area shape="rect" id="node18" href="$class_effects_renderer.html" title="{EffectsRenderer\n|&#45; effectType_\l&#45; refreshRate_\l|+ EffectsRenderer()\l+ ~EffectsRenderer()\l+ setEffectSound()\l+ setEffectNoSound()\l+ setRefreshRate()\l&#45; mainLoop()\l}" alt="" coords="1194,704,1344,869"/>
+<area shape="rect" id="node24" href="$class_tick_generator.html" title="{TickGenerator\n||+ TickGenerator()\l&#45; mainLoop()\l}" alt="" coords="692,741,816,833"/>
+<area shape="rect" id="node30" href="$class_samples_collector.html" title="{SamplesCollector\n||+ SamplesCollector()\l&#45; mainLoop()\l}" alt="" coords="958,741,1103,833"/>
+<area shape="rect" id="node6" title="STL class. " alt="" coords="636,5,720,83"/>
+<area shape="rect" id="node7" href="$class_f_i_f_o_queue.html" title="{FIFOQueue\&lt; StereoSpectrum\lBuffer \&gt;\n|&#45; buffer_\l&#45; m_\l&#45; cvEmpty_\l|+ FIFOQueue()\l+ push()\l+ push()\l+ pop()\l}" alt="" coords="80,410,276,575"/>
+<area shape="rect" id="node9" href="$class_filter.html" title="{Filter\n|&#45; alpha_inc_\l&#45; alpha_dec_\l&#45; value_\l|+ Filter()\l+ update()\l+ operator=()\l+ get()\l}" alt="" coords="320,160,418,311"/>
+<area shape="rect" id="node10" href="$class_f_i_f_o_queue.html" title="{FIFOQueue\&lt; StereoAnalysis\lBuffer \&gt;\n|&#45; buffer_\l&#45; m_\l&#45; cvEmpty_\l|+ FIFOQueue()\l+ push()\l+ push()\l+ pop()\l}" alt="" coords="750,410,940,575"/>
+<area shape="rect" id="node11" href="$class_audio_device.html" title="{AudioDevice\n|&#45; deviceIndex_\l&#45; deviceInfo_\l|+ AudioDevice()\l+ AudioDevice()\l+ getName()\l+ getInputChannels()\l+ getID()\l}" alt="" coords="478,1009,622,1160"/>
+<area shape="rect" id="node14" href="$class_f_i_f_o_queue.html" title="{FIFOQueue\&lt; StereoSamples\lBuffer \&gt;\n|&#45; buffer_\l&#45; m_\l&#45; cvEmpty_\l|+ FIFOQueue()\l+ push()\l+ push()\l+ pop()\l}" alt="" coords="964,410,1155,575"/>
+<area shape="rect" id="node16" href="$class_effect.html" title="{Effect\n|# mutex_\l|+ tick()\l+ populateControls()\l+ readControls()\l}" alt="" coords="1488,439,1628,546"/>
+<area shape="rect" id="node19" href="$class_l_e_d_strip.html" title="{LEDStrip\n|&#45; length_\l&#45; outputBuffer_\l|+ LEDStrip()\l+ getLength()\l+ update()\l+ setRGB()\l+ setHSV()\l+ fade()\l+ clear()\l+ clamp()\l&#45; updateOutputBuffer()\l}" alt="" coords="1659,388,1810,597"/>
+<area shape="rect" id="node21" href="$class_u_d_p_sender.html" title="{UDPSender\n|&#45; socket_\l|+ UDPSender()\l+ ~UDPSender()\l+ send()\l}" alt="" coords="1674,182,1794,289"/>
+<area shape="rect" id="node27" href="$class_audio_input_stream.html" title="{AudioInputStream\n||+ AudioInputStream()\l}" alt="" coords="1290,454,1437,531"/>
+<area shape="rect" id="node28" href="$class_audio_stream.html" title="{AudioStream\n|# stream_\l# streamParams_\l# sampleRate_\l# framesPerBuffer_\l|+ readSamples()\l# AudioStream()\l# ~AudioStream()\l# start()\l# close()\l}" alt="" coords="1296,145,1431,325"/>
+</map>

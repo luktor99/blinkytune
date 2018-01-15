@@ -1,0 +1,5 @@
+<map id="ColorSpectrum" name="ColorSpectrum">
+<area shape="rect" id="node2" href="$class_sound_effect.html" title="{SoundEffect\n||}" alt="" coords="28,161,123,239"/>
+<area shape="rect" id="node3" href="$class_effect.html" title="{Effect\n|# mutex_\l|+ tick()\l+ populateControls()\l+ readControls()\l}" alt="" coords="5,5,145,112"/>
+<area shape="rect" id="node4" href="$struct_color_spectrum_1_1_params.html" title="{ColorSpectrum::Params\n|+ hue\l|}" alt="" coords="147,161,310,239"/>
+</map>
