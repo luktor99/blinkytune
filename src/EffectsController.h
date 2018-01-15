@@ -63,6 +63,12 @@ public:
      */
     void stop();
 
+	/**
+	* Check if LED strip is connected.
+	* @return True if LED strip connected, otherwise false.
+	*/
+	bool EffectsController::isConnected() const;
+
 private:
     /**
      * The constructor.

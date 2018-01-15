@@ -2,6 +2,8 @@
 // Created by luktor99 on 15.01.18.
 //
 
+#include <QLabel>
+
 #include "ColorSpectrum.h"
 
 namespace {
@@ -24,11 +26,21 @@ void ColorSpectrum::tick(LEDStrip &ledStrip, const StereoAnalysisBuffer *data) {
 }
 
  void ColorSpectrum::populateControls(QLayout* layout, QWidget* parent) {
-    //TODO
+	 QLabel* hueLabel = new QLabel(parent);
+	 hueLabel->setText("Hue slider");
+	 hueSlider = new QSlider(Qt::Horizontal, parent);
+	 hueSlider->setRange(0, 360);
+	 hueSlider->setSingleStep(1);
+	 hueSlider->setValue(static_cast<int>(defaultParams.hue));
+	 hueSlider->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+	 layout->addWidget(hueLabel);
+	 layout->addWidget(hueSlider);
 }
 
 void ColorSpectrum::readControls() {
-    //TODO
+	std::lock_guard<std::mutex> lock(mutex_);
+
+	p_.hue = static_cast<float>(hueSlider->value());
 }
 
 Effect *ColorSpectrum::create() {

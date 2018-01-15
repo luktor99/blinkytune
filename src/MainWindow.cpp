@@ -136,7 +136,6 @@ void MainWindow::setupUi(void)
     setLayout(mainWindowLayout);
     mainWindowLayout->setSizeConstraint(QLayout::SetMinimumSize);
 	setupSlots();
-	EffectsController::getInstance().stop();
 }
 
 void MainWindow::setupEffectUi(void)
@@ -252,7 +251,8 @@ void MainWindow::connectDevice(void) {
 		connectionStatusIndicator->changeColor(Qt::green);
 	}
 	else {
-		EffectsController::getInstance().stop();
+		if(EffectsController::getInstance().isConnected())
+			EffectsController::getInstance().stop();
 		chooseEffectComboBox->setEnabled(false);
 		connectionStatusIndicator->changeColor(Qt::red);
 		connectButton->setText("Connect");
@@ -260,7 +260,8 @@ void MainWindow::connectDevice(void) {
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {
-	EffectsController::getInstance().stop();
+	if (EffectsController::getInstance().isConnected())
+		EffectsController::getInstance().stop();
 	event->accept();
 }
 

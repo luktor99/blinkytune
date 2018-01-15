@@ -180,3 +180,8 @@ void EffectsController::setEffect(const std::string &effectName) {
     auto newEffect = EffectsFactory::getInstance().createEffect(effectName);
     setActiveEffect(newEffect);
 }
+
+bool EffectsController::isConnected() const {
+	// Check if LED strip is connected
+	return ledStrip_ == nullptr;
+}

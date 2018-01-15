@@ -5,6 +5,7 @@
 #ifndef BLINKYTUNE_COLORSPECTRUM_H
 #define BLINKYTUNE_COLORSPECTRUM_H
 
+#include <QSlider>
 
 #include "../SoundEffect.h"
 
@@ -39,6 +40,7 @@ public:
 
 private:
     Params p_;
+	QSlider* hueSlider;
 };
 
 
