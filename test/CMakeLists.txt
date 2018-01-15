@@ -6,9 +6,9 @@ include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIRS})
 
 set(Tests MelFilterBankTest FIFOQueueTest)
-add_executable(MelFilterBankTest TestsMain.cpp MelFilterBankTest.cpp ../src/MelFilterBank.cpp )
+add_executable(MelFilterBankTest TestsMain.cpp MelFilterBankTest.cpp ../src/MelFilterBank.cpp)
 add_test(MelFilterBankTest MelFilterBankTest)
-add_executable(FIFOQueueTest TestsMain.cpp FIFOQueueTest.cpp )
+add_executable(FIFOQueueTest TestsMain.cpp FIFOQueueTest.cpp)
 add_test(FIFOQueueTest FIFOQueueTest)
 
 if(WIN32)

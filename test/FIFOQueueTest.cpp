@@ -34,4 +34,9 @@ BOOST_AUTO_TEST_SUITE(FIFOQueueTest)
         BOOST_CHECK_EQUAL(*queue.pop(), 4);
     }
 
+    BOOST_AUTO_TEST_CASE(CheckIfPopTimeout) {
+        FIFOQueue<int> queue(3);
+        BOOST_CHECK_THROW(queue.pop(), FIFOQueue<int>::TimeoutException);
+    }
+
 BOOST_AUTO_TEST_SUITE_END()
