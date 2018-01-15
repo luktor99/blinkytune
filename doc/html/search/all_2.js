@@ -1,9 +1,11 @@
 var searchData=
 [
+  ['checked',['checked',['../class_device_card.html#a6244c02cf34acdf6d7a484047d0446b3',1,'DeviceCard']]],
   ['chooseeffectcombobox',['chooseEffectComboBox',['../class_main_window.html#a1de9921a04d58bbfcaf9d50cc969f836',1,'MainWindow']]],
   ['choosefps',['chooseFPS',['../class_main_window.html#a881f11453f07a2aab8d971e73d5a30f6',1,'MainWindow']]],
   ['clamp',['clamp',['../class_l_e_d_strip.html#a989c69035d833c6e55a02045a8661b43',1,'LEDStrip']]],
   ['clear',['clear',['../class_l_e_d_strip.html#ac3631da18bcc937a61b7c290bb976511',1,'LEDStrip']]],
+  ['clicked',['clicked',['../class_device_card.html#a4f9eab88e00a19014dc94b953adb6de7',1,'DeviceCard']]],
   ['close',['close',['../class_audio_stream.html#af49c072a6e0527e5ecb1412976ad8f4a',1,'AudioStream']]],
   ['closeevent',['closeEvent',['../class_main_window.html#a4e20a4a065fbb0e4d3532a45a0a91425',1,'MainWindow']]],
   ['collapsewidget',['CollapseWidget',['../class_collapse_widget.html',1,'']]],
