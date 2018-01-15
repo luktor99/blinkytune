@@ -8,6 +8,9 @@
 #include <QWidget>
 #include <QLabel>
 #include <QLineEdit>
+#include <QStandardItemModel>
+#include <QComboBox>
+#include <QSpinBox>
 #include <vector>
 #include "CollapseWidget.h"
 #include "DeviceCard.h"
@@ -20,32 +23,49 @@ class MainWindow : public QWidget {
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     void setupUi(void);
-	void setupEffectUi();
+	void setupSlots(void);
+	void setupEffectUi(void);
+	
 	void pushDeviceToList(const char* deviceNameStr, const int& inputChannels, const int& id);
+	void setFocus(DeviceCard& device, bool isChecked);
+	void addParentItem(QStandardItemModel * model, const QString & text);
+	void addChildItem(QStandardItemModel * model, const QString & text, const QVariant & data);
+	void setEffectsList(const std::vector<std::string>& effects);
+	void clearLayout(QLayout * layout);
+
+	QVBoxLayout *animationWidgetLayout;
+	CollapseWidget *mAnimationPropertiesPanel;
+	QWidget* effectsSettingsWidget;
 
 public slots:
-	void deviceClicked(const DeviceCard& device);
+	void deviceClicked(DeviceCard& device);
 	void connectDevice(void);
+	void setFPS(int fps);
+	void setEffect(const QString& effect);
+	void getEffectProperties(void);
 
 private:
     //Layouts:
     QVBoxLayout *mainWindowLayout;
     QGridLayout *deviceWidgetLayout;
-    QVBoxLayout *animationWidgetLayout;
     QHBoxLayout *deviceSelectionAreaLayout;
 	QHBoxLayout *connectionSettingsLayout;
 
     //Widgets:
     CollapseWidget *mDeviceSelectionPanel;
-	CollapseWidget *mAnimationPropertiesPanel;
     QScrollArea *deviceSelectionArea;
     QPushButton *connectButton;
 	QLineEdit* ipLineEdit;
     IndicatorWidget *connectionStatusIndicator;
 	LedStripWidget *ledStrip;
+	QComboBox* chooseEffectComboBox;
+	QSpinBox* chooseFPS;
+	QCheckBox* mixChannelsCheckBox;
     std::vector<DeviceCard*> deviceList;
+	std::vector<std::string> effectsList;
 
-//private slots:
+	void closeEvent(QCloseEvent *event);
+
 };
 
 #endif //BLINKYTUNE_MAINWINDOW_H

@@ -5,20 +5,26 @@
 #include <iostream>
 #include <numeric>
 #include "SpectrumAnalyzer.h"
-#include "Filter.h"
 
 SpectrumAnalyzer::SpectrumAnalyzer(FIFOQueue<StereoSpectrumBuffer> &inputFIFO,
                                    FIFOQueue<StereoAnalysisBuffer> &outputFIFO) : inputFIFO_(inputFIFO),
-                                                                                  outputFIFO_(outputFIFO) {
-
+                                                                                  outputFIFO_(outputFIFO),
+                                                                                  spectrumHistory_(N_HISTORY),
+                                                                                  gainsL_(SPECTRUM_BARS,
+                                                                                          Filter(FILTER_GAIN_INC,
+                                                                                                 FILTER_GAIN_DEC)),
+                                                                                  gainsR_(SPECTRUM_BARS,
+                                                                                          Filter(FILTER_GAIN_INC,
+                                                                                                 FILTER_GAIN_DEC)),
+                                                                                  melFiltersL_(SPECTRUM_BARS,
+                                                                                               Filter(FILTER_MEL_INC,
+                                                                                                      FILTER_MEL_DEC)),
+                                                                                  melFiltersR_(SPECTRUM_BARS,
+                                                                                               Filter(FILTER_MEL_INC,
+                                                                                                      FILTER_MEL_DEC)) {
 }
 
 void SpectrumAnalyzer::mainLoop() {
-    static boost::circular_buffer<std::shared_ptr<StereoSpectrumBuffer>> spectrumHistory(N_HISTORY);
-    static std::vector<Filter> gainsL(SPECTRUM_BARS, Filter(0.99, 0.001)), gainsR(SPECTRUM_BARS, Filter(0.99, 0.001));
-    static std::vector<Filter> melFiltersL(SPECTRUM_BARS, Filter(0.99, 0.3)), melFiltersR(SPECTRUM_BARS,
-                                                                                          Filter(0.99, 0.3));
-
     // Acquire new spectrum and samples data
     std::shared_ptr<StereoSpectrumBuffer> data;
     try {
@@ -30,8 +36,8 @@ void SpectrumAnalyzer::mainLoop() {
 
     // Calculate the average spectrum levels
     std::vector<float> spectrumAverageL(SPECTRUM_BARS, 0.0f), spectrumAverageR(SPECTRUM_BARS, 0.0f);
-    for (int i = 0; i < SPECTRUM_BARS; ++i) {
-        std::for_each(spectrumHistory.begin(), spectrumHistory.end(), [&i, &spectrumAverageL, &spectrumAverageR](
+    for (std::size_t i = 0; i < SPECTRUM_BARS; ++i) {
+        std::for_each(spectrumHistory_.begin(), spectrumHistory_.end(), [&i, &spectrumAverageL, &spectrumAverageR](
                 std::shared_ptr<StereoSpectrumBuffer> &s) {
             spectrumAverageL[i] += s->spectrumL_[i];
             spectrumAverageR[i] += s->spectrumR_[i];
@@ -42,7 +48,7 @@ void SpectrumAnalyzer::mainLoop() {
 
     // Calculate the average volume levels
     float volumeAverageL = 0.0f, volumeAverageR = 0.0f;
-    std::for_each(spectrumHistory.begin(), spectrumHistory.end(), [&volumeAverageL, &volumeAverageR](
+    std::for_each(spectrumHistory_.begin(), spectrumHistory_.end(), [&volumeAverageL, &volumeAverageR](
             std::shared_ptr<StereoSpectrumBuffer> &s) {
         std::for_each(s->samples_->getSamplesL().cbegin(), s->samples_->getSamplesL().cend(),
                       [&volumeAverageL](const float &sampleL) {
@@ -68,37 +74,37 @@ void SpectrumAnalyzer::mainLoop() {
                   });
 
     // Find max values in the spectrum
-    auto maxL = std::max_element(data->spectrumL_.begin(), data->spectrumL_.end());
-    auto maxR = std::max_element(data->spectrumR_.begin(), data->spectrumR_.end());
+    //auto maxL = std::max_element(data->spectrumL_.begin(), data->spectrumL_.end());
+    //auto maxR = std::max_element(data->spectrumR_.begin(), data->spectrumR_.end());
 
     // Update spectrum gains
-    std::transform(data->spectrumL_.begin(), data->spectrumL_.end(), gainsL.begin(),
+    std::transform(data->spectrumL_.begin(), data->spectrumL_.end(), gainsL_.begin(),
                    [](auto const &s) { return std::max(s, 0.05f); });
-    std::transform(data->spectrumR_.begin(), data->spectrumR_.end(), gainsR.begin(),
+    std::transform(data->spectrumR_.begin(), data->spectrumR_.end(), gainsR_.begin(),
                    [](auto const &s) { return std::max(s, 0.05f); });
 
     // Scale the spectrum
     std::vector<float> spectrumFilteredL, spectrumFilteredR;
-    std::transform(data->spectrumL_.begin(), data->spectrumL_.end(), gainsL.begin(),
+    std::transform(data->spectrumL_.begin(), data->spectrumL_.end(), gainsL_.begin(),
                    std::back_inserter(spectrumFilteredL),
                    [](const auto &s, const auto &g) { return s / g.get(); });
-    std::transform(data->spectrumR_.begin(), data->spectrumR_.end(), gainsR.begin(),
+    std::transform(data->spectrumR_.begin(), data->spectrumR_.end(), gainsR_.begin(),
                    std::back_inserter(spectrumFilteredR),
                    [](const auto &s, const auto &g) { return s / g.get(); });
 
     // Update the smoothed spectrum
-    std::transform(spectrumFilteredL.begin(), spectrumFilteredL.end(), melFiltersL.begin(),
+    std::transform(spectrumFilteredL.begin(), spectrumFilteredL.end(), melFiltersL_.begin(),
                    [](auto const &s) { return s; });
-    std::transform(spectrumFilteredR.begin(), spectrumFilteredR.end(), melFiltersR.begin(),
+    std::transform(spectrumFilteredR.begin(), spectrumFilteredR.end(), melFiltersR_.begin(),
                    [](auto const &s) { return s; });
     // Get the smoothed spectrum
-    std::transform(melFiltersL.begin(), melFiltersL.end(), spectrumFilteredL.begin(),
+    std::transform(melFiltersL_.begin(), melFiltersL_.end(), spectrumFilteredL.begin(),
                    [](const auto &f) { return f.get(); });
-    std::transform(melFiltersR.begin(), melFiltersR.end(), spectrumFilteredR.begin(),
+    std::transform(melFiltersR_.begin(), melFiltersR_.end(), spectrumFilteredR.begin(),
                    [](const auto &f) { return f.get(); });
 
     // Store the momentary spectrum in the history
-    spectrumHistory.push_back(data);
+    spectrumHistory_.push_back(data);
 
     // Calculate bass, mid and treble values
     auto const iter03L = spectrumFilteredL.cbegin();

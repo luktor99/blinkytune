@@ -1,25 +1,22 @@
 //
-// Created by luktor99 on 13.01.18.
+// Created by luktor99 on 15.01.18.
 //
 
-#ifndef BLINKYTUNE_COLORBEAT_H
-#define BLINKYTUNE_COLORBEAT_H
+#ifndef BLINKYTUNE_COLORSPECTRUM_H
+#define BLINKYTUNE_COLORSPECTRUM_H
 
-#include <QCheckBox>
-#include <QWidget>
-#include <QLayout>
-#include "../StereoAnalysisBuffer.h"
+
 #include "../SoundEffect.h"
 
 /**
- * Implements the Color Beat effect
+ * Implements the ColorSpectrum effect
  */
-class ColorBeat : public SoundEffect {
+class ColorSpectrum : public SoundEffect {
 public:
     /**
      * The constructor.
      */
-    ColorBeat();
+    ColorSpectrum();
 
     void tick(LEDStrip &ledStrip, const StereoAnalysisBuffer *data);
 
@@ -33,26 +30,16 @@ public:
      */
     static Effect *create();
 
-    enum Modes {
-        M_BASS_MID_TREB = 0,
-        M_BASS_TREB_MID,
-        M_TREB_BASS_MID,
-        M_TREB_MID_BASS,
-        M_MID_BASS_TREB,
-        M_MID_TREB_BASS
-    };
-
     /**
      * The parameters controlling the effect's behaviour.
      */
     struct Params {
-        Modes mode;
-        bool mixChannels;
+        float hue;
     };
 
 private:
-	QCheckBox* mixChannelsCheckBox;
     Params p_;
 };
 
-#endif //BLINKYTUNE_COLORBEAT_H
+
+#endif //BLINKYTUNE_COLORSPECTRUM_H

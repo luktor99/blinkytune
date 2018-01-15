@@ -21,7 +21,7 @@ public:
 	QString getName() const;
 
 signals:
-	void clicked(const DeviceCard& device);
+	void clicked(DeviceCard& device);
 
 public:
 	QLabel deviceName;
@@ -31,7 +31,7 @@ public:
 	bool checked;
 
 protected:
-	void mousePressEvent(QMouseEvent* event) override;
+	void mousePressEvent(QMouseEvent* event);
 };
 
 #endif // DEVICECARD_H

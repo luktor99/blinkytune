@@ -11,7 +11,7 @@
 
 
 #include <memory>
-#include "DSPParameters.h"
+#include "Settings.h"
 
 
 class MelFilterBank {

@@ -5,13 +5,17 @@
 #include "EffectsFactory.h"
 #include "effects/StillColor.h"
 #include "effects/ColorBeat.h"
+#include "effects/Rainbow.h"
+#include "effects/ColorSpectrum.h"
 
 EffectsFactory::EffectsFactory() {
     // NoSound effects
     registerNoSoundEffect("Still Color", &StillColor::create);
+    registerNoSoundEffect("Rainbow", &Rainbow::create);
 
     // Sound effects
     registerSoundEffect("Color Beat", &ColorBeat::create);
+    registerSoundEffect("Color Spectrum", &ColorSpectrum::create);
 }
 
 EffectsFactory &EffectsFactory::getInstance() {

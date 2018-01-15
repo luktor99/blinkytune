@@ -2,7 +2,6 @@
 // Created by marcin on 09.12.17.
 //
 #include <QPushButton>
-#include <QScrollBar>
 #include <QMessageBox>
 
 #include "MainWindow.h"
@@ -11,7 +10,9 @@
 #include "AudioInterface.h"
 #include "AudioDevice.h"
 #include "EffectsController.h"
+#include "EffectsFactory.h"
 #include <list>
+#include <QCloseEvent>
 
 MainWindow::MainWindow(QWidget *parent) :
         QWidget(parent) {}
@@ -31,6 +32,8 @@ void MainWindow::setupUi(void)
 	deviceWidgetLayout = new QGridLayout;
 	animationWidgetLayout = new QVBoxLayout;
 	deviceSelectionAreaLayout = new QHBoxLayout;
+	QHBoxLayout* effectLayout = new QHBoxLayout;
+	effectLayout->setSpacing(30);
 
 	ledStrip = new LedStripWidget(60, this);
 	ledStrip->setupUi();
@@ -38,13 +41,13 @@ void MainWindow::setupUi(void)
 	ledStrip->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
 	ledStrip->setContentsMargins(0, 0, 0, 0);
 
-	AudioInterface::getInstance().initialize();
-	std::list<AudioDevice> deviceList_ = AudioInterface::getInstance().getInputDevicesList();
+	std::list<AudioDevice> tDeviceList = AudioInterface::getInstance().getInputDevicesList();
 	auto defaultDevice = AudioInterface::getInstance().getDefaultInputDevice();
-	for (auto device : deviceList_)
+	for (auto device : tDeviceList)
 	{
 		pushDeviceToList(device.getName(), device.getInputChannels(), device.getID());
-
+		if (device.getID() == defaultDevice.getID())
+			deviceClicked(*deviceList.back());
 	}
 
 	QWidget* connectionWidget = new QWidget(this);
@@ -74,7 +77,6 @@ void MainWindow::setupUi(void)
 	connectButton->setContentsMargins(20,20,20,20);
 	connectButton->setMaximumWidth(60);
 	connectionSettingsLayout->addWidget(connectButton);
-	connect(connectButton, SIGNAL(clicked()), this, SLOT(connectDevice()));
 
 	connectionStatusIndicator = new IndicatorWidget(Qt::red,connectionWidget);
 	connectionStatusIndicator->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
@@ -93,23 +95,91 @@ void MainWindow::setupUi(void)
     deviceSelectionArea->setWidget(deviceSelectionWidget);
     deviceWidgetLayout->addWidget(deviceSelectionArea);
 
+	QWidget* effectWidget = new QWidget(this);
+	effectWidget->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+	effectWidget->setLayout(effectLayout);
+
+	chooseEffectComboBox = new QComboBox(effectWidget);
+	chooseEffectComboBox->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+	chooseEffectComboBox->setStyleSheet("QComboBox {background-color: gray;}");
+	chooseEffectComboBox->setEnabled(false);
+	effectLayout->addWidget(chooseEffectComboBox);
+
+	setEffectsList(EffectsFactory::getInstance().getSoundEffects());
+	std::for_each(effectsList.begin(), effectsList.end(), [this](auto item) {this->chooseEffectComboBox->addItem(item.c_str()); });
+
+	QLabel* fps = new QLabel(effectWidget);
+	fps->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+	fps->setText("FPS:");
+	effectLayout->addWidget(fps);
+
+	chooseFPS = new QSpinBox(effectWidget);
+	chooseFPS->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+	chooseFPS->setRange(1, 48000);
+	chooseFPS->setSingleStep(1);
+	chooseFPS->setValue(48000);
+	effectLayout->addWidget(chooseFPS);
+
     mAnimationPropertiesPanel = new CollapseWidget("Effects properties", DEFAULT_ANIMATION_DURATION, this);
     mAnimationPropertiesPanel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
-    mAnimationPropertiesPanel->setContentLayout(*animationWidgetLayout);
 
 	mainWindowLayout->addWidget(connectionWidget);
     mainWindowLayout->addWidget(mDeviceSelectionPanel);
     mainWindowLayout->addWidget(ledStrip);
+	mainWindowLayout->addWidget(effectWidget);
     mainWindowLayout->addWidget(mAnimationPropertiesPanel);
     mDeviceSelectionPanel->setContentLayout(*deviceWidgetLayout);
+	mAnimationPropertiesPanel->setContentLayout(*animationWidgetLayout);
     setLayout(mainWindowLayout);
     mainWindowLayout->setSizeConstraint(QLayout::SetMinimumSize);
-
+	setupSlots();
+	EffectsController::getInstance().stop();
 }
-//TODO
-void MainWindow::setupEffectUi()
-{
-	return;
+
+void MainWindow::clearLayout(QLayout * layout) {
+	QLayoutItem *item;
+	while ((item = layout->takeAt(0))) {
+		if (item->layout()) {
+			clearLayout(item->layout());
+			delete item->layout();
+		}
+		if (item->widget()) {
+			delete item->widget();
+		}
+		delete item;
+	}
+}
+
+void MainWindow::setupEffectUi(void)
+{	
+	mAnimationPropertiesPanel->hide();
+	mainWindowLayout->removeWidget(mAnimationPropertiesPanel);
+	mAnimationPropertiesPanel = new CollapseWidget("Effects properties", DEFAULT_ANIMATION_DURATION, this);
+    mAnimationPropertiesPanel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+	animationWidgetLayout = new QVBoxLayout;
+	EffectsController::getInstance().getEffect()->populateControls(animationWidgetLayout, mAnimationPropertiesPanel);
+	mAnimationPropertiesPanel->setContentLayout(*animationWidgetLayout);
+	mainWindowLayout->addWidget(mAnimationPropertiesPanel);
+	update();
+}
+
+void MainWindow::setupSlots(void) {
+	connect(connectButton, SIGNAL(clicked()), this, SLOT(connectDevice()));
+	connect(chooseFPS, SIGNAL(valueChanged(int)), this, SLOT(setFPS(int)));
+	connect(chooseEffectComboBox, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(setEffect(const QString&)));
+}
+
+void MainWindow::setFPS(int fps) {
+	EffectsController::getInstance().setFPS(static_cast<float>(fps));
+}
+
+void MainWindow::setEffect(const QString& effect) {
+	EffectsController::getInstance().setEffect(effect.toStdString());
+	setupEffectUi();
+}
+
+void MainWindow::getEffectProperties(void) {
+	EffectsController::getInstance().getEffect()->readControls();
 }
 
 void MainWindow::pushDeviceToList(const char* deviceNameStr, const int& inputChannels , const int& id)
@@ -120,46 +190,49 @@ void MainWindow::pushDeviceToList(const char* deviceNameStr, const int& inputCha
 	addedDevice->setDeviceID(id);
 	deviceList.push_back(addedDevice);
 	addedDevice->setupUi();
-	QObject::connect(addedDevice, SIGNAL(clicked(const DeviceCard&)), this, SLOT(deviceClicked(const DeviceCard&)));
+	QObject::connect(addedDevice, SIGNAL(clicked(DeviceCard&)), this, SLOT(deviceClicked(DeviceCard&)));
 	deviceSelectionAreaLayout->addWidget(addedDevice);
 }
 
-void MainWindow::deviceClicked(const DeviceCard& device) {
-	for (auto item : deviceList){
-		if (item->getName().toStdString() == device.getName().toStdString()) {
-			try {
-				EffectsController::getInstance().setAudioDevice(AudioDevice(item->getID()));
-			}
-			catch (...) {
-				auto defaultDevice = AudioInterface::getInstance().getDefaultInputDevice();
-				EffectsController::getInstance().setAudioDevice(defaultDevice);
-				for (auto defaultItem : deviceList) {
-					if (defaultDevice.getID() == defaultItem->getID()) {
-						item = defaultItem;
-						defaultItem->checked = true;
-					}
-					defaultItem->checked = false;
-				}
-				QMessageBox* errorDialog = new QMessageBox(this);
-				errorDialog->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-				errorDialog->setText("Error occured. The device cannot be selected. Default device selected");
-				errorDialog->exec();
-			}
-			item->checked = true;
-			item->devicePicture.setStyleSheet("QLabel:hover:!pressed { background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 1, y2 : 1, \
+void MainWindow::setFocus(DeviceCard& device, bool isChecked) {
+	if (isChecked) {
+		device.devicePicture.setStyleSheet("QLabel:hover:!pressed { background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 1, y2 : 1, \
 											   stop: 0 yellow, stop: 1 white); border-style: solid; border-color: black;  border-width: 2px; border-radius: 20px;}" \
-											  "QLabel { background-color:  qlineargradient(x1 : 0, y1 : 0, x2 : 1, y2 : 1, \
+											"QLabel { background-color:  qlineargradient(x1 : 0, y1 : 0, x2 : 1, y2 : 1, \
 											   stop: 0 darkCyan, stop: 1 blue); border-style: solid; border-color: black;  border-width: 2px; border-radius: 20px; }");
-		}
-		else {
-			item->devicePicture.setStyleSheet("QLabel:hover:!pressed { background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 1, y2 : 1, \
+	}
+	else {
+		device.devicePicture.setStyleSheet("QLabel:hover:!pressed { background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 1, y2 : 1, \
 											   stop: 0 yellow, stop: 1 white); border-style: solid; border-color: black;  border-width: 2px; border-radius: 20px;} \
 											   QLabel{ border: none; background-color: black; }");
-			item->checked = false;
-		}
-		std::cout << item->isChecked();
 	}
-	std::cout << std::endl;
+	
+}
+
+void MainWindow::setEffectsList(const std::vector<std::string>& effects) {
+	effectsList = effects;
+};
+
+
+void MainWindow::deviceClicked(DeviceCard& device) {
+	std::for_each(deviceList.begin(), deviceList.end(), [this](auto item) {setFocus((*item), false); });
+	try {
+		EffectsController::getInstance().setAudioDevice(AudioDevice(device.getID()));
+	}
+	catch (const std::runtime_error& error) {
+	    auto defaultDevice = AudioInterface::getInstance().getDefaultInputDevice();
+	    EffectsController::getInstance().setAudioDevice(defaultDevice);
+		auto defaultItem = std::find_if(deviceList.begin(), deviceList.end(), [defaultDevice](auto item)->bool {
+			return defaultDevice.getID() == item->getID(); 
+		});
+		setFocus(**defaultItem, true);
+		QMessageBox* errorDialog = new QMessageBox(this);
+		errorDialog->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+		errorDialog->setText("Error occured. The device cannot be selected. Default device selected");
+		errorDialog->exec();
+		return;
+	}
+	setFocus(device, true);
 }
 
 void MainWindow::connectDevice(void) {
@@ -175,14 +248,21 @@ void MainWindow::connectDevice(void) {
 			errorDialog->exec();
 			return;
 		}
-		EffectsController::getInstance().setEffect("Color Beat");
+		chooseEffectComboBox->setEnabled(true);
+		setEffect(chooseEffectComboBox->itemText(chooseEffectComboBox->currentIndex()));
 		connectButton->setText("Disconnect");
 		connectionStatusIndicator->changeColor(Qt::green);
 	}
 	else {
 		EffectsController::getInstance().stop();
+		chooseEffectComboBox->setEnabled(false);
 		connectionStatusIndicator->changeColor(Qt::red);
 		connectButton->setText("Connect");
 	}
+}
+
+void MainWindow::closeEvent(QCloseEvent *event) {
+	EffectsController::getInstance().stop();
+	event->accept();
 }
 

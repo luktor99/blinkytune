@@ -1,22 +1,22 @@
 //
-// Created by luktor99 on 13.01.18.
+// Created by luktor99 on 15.01.18.
 //
 
-#ifndef BLINKYTUNE_STILLCOLOR_H
-#define BLINKYTUNE_STILLCOLOR_H
+#ifndef BLINKYTUNE_RAINBOW_H
+#define BLINKYTUNE_RAINBOW_H
 
 
 #include "../NoSoundEffect.h"
 
 /**
- * Implements the Still Color effect.
+ * Implements the Rainbow effect
  */
-class StillColor : public NoSoundEffect {
+class Rainbow : public NoSoundEffect {
 public:
     /**
      * The constructor.
      */
-    StillColor();
+    Rainbow();
 
     void tick(LEDStrip &ledStrip, const StereoAnalysisBuffer *);
 
@@ -31,17 +31,17 @@ public:
     static Effect *create();
 
     /**
-    * The parameters controlling the effect's behaviour.
-    */
+     * The parameters controlling the effect's behaviour.
+     */
     struct Params {
-        float R;
-        float G;
-        float B;
+        float speed;
+        float scale;
     };
-    
+
 private:
     Params p_;
+    float pos;
 };
 
 
-#endif //BLINKYTUNE_STILLCOLOR_H
+#endif //BLINKYTUNE_RAINBOW_H
