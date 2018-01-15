@@ -6,8 +6,7 @@
 #define BLINKYTUNE_COLORBEAT_H
 
 #include <QCheckBox>
-#include <QWidget>
-#include <QLayout>
+#include <QComboBox>
 #include "../StereoAnalysisBuffer.h"
 #include "../SoundEffect.h"
 
@@ -52,6 +51,7 @@ public:
 
 private:
 	QCheckBox* mixChannelsCheckBox;
+	QComboBox* colorMappingComboBox;
     Params p_;
 };
 

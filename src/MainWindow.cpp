@@ -105,7 +105,10 @@ void MainWindow::setupUi(void)
 	chooseEffectComboBox->setEnabled(false);
 	effectLayout->addWidget(chooseEffectComboBox);
 
-	setEffectsList(EffectsFactory::getInstance().getSoundEffects());
+	std::vector<std::string> soundEffectsVector = EffectsFactory::getInstance().getSoundEffects();
+	std::vector<std::string> noSoundEffectsVector = EffectsFactory::getInstance().getNoSoundEffects();
+	soundEffectsVector.insert(soundEffectsVector.end(), noSoundEffectsVector.begin(), noSoundEffectsVector.end());
+	setEffectsList(soundEffectsVector);
 	std::for_each(effectsList.begin(), effectsList.end(), [this](auto item) {this->chooseEffectComboBox->addItem(item.c_str()); });
 
 	QLabel* fps = new QLabel(effectWidget);
@@ -136,20 +139,6 @@ void MainWindow::setupUi(void)
 	EffectsController::getInstance().stop();
 }
 
-void MainWindow::clearLayout(QLayout * layout) {
-	QLayoutItem *item;
-	while ((item = layout->takeAt(0))) {
-		if (item->layout()) {
-			clearLayout(item->layout());
-			delete item->layout();
-		}
-		if (item->widget()) {
-			delete item->widget();
-		}
-		delete item;
-	}
-}
-
 void MainWindow::setupEffectUi(void)
 {	
 	mAnimationPropertiesPanel->hide();
@@ -157,10 +146,19 @@ void MainWindow::setupEffectUi(void)
 	mAnimationPropertiesPanel = new CollapseWidget("Effects properties", DEFAULT_ANIMATION_DURATION, this);
     mAnimationPropertiesPanel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 	animationWidgetLayout = new QVBoxLayout;
+	getParametersData = new QPushButton(mAnimationPropertiesPanel);
+	getParametersData->setText("Send parameters");
+	getParametersData->setStyleSheet("QPushButton#getParametersData {background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 : 1, \
+								  stop: 0 white, stop: 1 grey); border-style: solid; border-color: black;  border-width: 2px; border-radius: 5px;}"
+								  "QPushButton#getParametersData:hover:!pressed {background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 : 1, \
+								  stop: 0 darkCyan, stop: 1 blue); border-style: solid; border-color: black;  border-width: 2px; border-radius: 5px;}"
+								  "QPushButton#getParametersData:pressed {background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 : 1, \
+								  stop: 0 blue, stop: 1 darkCyan); border-style: solid; border-color: black;  border-width: 2px; border-radius: 5px;}");
 	EffectsController::getInstance().getEffect()->populateControls(animationWidgetLayout, mAnimationPropertiesPanel);
+	animationWidgetLayout->addWidget(getParametersData);
+	connect(getParametersData, SIGNAL(clicked()), this, SLOT(getEffectProperties()));
 	mAnimationPropertiesPanel->setContentLayout(*animationWidgetLayout);
 	mainWindowLayout->addWidget(mAnimationPropertiesPanel);
-	update();
 }
 
 void MainWindow::setupSlots(void) {

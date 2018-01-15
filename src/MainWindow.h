@@ -23,15 +23,6 @@ class MainWindow : public QWidget {
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     void setupUi(void);
-	void setupSlots(void);
-	void setupEffectUi(void);
-	
-	void pushDeviceToList(const char* deviceNameStr, const int& inputChannels, const int& id);
-	void setFocus(DeviceCard& device, bool isChecked);
-	void addParentItem(QStandardItemModel * model, const QString & text);
-	void addChildItem(QStandardItemModel * model, const QString & text, const QVariant & data);
-	void setEffectsList(const std::vector<std::string>& effects);
-	void clearLayout(QLayout * layout);
 
 	QVBoxLayout *animationWidgetLayout;
 	CollapseWidget *mAnimationPropertiesPanel;
@@ -61,10 +52,18 @@ private:
 	QComboBox* chooseEffectComboBox;
 	QSpinBox* chooseFPS;
 	QCheckBox* mixChannelsCheckBox;
+	QPushButton* getParametersData;
+
+	//Containers:
     std::vector<DeviceCard*> deviceList;
 	std::vector<std::string> effectsList;
 
 	void closeEvent(QCloseEvent *event);
+	void setupSlots(void);
+	void setupEffectUi(void);
+	void pushDeviceToList(const char* deviceNameStr, const int& inputChannels, const int& id);
+	void setFocus(DeviceCard& device, bool isChecked);
+	void setEffectsList(const std::vector<std::string>& effects);
 
 };
 

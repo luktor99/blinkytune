@@ -2,6 +2,8 @@
 // Created by luktor99 on 15.01.18.
 //
 
+#include <QLabel>
+
 #include "Rainbow.h"
 
 namespace {
@@ -23,11 +25,31 @@ void Rainbow::tick(LEDStrip &ledStrip, const StereoAnalysisBuffer *) {
 }
 
 void Rainbow::populateControls(QLayout* layout, QWidget* parent) {
-    //TODO
+	QLabel* scaleLabel = new QLabel(parent);
+	scaleLabel->setText("Scale slider");
+	scaleSlider = new QSlider(Qt::Horizontal, parent);
+	scaleSlider->setRange(0, 1000000);
+	scaleSlider->setSingleStep(10);
+	scaleSlider->setValue(static_cast<int>(defaultParams.scale) * 500000);
+	scaleSlider->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+	QLabel* speedLabel = new QLabel(parent);
+	speedLabel->setText("Speed slider");
+	speedSlider = new QSlider(Qt::Horizontal, parent);
+	speedSlider->setRange(0, 1000000);
+	speedSlider->setSingleStep(10);
+	scaleSlider->setValue(static_cast<int>(defaultParams.speed) * 500000);
+	speedSlider->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+	layout->addWidget(scaleLabel);
+	layout->addWidget(scaleSlider);
+	layout->addWidget(speedLabel);
+	layout->addWidget(speedSlider);
 }
 
 void Rainbow::readControls() {
-    //TODO
+	std::lock_guard<std::mutex> lock(mutex_);
+
+	p_.speed = static_cast<float>(speedSlider->value())/ 500000;
+	p_.scale = static_cast<float>(scaleSlider->value()) / 500000  + 0.0001f;
 }
 
 Effect *Rainbow::create() {

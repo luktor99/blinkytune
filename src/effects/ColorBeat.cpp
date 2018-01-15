@@ -3,6 +3,8 @@
 //
 
 #include <QVBoxLayout>
+#include <QComboBox>
+#include <QLabel>
 
 #include "ColorBeat.h"
 
@@ -11,13 +13,21 @@ namespace {
             ColorBeat::M_BASS_MID_TREB,
             true
     };
+
+	const std::vector<std::string> colorMapping = {
+		"Bass: red, Mids: green, Treble: blue",
+		"Bass: red, Treble: green, Mids: blue",
+		"Treble: red, Bass: green, Mids: blue",
+		"Treble red, Mids: green, Bass: blue",
+		"Mids red, Bass: green, Treble: blue",
+		"Mids red, Treble: green, Bass: blue",
+	};
 }
 
 ColorBeat::ColorBeat() : p_(defaultParams) {
 
 }
 void ColorBeat::tick(LEDStrip &ledStrip, const StereoAnalysisBuffer *data) {
-    
 	
 	std::lock_guard<std::mutex> lock(mutex_);
 
@@ -96,19 +106,24 @@ void ColorBeat::tick(LEDStrip &ledStrip, const StereoAnalysisBuffer *data) {
 }
 
 void ColorBeat::populateControls(QLayout* layout, QWidget* parent) {
-	//mainWindow->clearLayout(mainWindow->animationWidgetLayout);
 	mixChannelsCheckBox = new QCheckBox(parent);
 	mixChannelsCheckBox->setText("Mix channels");
-	mixChannelsCheckBox->setChecked(false);
+	mixChannelsCheckBox->setChecked(p_.mixChannels);
 	mixChannelsCheckBox->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+	QLabel* comboBoxLabel = new QLabel(parent);
+	comboBoxLabel->setText("Color mapping");
+	colorMappingComboBox = new QComboBox(parent);
+	colorMappingComboBox->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+	std::for_each(colorMapping.begin(), colorMapping.end(), [this](auto item) {this->colorMappingComboBox->addItem(item.c_str()); });
 	layout->addWidget(mixChannelsCheckBox);
+	layout->addWidget(comboBoxLabel);
+	layout->addWidget(colorMappingComboBox);
 }
 
 void ColorBeat::readControls() {
     std::lock_guard<std::mutex> lock(mutex_);
-    // TODO...
 
-    p_.mode = M_TREB_MID_BASS;
+	p_.mode = static_cast<Modes>(colorMappingComboBox->currentIndex());
     p_.mixChannels = mixChannelsCheckBox->isChecked();
 }
 

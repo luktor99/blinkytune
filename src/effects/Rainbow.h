@@ -5,6 +5,7 @@
 #ifndef BLINKYTUNE_RAINBOW_H
 #define BLINKYTUNE_RAINBOW_H
 
+#include<QSlider>
 
 #include "../NoSoundEffect.h"
 
@@ -41,6 +42,8 @@ public:
 private:
     Params p_;
     float pos;
+	QSlider* speedSlider;
+	QSlider* scaleSlider;
 };
 
 
