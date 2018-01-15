@@ -212,7 +212,9 @@ void MainWindow::setEffectsList(const std::vector<std::string>& effects) {
 
 
 void MainWindow::deviceClicked(DeviceCard& device) {
-	std::for_each(deviceList.begin(), deviceList.end(), [this](auto item) {this->setFocus((*item), false); });
+
+	std::for_each(deviceList.begin(), deviceList.end(), [this](auto item) { this->setFocus((*item), false); });
+
 	try {
 		EffectsController::getInstance().setAudioDevice(AudioDevice(device.getID()));
 	}
