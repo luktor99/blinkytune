@@ -3,7 +3,6 @@
 //
 
 #include "EffectsRenderer.h"
-#include "EffectsController.h"
 
 EffectsRenderer::EffectsRenderer(FIFOQueue<StereoAnalysisBuffer> &inputFIFO, LEDStrip &ledStrip) : inputFIFO_(
         inputFIFO), ledStrip_(ledStrip), activeEffect_(nullptr), effectType_(EFFECT_SOUND) {
@@ -34,13 +33,12 @@ void EffectsRenderer::mainLoop() {
 
     try {
         // Refresh the LED strip if a new frame is expected
-        if(effectType_ == EFFECT_SOUND) {
+        if (effectType_ == EFFECT_SOUND) {
             if (cnt++ >= SAMPLE_RATE / FRAMES_PER_BUFFER * refreshRate_) {
                 ledStrip_.update();
                 cnt = 0;
             }
-        }
-        else {
+        } else {
             if (cnt++ >= TICK_RATE * refreshRate_) {
                 ledStrip_.update();
                 cnt = 0;
