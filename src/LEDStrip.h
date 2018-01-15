@@ -38,13 +38,22 @@ public:
     void update();
 
     /**
-     * Set single pixel's color in the output buffer.
+     * Set single pixel's RGB color in the output buffer.
      * @param n The index of the pixel.
      * @param r Red color component (0..255 range)
      * @param g Green color component (0..255 range)
      * @param b Blue color component (0..255 range)
      */
     void setRGB(int n, float r, float g, float b);
+
+    /**
+     * Set single pixel's HSV color in the output buffer.
+     * @param n The index of the pixel.
+     * @param h Hue (0..360 range)
+     * @param s Saturation (0..1 range)
+     * @param v Value (0..1 range)
+     */
+    void setHSV(int n, float h, float s, float v);
 
     /**
      * Clamp the value if it exceeds the 0..255 range.

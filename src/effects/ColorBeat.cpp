@@ -17,8 +17,7 @@ ColorBeat::ColorBeat() : p_(defaultParams) {
 
 void ColorBeat::tick(LEDStrip &ledStrip, const StereoAnalysisBuffer *data) {
     std::lock_guard<std::mutex> lock(mutex_);
-
-    // Generate a simple effect
+    
     for (int i = 0; i < ledStrip.getLength(); ++i) {
         if (p_.mixChannels) {
             float bass = (data->bassL_ + data->bassR_) / 2.0f;

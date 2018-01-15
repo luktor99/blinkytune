@@ -21,7 +21,7 @@ set(SOURCE_FILES main.cpp UDPSender.cpp UDPSender.h AudioInterface.cpp AudioInte
         Worker.h SpectrumGenerator.cpp SpectrumGenerator.h Settings.h SamplesCollector.cpp SamplesCollector.h
         SpectrumAnalyzer.cpp SpectrumAnalyzer.h StereoSpectrumBuffer.h MainWindow.cpp MainWindow.h MelFilterBank.h
         MelFilterBank.cpp StereoAnalysisBuffer.h CollapseWidget.cpp CollapseWidget.h IndicatorWidget.cpp IndicatorWidget.h
-		DeviceCard.cpp DeviceCard.h LedStripWidget.cpp LedStripWidget.h Filter.cpp Filter.h LEDStrip.cpp LEDStrip.h EffectsRenderer.cpp EffectsRenderer.h Effect.h SoundEffect.h NoSoundEffect.h effects/ColorBeat.cpp effects/ColorBeat.h EffectsController.cpp EffectsController.h TickGenerator.cpp TickGenerator.h effects/StillColor.cpp effects/StillColor.h EffectsFactory.cpp EffectsFactory.h)
+		DeviceCard.cpp DeviceCard.h LedStripWidget.cpp LedStripWidget.h Filter.cpp Filter.h LEDStrip.cpp LEDStrip.h EffectsRenderer.cpp EffectsRenderer.h Effect.h SoundEffect.h NoSoundEffect.h effects/ColorBeat.cpp effects/ColorBeat.h EffectsController.cpp EffectsController.h TickGenerator.cpp TickGenerator.h effects/StillColor.cpp effects/StillColor.h EffectsFactory.cpp EffectsFactory.h effects/Rainbow.cpp effects/Rainbow.h)
 
 add_executable(blinkytune ${SOURCE_FILES})
 

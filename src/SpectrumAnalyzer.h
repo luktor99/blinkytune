@@ -11,6 +11,7 @@
 #include "StereoSpectrumBuffer.h"
 #include "FIFOQueue.h"
 #include "StereoAnalysisBuffer.h"
+#include "Filter.h"
 
 /**
  * Represents a worker thread that analyzes the received spectrum and outputs analysis data for effect generation.
@@ -32,6 +33,9 @@ private:
 
     FIFOQueue<StereoSpectrumBuffer> &inputFIFO_; /*!< A reference to the input FIFO queue. */
     FIFOQueue<StereoAnalysisBuffer> &outputFIFO_; /*!< A reference to the output FIFO queue. */
+    boost::circular_buffer<std::shared_ptr<StereoSpectrumBuffer>> spectrumHistory_; /*!< Spectrum data history */
+    std::vector<Filter> gainsL_, gainsR_; /*!< Exponential filters for spectrum gains */
+    std::vector<Filter> melFiltersL_, melFiltersR_; /*!< Exponential filters for mel spectrum output */
 };
 
 
