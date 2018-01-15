@@ -5,6 +5,7 @@
 #include <iostream>
 #include <QDir>
 
+
 DeviceCard::DeviceCard(QWidget *parent):
     QWidget(parent)
 {
