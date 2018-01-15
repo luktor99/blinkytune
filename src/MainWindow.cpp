@@ -40,9 +40,11 @@ void MainWindow::setupUi(void)
 
 	AudioInterface::getInstance().initialize();
 	std::list<AudioDevice> deviceList_ = AudioInterface::getInstance().getInputDevicesList();
+	auto defaultDevice = AudioInterface::getInstance().getDefaultInputDevice();
 	for (auto device : deviceList_)
 	{
 		pushDeviceToList(device.getName(), device.getInputChannels(), device.getID());
+
 	}
 
 	QWidget* connectionWidget = new QWidget(this);
@@ -125,12 +127,29 @@ void MainWindow::pushDeviceToList(const char* deviceNameStr, const int& inputCha
 void MainWindow::deviceClicked(const DeviceCard& device) {
 	for (auto item : deviceList){
 		if (item->getName().toStdString() == device.getName().toStdString()) {
+			try {
+				EffectsController::getInstance().setAudioDevice(AudioDevice(item->getID()));
+			}
+			catch (...) {
+				auto defaultDevice = AudioInterface::getInstance().getDefaultInputDevice();
+				EffectsController::getInstance().setAudioDevice(defaultDevice);
+				for (auto defaultItem : deviceList) {
+					if (defaultDevice.getID() == defaultItem->getID()) {
+						item = defaultItem;
+						defaultItem->checked = true;
+					}
+					defaultItem->checked = false;
+				}
+				QMessageBox* errorDialog = new QMessageBox(this);
+				errorDialog->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+				errorDialog->setText("Error occured. The device cannot be selected. Default device selected");
+				errorDialog->exec();
+			}
+			item->checked = true;
 			item->devicePicture.setStyleSheet("QLabel:hover:!pressed { background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 1, y2 : 1, \
 											   stop: 0 yellow, stop: 1 white); border-style: solid; border-color: black;  border-width: 2px; border-radius: 20px;}" \
-											   "QLabel { background-color:  qlineargradient(x1 : 0, y1 : 0, x2 : 1, y2 : 1, \
+											  "QLabel { background-color:  qlineargradient(x1 : 0, y1 : 0, x2 : 1, y2 : 1, \
 											   stop: 0 darkCyan, stop: 1 blue); border-style: solid; border-color: black;  border-width: 2px; border-radius: 20px; }");
-			EffectsController::getInstance().setAudioDevice(AudioDevice(item->getID()));
-			item->checked = true;
 		}
 		else {
 			item->devicePicture.setStyleSheet("QLabel:hover:!pressed { background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 1, y2 : 1, \
