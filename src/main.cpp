@@ -49,19 +49,15 @@ int main(int argc, char **argv) {
     effectsController.setAudioDevice(device);
 
     // Just a test for now...
-    for(;;) {
-        effectsController.setEffect("Rainbow");
-        getchar();
-        effectsController.setEffect("Still Color");
-        getchar();
-        effectsController.setEffect("Color Beat");
-        getchar();
-        effectsController.setEffect("Color Spectrum");
-        getchar();
-    }
-
-    // Wait for a key press...
+    effectsController.setEffect("Rainbow");
     getchar();
+    effectsController.setEffect("Still Color");
+    getchar();
+    effectsController.setEffect("Color Beat");
+    getchar();
+    effectsController.setEffect("Color Spectrum");
+    getchar();
+
 
     effectsController.stop();
 
