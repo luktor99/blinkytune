@@ -23,7 +23,7 @@ void ColorSpectrum::tick(LEDStrip &ledStrip, const StereoAnalysisBuffer *data) {
     }
 }
 
-void ColorSpectrum::populateControls() {
+ void ColorSpectrum::populateControls(QLayout* layout, QWidget* parent) {
     //TODO
 }
 

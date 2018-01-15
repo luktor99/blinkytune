@@ -5,7 +5,8 @@
 #ifndef BLINKYTUNE_COLORBEAT_H
 #define BLINKYTUNE_COLORBEAT_H
 
-
+#include <QCheckBox>
+#include <QComboBox>
 #include "../StereoAnalysisBuffer.h"
 #include "../SoundEffect.h"
 
@@ -21,7 +22,7 @@ public:
 
     void tick(LEDStrip &ledStrip, const StereoAnalysisBuffer *data);
 
-    void populateControls();
+    void populateControls(QLayout* layout, QWidget* parent);
 
     void readControls();
 
@@ -49,6 +50,8 @@ public:
     };
 
 private:
+	QCheckBox* mixChannelsCheckBox;
+	QComboBox* colorMappingComboBox;
     Params p_;
 };
 

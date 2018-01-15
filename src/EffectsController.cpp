@@ -75,7 +75,15 @@ void EffectsController::setAudioDevice(const AudioDevice &device) {
     }
 
     // Open the new audio stream
-    audioStream_.reset(new AudioInputStream(audioDevice_, SAMPLE_RATE, FRAMES_PER_BUFFER));
+	try {
+		audioStream_.reset(new AudioInputStream(audioDevice_, SAMPLE_RATE, FRAMES_PER_BUFFER));
+	}
+	catch(const std::runtime_error& error){
+		throw error;
+	}
+	catch(...){
+		throw;
+	}
 
     // Restart SamplesCollector if it's already running (using the new audio device)
     if (activePipeline == PIPELINE_SOUND) {
@@ -156,9 +164,9 @@ void EffectsController::stop() {
         stopSoundPipeline();
 
     // Clear the LED strip
-    ledStrip_->clear();
-    ledStrip_->update();
-    ledStrip_.reset();
+		ledStrip_->clear();
+		ledStrip_->update();
+		ledStrip_.reset();
 }
 
 void EffectsController::setFPS(const float &fps) {

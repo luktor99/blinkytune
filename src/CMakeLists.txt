@@ -7,7 +7,7 @@ include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIRS})
 
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
 
 set(CMAKE_AUTOMOC ON)
@@ -21,7 +21,10 @@ set(SOURCE_FILES main.cpp UDPSender.cpp UDPSender.h AudioInterface.cpp AudioInte
         Worker.h SpectrumGenerator.cpp SpectrumGenerator.h Settings.h SamplesCollector.cpp SamplesCollector.h
         SpectrumAnalyzer.cpp SpectrumAnalyzer.h StereoSpectrumBuffer.h MainWindow.cpp MainWindow.h MelFilterBank.h
         MelFilterBank.cpp StereoAnalysisBuffer.h CollapseWidget.cpp CollapseWidget.h IndicatorWidget.cpp IndicatorWidget.h
-		DeviceCard.cpp DeviceCard.h LedStripWidget.cpp LedStripWidget.h Filter.cpp Filter.h LEDStrip.cpp LEDStrip.h EffectsRenderer.cpp EffectsRenderer.h Effect.h SoundEffect.h NoSoundEffect.h effects/ColorBeat.cpp effects/ColorBeat.h EffectsController.cpp EffectsController.h TickGenerator.cpp TickGenerator.h effects/StillColor.cpp effects/StillColor.h EffectsFactory.cpp EffectsFactory.h effects/Rainbow.cpp effects/Rainbow.h effects/ColorSpectrum.cpp effects/ColorSpectrum.h)
+		DeviceCard.cpp DeviceCard.h LedStripWidget.cpp LedStripWidget.h Filter.cpp Filter.h LEDStrip.cpp LEDStrip.h EffectsRenderer.cpp 
+		EffectsRenderer.h Effect.h SoundEffect.h  NoSoundEffect.h effects/ColorBeat.cpp effects/ColorBeat.h EffectsController.cpp 
+		EffectsController.h TickGenerator.cpp TickGenerator.h effects/StillColor.cpp effects/StillColor.h EffectsFactory.cpp 
+		EffectsFactory.h effects/Rainbow.cpp effects/Rainbow.h effects/ColorSpectrum.cpp effects/ColorSpectrum.h)
 
 add_executable(blinkytune ${SOURCE_FILES})
 

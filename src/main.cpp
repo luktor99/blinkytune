@@ -3,11 +3,8 @@
 #include <QApplication>
 #include <QSplashScreen>
 #include <qthread.h>
-#include <QDir>
 
 #include "MainWindow.h"
-#include "CollapseWidget.h"
-
 
 #include "AudioInterface.h"
 
@@ -23,7 +20,7 @@ int main(int argc, char **argv) {
     // Supress warnings:
     (void) argc;
     (void) argv;
-
+	/*
     // Initialize PortAudio
     AudioInterface::getInstance().initialize();
 
@@ -47,9 +44,7 @@ int main(int argc, char **argv) {
     auto &effectsController = EffectsController::getInstance();
     effectsController.connect("192.168.0.189", 60);
     effectsController.setAudioDevice(device);
-
     // Just a test for now...
-    effectsController.setEffect("Rainbow");
     getchar();
     effectsController.setEffect("Still Color");
     getchar();
@@ -58,17 +53,19 @@ int main(int argc, char **argv) {
     effectsController.setEffect("Color Spectrum");
     getchar();
 
+    effectsController.stop();*/
 
-    effectsController.stop();
-
-/*	//Start application
+	//Start application
 	QApplication app(argc, argv);
 	//Show splash screen for 2 seconds
 	QPixmap pixmap("../../src/logo.png");
 	QSplashScreen splash(pixmap);
-	splash.showMessage("Loading modules, please wait...");
 	splash.show();
 	app.processEvents();
+	//Initialize AudioInterface:
+	AudioInterface::getInstance().initialize();
+	//Initialize EffectsController:
+	EffectsController::getInstance().connect("192.168.0.189", 60);
 	MainWindow mainWin;
 	mainWin.setWindowTitle("BlinkyTune");
 	mainWin.setWindowIcon(pixmap);
@@ -76,7 +73,6 @@ int main(int argc, char **argv) {
 	QThread::sleep(2); // splash is shown for 2 seconds
 	mainWin.show();
 	splash.finish(&mainWin);
-	QDir dir; 
-	return app.exec();*/
+	return app.exec();
 
 }

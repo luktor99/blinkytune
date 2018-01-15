@@ -9,6 +9,8 @@
 #include <mutex>
 #include "StereoAnalysisBuffer.h"
 #include "LEDStrip.h"
+#include <QLayout>
+#include <QWidget>
 
 /**
  * Represents a light effect. This is an abstract class - the base of the class hierarchy.
@@ -25,7 +27,7 @@ public:
     /**
      * Populate the GUI with effect parameters' controls.
      */
-    virtual void populateControls() = 0;
+    virtual void  populateControls(QLayout* layout, QWidget* parent) = 0;
 
     /**
      * Apply the parameters set in the GUI to the effect.

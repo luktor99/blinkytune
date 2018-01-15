@@ -15,6 +15,8 @@ public:
     void setupUi();
     void setDeviceName(const std::string& deviceNameStr);
     void setDeviceInputChannels(const std::string& inputChannels);
+	void setDeviceID(int id);
+	int getID() const;
     bool isChecked() const;
 	QString getName() const;
 
@@ -25,10 +27,11 @@ public:
 	QLabel deviceName;
 	QLabel noOfChannels;
 	QLabel devicePicture;
+	int deviceID;
 	bool checked;
 
 protected:
-	void mousePressEvent(QMouseEvent* event) override;
+	void mousePressEvent(QMouseEvent* event);
 };
 
 #endif // DEVICECARD_H

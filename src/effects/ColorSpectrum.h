@@ -20,7 +20,7 @@ public:
 
     void tick(LEDStrip &ledStrip, const StereoAnalysisBuffer *data);
 
-    void populateControls();
+    void populateControls(QLayout* layout, QWidget* parent);
 
     void readControls();
 

@@ -26,7 +26,9 @@ void DeviceCard::setupUi()
     devicePicture.setScaledContents(true);
     devicePicture.setMaximumSize(100, 100);
     devicePicture.setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-	devicePicture.setStyleSheet("QLabel:hover {border: 3px solid red; background-color: white;}");
+	devicePicture.setStyleSheet("QLabel:hover:!pressed { background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 1, y2 : 1, \
+								 stop: 0 yellow, stop: 1 white); border-style: solid; border-color: black;  border-width: 2px; border-radius: 20px;} \
+							     QLabel{ border: none; background-color: black; }");
 
     innerCardLayout->addWidget(&deviceName);
 
@@ -61,3 +63,13 @@ bool DeviceCard::isChecked() const
 QString DeviceCard::getName() const {
 	return deviceName.text();
 };
+
+
+void DeviceCard::setDeviceID(int id) {
+	deviceID = id;
+}
+
+
+int DeviceCard::getID() const {
+	return deviceID;
+}

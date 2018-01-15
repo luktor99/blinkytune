@@ -22,7 +22,7 @@ void StillColor::tick(LEDStrip &ledStrip, const StereoAnalysisBuffer *) {
         ledStrip.setRGB(i, p_.R, p_.G, p_.B);
 }
 
-void StillColor::populateControls() {
+void StillColor::populateControls(QLayout* layout, QWidget* parent) {
     // TODO...
 }
 
