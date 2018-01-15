@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
     // Supress warnings:
     (void) argc;
     (void) argv;
-	/*
+
     // Initialize PortAudio
     AudioInterface::getInstance().initialize();
 
@@ -45,22 +45,27 @@ int main(int argc, char **argv) {
 
     // Start the effects controller
     auto &effectsController = EffectsController::getInstance();
-    effectsController.connect("192.168.1.166", 60);
+    effectsController.connect("192.168.0.189", 60);
     effectsController.setAudioDevice(device);
 
-    effectsController.setEffect("Color Beat");
-//    effectsController.setEffect("Still Color");
-
     // Just a test for now...
-    getchar();
-    effectsController.getEffect()->readControls();
+    for(;;) {
+        effectsController.setEffect("Rainbow");
+        getchar();
+        effectsController.setEffect("Still Color");
+        getchar();
+        effectsController.setEffect("Color Beat");
+        getchar();
+        effectsController.setEffect("Color Spectrum");
+        getchar();
+    }
 
     // Wait for a key press...
     getchar();
 
-    effectsController.stop();*/
+    effectsController.stop();
 
-	//Start application
+/*	//Start application
 	QApplication app(argc, argv);
 	//Show splash screen for 2 seconds
 	QPixmap pixmap("../../src/logo.png");
@@ -76,6 +81,6 @@ int main(int argc, char **argv) {
 	mainWin.show();
 	splash.finish(&mainWin);
 	QDir dir; 
-	return app.exec();
+	return app.exec();*/
 
 }

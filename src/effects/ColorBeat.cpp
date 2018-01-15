@@ -17,7 +17,7 @@ ColorBeat::ColorBeat() : p_(defaultParams) {
 
 void ColorBeat::tick(LEDStrip &ledStrip, const StereoAnalysisBuffer *data) {
     std::lock_guard<std::mutex> lock(mutex_);
-    
+
     for (int i = 0; i < ledStrip.getLength(); ++i) {
         if (p_.mixChannels) {
             float bass = (data->bassL_ + data->bassR_) / 2.0f;
@@ -89,12 +89,6 @@ void ColorBeat::tick(LEDStrip &ledStrip, const StereoAnalysisBuffer *data) {
                 }
             }
         }
-
-//        auto &specL = data->spectrumL_[i * (SPECTRUM_BARS) / ledStrip.getLength()];
-//        auto &specR = data->spectrumL_[i * (SPECTRUM_BARS) / ledStrip.getLength()];
-//        float value = 255.0f * (specL + specR) / 2.0f;
-//        LEDStrip::clamp(value);
-//        ledStrip.setRGB(i, 0.0f, value, 0.0f);
     }
 }
 
