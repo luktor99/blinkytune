@@ -183,5 +183,5 @@ void EffectsController::setEffect(const std::string &effectName) {
 
 bool EffectsController::isConnected() const {
 	// Check if LED strip is connected
-	return ledStrip_ == nullptr;
+	return ledStrip_ != nullptr;
 }

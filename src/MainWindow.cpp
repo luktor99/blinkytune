@@ -1,18 +1,18 @@
 //
 // Created by marcin on 09.12.17.
 //
+
+#include <list>
+#include <QCloseEvent>
 #include <QPushButton>
 #include <QMessageBox>
 
 #include "MainWindow.h"
-#include "CollapseWidget.h"
-#include "LedStripWidget.h"
 #include "AudioInterface.h"
 #include "AudioDevice.h"
 #include "EffectsController.h"
 #include "EffectsFactory.h"
-#include <list>
-#include <QCloseEvent>
+#include "Settings.h"
 
 MainWindow::MainWindow(QWidget *parent) :
         QWidget(parent) {}
@@ -118,9 +118,9 @@ void MainWindow::setupUi(void)
 
 	chooseFPS = new QSpinBox(effectWidget);
 	chooseFPS->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-	chooseFPS->setRange(1, 48000);
+	chooseFPS->setRange(10, 60);
 	chooseFPS->setSingleStep(1);
-	chooseFPS->setValue(48000);
+	chooseFPS->setValue(DEFAULT_FPS);
 	effectLayout->addWidget(chooseFPS);
 
     mAnimationPropertiesPanel = new CollapseWidget("Effects properties", DEFAULT_ANIMATION_DURATION, this);
