@@ -1,0 +1,8 @@
+<map id="Effect" name="Effect">
+<area shape="rect" id="node2" href="$class_no_sound_effect.html" title="{NoSoundEffect\n||}" alt="" coords="184,160,295,237"/>
+<area shape="rect" id="node5" href="$class_sound_effect.html" title="{SoundEffect\n||}" alt="" coords="372,160,467,237"/>
+<area shape="rect" id="node3" href="$class_rainbow.html" title="{Rainbow\n|&#45; p_\l&#45; pos\l&#45; speedSlider\l&#45; scaleSlider\l|+ Rainbow()\l+ tick()\l+ populateControls()\l+ readControls()\l+ create()\l}" alt="" coords="5,285,145,465"/>
+<area shape="rect" id="node4" href="$class_still_color.html" title="{StillColor\n|&#45; p_\l&#45; rSlider\l&#45; gSlider\l&#45; bSlider\l|+ StillColor()\l+ tick()\l+ populateControls()\l+ readControls()\l+ create()\l}" alt="" coords="169,285,309,465"/>
+<area shape="rect" id="node6" href="$class_color_beat.html" title="{ColorBeat\n|&#45; mixChannelsCheckBox\l&#45; colorMappingComboBox\l&#45; p_\l|+ ColorBeat()\l+ tick()\l+ populateControls()\l+ readControls()\l+ create()\l}" alt="" coords="333,293,505,458"/>
+<area shape="rect" id="node7" href="$class_color_spectrum.html" title="{ColorSpectrum\n|&#45; p_\l&#45; hueSlider\l|+ ColorSpectrum()\l+ tick()\l+ populateControls()\l+ readControls()\l+ create()\l}" alt="" coords="529,300,669,451"/>
+</map>

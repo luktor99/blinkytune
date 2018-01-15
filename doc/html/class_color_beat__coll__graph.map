@@ -1,0 +1,5 @@
+<map id="ColorBeat" name="ColorBeat">
+<area shape="rect" id="node2" href="$class_sound_effect.html" title="{SoundEffect\n||}" alt="" coords="28,169,123,246"/>
+<area shape="rect" id="node3" href="$class_effect.html" title="{Effect\n|# mutex_\l|+ tick()\l+ populateControls()\l+ readControls()\l}" alt="" coords="5,5,145,112"/>
+<area shape="rect" id="node4" href="$struct_color_beat_1_1_params.html" title="{ColorBeat::Params\n|+ mode\l+ mixChannels\l|}" alt="" coords="147,161,281,253"/>
+</map>

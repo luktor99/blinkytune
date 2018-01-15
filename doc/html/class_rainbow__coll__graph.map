@@ -1,0 +1,5 @@
+<map id="Rainbow" name="Rainbow">
+<area shape="rect" id="node2" href="$class_no_sound_effect.html" title="{NoSoundEffect\n||}" alt="" coords="20,169,131,246"/>
+<area shape="rect" id="node3" href="$class_effect.html" title="{Effect\n|# mutex_\l|+ tick()\l+ populateControls()\l+ readControls()\l}" alt="" coords="5,5,145,112"/>
+<area shape="rect" id="node4" href="$struct_rainbow_1_1_params.html" title="{Rainbow::Params\n|+ speed\l+ scale\l|}" alt="" coords="155,161,281,253"/>
+</map>

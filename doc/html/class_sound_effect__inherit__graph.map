@@ -1,0 +1,5 @@
+<map id="SoundEffect" name="SoundEffect">
+<area shape="rect" id="node3" href="$class_color_beat.html" title="{ColorBeat\n|&#45; mixChannelsCheckBox\l&#45; colorMappingComboBox\l&#45; p_\l|+ ColorBeat()\l+ tick()\l+ populateControls()\l+ readControls()\l+ create()\l}" alt="" coords="5,285,177,451"/>
+<area shape="rect" id="node4" href="$class_color_spectrum.html" title="{ColorSpectrum\n|&#45; p_\l&#45; hueSlider\l|+ ColorSpectrum()\l+ tick()\l+ populateControls()\l+ readControls()\l+ create()\l}" alt="" coords="201,293,341,443"/>
+<area shape="rect" id="node2" href="$class_effect.html" title="{Effect\n|# mutex_\l|+ tick()\l+ populateControls()\l+ readControls()\l}" alt="" coords="111,5,251,112"/>
+</map>

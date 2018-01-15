@@ -1,0 +1,8 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$class_worker.html" title="Worker" alt="" coords="5,107,69,133"/>
+<area shape="rect" id="node2" href="$class_effects_renderer.html" title="EffectsRenderer" alt="" coords="126,5,243,32"/>
+<area shape="rect" id="node3" href="$class_samples_collector.html" title="SamplesCollector" alt="" coords="122,56,247,83"/>
+<area shape="rect" id="node4" href="$class_spectrum_analyzer.html" title="SpectrumAnalyzer" alt="" coords="120,107,249,133"/>
+<area shape="rect" id="node5" href="$class_spectrum_generator.html" title="SpectrumGenerator" alt="" coords="117,157,252,184"/>
+<area shape="rect" id="node6" href="$class_tick_generator.html" title="TickGenerator" alt="" coords="133,208,237,235"/>
+</map>

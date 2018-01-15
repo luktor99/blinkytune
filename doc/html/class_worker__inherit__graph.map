@@ -1,0 +1,7 @@
+<map id="Worker" name="Worker">
+<area shape="rect" id="node2" href="$class_effects_renderer.html" title="{EffectsRenderer\n|&#45; inputFIFO_\l&#45; ledStrip_\l&#45; activeEffect_\l&#45; effectType_\l&#45; refreshRate_\l|+ EffectsRenderer()\l+ ~EffectsRenderer()\l+ setEffectSound()\l+ setEffectNoSound()\l+ setRefreshRate()\l&#45; mainLoop()\l}" alt="" coords="5,219,155,428"/>
+<area shape="rect" id="node3" href="$class_samples_collector.html" title="{SamplesCollector\n|&#45; stream_\l&#45; outputFIFO_\l|+ SamplesCollector()\l&#45; mainLoop()\l}" alt="" coords="179,270,325,377"/>
+<area shape="rect" id="node4" href="$class_spectrum_analyzer.html" title="{SpectrumAnalyzer\n|&#45; inputFIFO_\l&#45; outputFIFO_\l&#45; spectrumHistory_\l&#45; gainsL_\l&#45; gainsR_\l&#45; melFiltersL_\l&#45; melFiltersR_\l|+ SpectrumAnalyzer()\l&#45; mainLoop()\l}" alt="" coords="349,233,499,413"/>
+<area shape="rect" id="node5" href="$class_spectrum_generator.html" title="{SpectrumGenerator\n|&#45; inputFIFO_\l&#45; outputFIFO_\l|+ SpectrumGenerator()\l&#45; mainLoop()\l}" alt="" coords="523,270,677,377"/>
+<area shape="rect" id="node6" href="$class_tick_generator.html" title="{TickGenerator\n|&#45; outputFIFO_\l|+ TickGenerator()\l&#45; mainLoop()\l}" alt="" coords="701,277,825,369"/>
+</map>

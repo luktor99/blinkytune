@@ -1,0 +1,6 @@
+<map id="SpectrumGenerator" name="SpectrumGenerator">
+<area shape="rect" id="node2" href="$class_worker.html" title="{Worker\n|&#45; stop_\l|+ Worker()\l+ run()\l+ join()\l+ stop()\l&#45; runLoop()\l&#45; mainLoop()\l}" alt="" coords="27,307,122,458"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="33,5,117,83"/>
+<area shape="rect" id="node5" href="$class_f_i_f_o_queue.html" title="{FIFOQueue\&lt; StereoSpectrum\lBuffer \&gt;\n|&#45; buffer_\l&#45; m_\l&#45; cvEmpty_\l|+ FIFOQueue()\l+ push()\l+ push()\l+ pop()\l}" alt="" coords="146,300,342,465"/>
+<area shape="rect" id="node6" href="$class_f_i_f_o_queue.html" title="{FIFOQueue\&lt; StereoSamples\lBuffer \&gt;\n|&#45; buffer_\l&#45; m_\l&#45; cvEmpty_\l|+ FIFOQueue()\l+ push()\l+ push()\l+ pop()\l}" alt="" coords="366,300,557,465"/>
+</map>
