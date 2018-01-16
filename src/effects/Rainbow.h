@@ -21,8 +21,16 @@ public:
 
     void tick(LEDStrip &ledStrip, const StereoAnalysisBuffer *);
 
-    void populateControls(QLayout* layout, QWidget* parent);
+	/**
+	* Create a new layout for parameters change in a GUI application
+	* @param layout Parent layout of the widget
+	* @param parent Parent widget
+	*/
+	void populateControls(QLayout* layout, QWidget* parent);
 
+	/**
+	* Read values of effect parameters from GUI app widgets (defined in populateControls())
+	*/
     void readControls();
 
     /**
