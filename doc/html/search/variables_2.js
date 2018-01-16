@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['checked',['checked',['../class_device_card.html#a6244c02cf34acdf6d7a484047d0446b3',1,'DeviceCard']]],
   ['chooseeffectcombobox',['chooseEffectComboBox',['../class_main_window.html#a1de9921a04d58bbfcaf9d50cc969f836',1,'MainWindow']]],
   ['choosefps',['chooseFPS',['../class_main_window.html#a881f11453f07a2aab8d971e73d5a30f6',1,'MainWindow']]],
   ['connectbutton',['connectButton',['../class_main_window.html#a8835e774cd6f83d2ee1dd2cf2c05a6bb',1,'MainWindow']]],

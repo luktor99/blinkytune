@@ -2,6 +2,7 @@ var searchData=
 [
   ['clamp',['clamp',['../class_l_e_d_strip.html#a989c69035d833c6e55a02045a8661b43',1,'LEDStrip']]],
   ['clear',['clear',['../class_l_e_d_strip.html#ac3631da18bcc937a61b7c290bb976511',1,'LEDStrip']]],
+  ['clicked',['clicked',['../class_device_card.html#a4f9eab88e00a19014dc94b953adb6de7',1,'DeviceCard']]],
   ['close',['close',['../class_audio_stream.html#af49c072a6e0527e5ecb1412976ad8f4a',1,'AudioStream']]],
   ['closeevent',['closeEvent',['../class_main_window.html#a4e20a4a065fbb0e4d3532a45a0a91425',1,'MainWindow']]],
   ['colorbeat',['ColorBeat',['../class_color_beat.html#a04ca260d70fd0dc6f4024f1382644446',1,'ColorBeat']]],
