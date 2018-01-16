@@ -51,7 +51,8 @@ void DeviceCard::setDeviceInputChannels(const std::string& inputChannels)
     update();
 }
 
-void DeviceCard::mousePressEvent() {
+void DeviceCard::mousePressEvent(QMouseEvent* event) {
+	(void) event;
 	checked = true;
 	emit clicked(*this);
 }

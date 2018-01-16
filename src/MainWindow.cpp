@@ -220,7 +220,7 @@ void MainWindow::deviceClicked(DeviceCard& device) {
 	try {
 		EffectsController::getInstance().setAudioDevice(AudioDevice(device.getID()));
 	}
-	catch (const std::runtime_error& error) {
+	catch (...) {
 	    auto defaultDevice = AudioInterface::getInstance().getDefaultInputDevice();
 	    EffectsController::getInstance().setAudioDevice(defaultDevice);
 		auto defaultItem = std::find_if(deviceList.begin(), deviceList.end(), [defaultDevice](auto item)->bool {

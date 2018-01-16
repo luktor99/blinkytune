@@ -1,6 +1,5 @@
 #include "LedStripWidget.h"
 
-
 LedStripWidget::LedStripWidget(const int noOfLights , QWidget *parent )
 	: QWidget(parent), numberOfLights(noOfLights){}
 
@@ -14,7 +13,7 @@ void LedStripWidget::setupUi()
 	strip.clear();
 	for (unsigned int i = 0; i < numberOfLights; ++i)
 	{
-		strip.push_back(new IndicatorWidget(Qt::red, this));
+		strip.push_back(new IndicatorWidget(QColor(rand() % 255, rand() % 255, rand() % 255), this));
 		mainHorizontalLayout->addWidget(strip[i]);
 	}
 	QPalette pal = palette();

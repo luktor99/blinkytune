@@ -31,8 +31,10 @@ void AudioStream::start() const {
  * Close the audio stream.
  */
 void AudioStream::close() const {
-    if (Pa_CloseStream(stream_) != paNoError)
-        throw std::runtime_error("Could not close the audio stream.");
+	if (stream_ != nullptr) {
+		if (Pa_CloseStream(stream_) != paNoError)
+			throw std::runtime_error("Could not close the audio stream.");
+	}
 }
 
 /**

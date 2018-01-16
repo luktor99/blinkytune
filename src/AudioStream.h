@@ -43,7 +43,7 @@ protected:
      */
     void close() const;
 
-    PaStream *stream_; /*!< A pointer to the opened stream. */
+	PaStream *stream_{nullptr}; /*!< A pointer to the opened stream. */
     PaStreamParameters streamParams_; /*!< A structure containing the stream parameters. */
     unsigned int sampleRate_; /*!< The sampling rate of the stream. */
     unsigned int framesPerBuffer_; /*!< The size of the samples buffer. */

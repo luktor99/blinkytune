@@ -71,7 +71,12 @@ void EffectsController::setAudioDevice(const AudioDevice &device) {
     // Stop SamplesCollector if it's already running
     if (activePipeline == PIPELINE_SOUND) {
         samplesCollector_->stop();
-        samplesCollector_->join();
+		//In case thread has already been joined (exception std::system_error):
+		try {
+			samplesCollector_->join();
+		}
+		catch (const std::system_error& error) {
+		}
     }
 
     // Open the new audio stream

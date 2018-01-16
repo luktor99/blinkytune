@@ -78,7 +78,7 @@ protected:
 	/**
 	* Qt based default event to invoke action when pressing widget. Invokes selection of widget.
 	*/
-	void mousePressEvent();
+	void mousePressEvent(QMouseEvent* event);
 };
 
 #endif // DEVICECARD_H
