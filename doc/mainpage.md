@@ -18,6 +18,26 @@ Układ ten umożliwia podłączenie urządzenia do domowej sieci WiFi, a następ
 Wykorzystanie łączności bezprzewodowej pozwala na wyświetlanie efektów z dala od komputera.
 Program dla modułu ESP8266, odpowiadający za odbieranie danych od aplikacji i sterowanie paskiem LED, nie wchodzi w skład projektu.
 
+## Interfejs użytkownika
+Na potrzeby projektu został stworzony interfejs użytkownika, który umożliwia utworzenie połączenia z urządzeniem (po wpisaniu adresu IP),
+Wybranie urządzenia audio obsługującego przychodzące próbki audio oraz wybór i dostosowanie parametrów generowanego efektu świetlnego.sss
+
+<p align="center">
+<img src="../GUI.png">
+</p>
+
+
+Na interfejs składają się następujące panele:
+1. Pole wpisywania adresu IP, w którym użytkownik definiuje adres urządzenia, z którym chce się połączyć.
+2. Przycisk połączenia z urządzeniem. Jeżeli połączenie będzie udane, indykator 3 zaświeci się na zielono. Jeżeli użytkownik wpisze zły adres wyświetli się monit 
+informujący o źle wpisanym adresie IP.
+3. Indykator pokazujący stan połączenia. Gdy jest zielony- udało się połączyć z urządzeniem, gdy czerwony- brak połączenia.
+4. Panel wyboru urządzenia audio pozwala za pomocą kliknięcia myszy zdefiniować systemowe urządzenie audio używane do uzyskania próbek audio.
+5. Panel wyboru efektu pozwala wybrać zdefiniowany efekt świetlny wyświetlany przez połączone urządzenie. Dopóki nie istnieje połączenie, panel jest nieaktywny.
+6. Panel wyboru ilości danych na sekundę, pozwala ustalić jak szybko przebiegała będzie animacja (możliwe wartości od 10 do 60 fps).
+7. Panel ustawień efektu pozwala na zdefiniowanie parametrów charakterystycznych dla danego efektu. W zależności od wybranego w panelu 6 efektu, możliwe parametry będą się zmieniać.
+Nowe parametry dla efektu ustawiane są za pomocą przycisku 'Send parameters'.
+
 ## Zasada działania
 ### Protokół komunikacji z paskiem LED
 Do przesyłania danych o składowych kolorów poszczególnych diod LED wykorzystywany jest protokół UDP.
