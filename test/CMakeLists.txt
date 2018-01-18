@@ -2,6 +2,10 @@ include_directories(../kfr/include)
 include_directories(../src/)
 include_directories(../portaudio/include)
 
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
+include_directories(${Qt5_INCLUDE_DIR})
+link_directories(${Qt5_LIBRARY_DIRS})
+
 find_package(Boost 1.55.0 REQUIRED)
 include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIRS})
@@ -23,8 +27,8 @@ add_executable(AudioInterfaceTest TestsMain.cpp AudioInterfaceTest.cpp ../src/Au
 add_test(AudioInterfaceTest AudioInterfaceTest)
 #add_executable(EffectsControllerTest TestsMain.cpp EffectsControllerTest.cpp)
 #add_test(EffectsControllerTest EffectsControllerTest)
-#add_executable(EffectsFactoryTest TestsMain.cpp EffectsFactoryTest.cpp)
-#add_test(EffectsFactoryTest EffectsFactoryTest)
+add_executable(EffectsFactory TestsMain.cpp EffectsFactoryTest.cpp ../src/LEDStrip.cpp ../src/UDPSender.cpp ../src/EffectsFactory.cpp ../src/effects/StillColor.cpp ../src/effects/ColorBeat.cpp ../src/effects/Rainbow.cpp ../src/effects/ColorSpectrum.cpp)
+add_test(EffectsFactoryTest EffectsFactory)
 #add_executable(EffectsRendererTest TestsMain.cpp EffectsRendererTest.cpp)
 #add_test(EffectsRendererTest EffectsRendererTest)
 add_executable(FilterTest TestsMain.cpp FilterTest.cpp ../src/Filter.cpp)
@@ -48,7 +52,7 @@ if(WIN32)
 	target_link_libraries(AudioInputStreamTest ${boost_UNIT_TEST_FRAMEWORK_LIBRARY} portaudio_static)
 	target_link_libraries(AudioInterfaceTest ${boost_UNIT_TEST_FRAMEWORK_LIBRARY} portaudio_static)
 #	target_link_libraries(EffectsControllerTest ${boost_UNIT_TEST_FRAMEWORK_LIBRARY})
-#	target_link_libraries(EffectsFactoryTest ${boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+	target_link_libraries(EffectsFactory ${boost_UNIT_TEST_FRAMEWORK_LIBRARY} Qt5::Widgets Qt5::Core)
 #	target_link_libraries(EffectsRendererTest ${boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 	target_link_libraries(FilterTest ${boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 	target_link_libraries(SamplesCollectorTest ${boost_UNIT_TEST_FRAMEWORK_LIBRARY} portaudio_static)
@@ -62,7 +66,7 @@ else()
 	target_link_libraries(AudioInputStreamTest boost_unit_test_framework portaudio_static)
 	target_link_libraries(AudioInterfaceTest boost_unit_test_framework portaudio_static)
 #	target_link_libraries(EffectsControllerTest boost_unit_test_framework)
-#	target_link_libraries(EffectsFactoryTest boost_unit_test_framework)
+	target_link_libraries(EffectsFactory boost_unit_test_framework Qt5::Widgets)
 #	target_link_libraries(EffectsRendererTest boost_unit_test_framework)
 	target_link_libraries(FilterTest boost_unit_test_framework)
 	target_link_libraries(SamplesCollectorTest boost_unit_test_framework portaudio_static)
@@ -71,6 +75,21 @@ else()
 #	target_link_libraries(TickGeneratorTest boost_unit_test_framework)
 
 endif()
+
+if(WIN32)
+	add_custom_command(
+        TARGET EffectsFactory PRE_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Widgetsd.dll $<TARGET_FILE_DIR:EffectsFactory>
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Cored.dll $<TARGET_FILE_DIR:EffectsFactory>
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Guid.dll $<TARGET_FILE_DIR:EffectsFactory>
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Widgets.pdb $<TARGET_FILE_DIR:EffectsFactory>
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Core.pdb $<TARGET_FILE_DIR:EffectsFactory>
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Gui.pdb $<TARGET_FILE_DIR:EffectsFactory>
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Widgets.dll $<TARGET_FILE_DIR:EffectsFactory>
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Core.dll $<TARGET_FILE_DIR:EffectsFactory>
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Gui.dll $<TARGET_FILE_DIR:EffectsFactory>)
+endif(WIN32)
+
 
 if (CMAKE_CONFIGURATION_TYPES)
     add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND}
