@@ -6,7 +6,6 @@
 
 #include "AudioInterface.h"
 
-
 int main(int argc, char **argv) {
     // Supress warnings:
     (void) argc;

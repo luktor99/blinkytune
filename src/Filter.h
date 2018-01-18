@@ -39,7 +39,7 @@ public:
 
 private:
     float alpha_inc_, alpha_dec_; /*!< The values of alpha coefficients for increasing and decreasing. */
-    float value_; /*!< The current value of the filtered value */
+	float value_{1.0f}; /*!< The current value of the filtered value */
 };
 
 

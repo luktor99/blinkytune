@@ -106,7 +106,7 @@ const int &LEDStrip::getLength() {
 
 void LEDStrip::updateOutputBuffer() {
     for (int i = 0; i < length_ * 3; ++i)
-        bufferInt_[i] = std::round(bufferFloat_[i]);
+        bufferInt_[i] = static_cast<uint8_t>(std::round(bufferFloat_[i]));
 
 }
 
