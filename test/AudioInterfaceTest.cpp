@@ -19,11 +19,11 @@ BOOST_AUTO_TEST_SUITE(AudioInterfaceTest)
 
    BOOST_AUTO_TEST_CASE(CheckIfTerminatesProperly) {
 	   Pa_Initialize();
-	   BOOST_CHECK_NO_THROW(AudioInterface::getInstance().terminate(), std::runtime_error);
+	   BOOST_CHECK_NO_THROW(AudioInterface::getInstance().terminate());
    }
 
    BOOST_AUTO_TEST_CASE(CheckIfInitializesProperly) {
-	   BOOST_CHECK_NO_THROW(AudioInterface::getInstance().initialize(), std::runtime_error);
+	   BOOST_CHECK_NO_THROW(AudioInterface::getInstance().initialize());
    }
 
    BOOST_AUTO_TEST_CASE(CheckIfGetsDevicesList) {
