@@ -218,9 +218,11 @@ void MainWindow::deviceClicked(DeviceCard& device) {
 	std::for_each(deviceList.begin(), deviceList.end(), [this](auto item) { this->setFocus((*item), false); });
 
 	try {
+        EffectsController::getInstance().stop();
 		EffectsController::getInstance().setAudioDevice(AudioDevice(device.getID()));
 	}
 	catch (...) {
+
 	    auto defaultDevice = AudioInterface::getInstance().getDefaultInputDevice();
 	    EffectsController::getInstance().setAudioDevice(defaultDevice);
 		auto defaultItem = std::find_if(deviceList.begin(), deviceList.end(), [defaultDevice](auto item)->bool {
