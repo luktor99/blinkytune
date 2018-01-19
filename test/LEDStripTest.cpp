@@ -5,7 +5,7 @@
 
 #include <LEDStrip.h>
 
-BOOST_AUTO_TEST_SUITE(LEDStripTest, *boost::unit_test::expected_failures(1))
+BOOST_AUTO_TEST_SUITE(LEDStripTest)
 
 //Warning!! User has to open PORT 4200 for these tests!!
 BOOST_AUTO_TEST_CASE(CheckIfConnects) {
