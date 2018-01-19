@@ -150,11 +150,11 @@ void MainWindow::setupEffectUi(void)
 	getParametersData = new QPushButton(mAnimationPropertiesPanel);
 	getParametersData->setText("Send parameters");
 	getParametersData->setStyleSheet("QPushButton#getParametersData {background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 : 1, \
-								  stop: 0 white, disconnect: 1 grey); border-style: solid; border-color: black;  border-width: 2px; border-radius: 5px;}"
+								  stop: 0 white, stop: 1 grey); border-style: solid; border-color: black;  border-width: 2px; border-radius: 5px;}"
 								  "QPushButton#getParametersData:hover:!pressed {background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 : 1, \
-								  stop: 0 darkCyan, disconnect: 1 blue); border-style: solid; border-color: black;  border-width: 2px; border-radius: 5px;}"
+								  stop: 0 darkCyan, stop: 1 blue); border-style: solid; border-color: black;  border-width: 2px; border-radius: 5px;}"
 								  "QPushButton#getParametersData:pressed {background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 : 1, \
-								  disconnect: 0 blue, stop: 1 darkCyan); border-style: solid; border-color: black;  border-width: 2px; border-radius: 5px;}");
+								  stop: 0 blue, stop: 1 darkCyan); border-style: solid; border-color: black;  border-width: 2px; border-radius: 5px;}");
 	EffectsController::getInstance().getEffect()->populateControls(animationWidgetLayout, mAnimationPropertiesPanel);
 	animationWidgetLayout->addWidget(getParametersData);
 	connect(getParametersData, SIGNAL(clicked()), this, SLOT(getEffectProperties()));
