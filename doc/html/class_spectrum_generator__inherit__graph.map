@@ -1,3 +1,3 @@
 <map id="SpectrumGenerator" name="SpectrumGenerator">
-<area shape="rect" id="node2" href="$class_worker.html" title="{Worker\n|&#45; stop_\l&#45; threadPtr_\l|+ Worker()\l+ run()\l+ join()\l+ stop()\l&#45; runLoop()\l&#45; mainLoop()\l}" alt="" coords="35,5,130,171"/>
+<area shape="rect" id="node2" href="$class_worker.html" title="{Worker\n|&#45; stop_\l&#45; threadPtr_\l|+ Worker()\l+ run()\l+ join()\l+ disconnect()\l&#45; runLoop()\l&#45; mainLoop()\l}" alt="" coords="35,5,130,171"/>
 </map>

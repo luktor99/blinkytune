@@ -10,5 +10,6 @@ var searchData=
   ['deviceselectionarea',['deviceSelectionArea',['../class_main_window.html#a26fbb151cdce913c1534e5cc8c06db31',1,'MainWindow']]],
   ['deviceselectionarealayout',['deviceSelectionAreaLayout',['../class_main_window.html#a18650de797f1d2432d7242ce05a207ca',1,'MainWindow']]],
   ['devicewidgetlayout',['deviceWidgetLayout',['../class_main_window.html#af85dc1e1dba85f92cc442a4e4c5571d5',1,'MainWindow']]],
+  ['disconnect',['disconnect',['../class_effects_controller.html#afe53187ee7301b18a0f66be1c0df8aa9',1,'EffectsController']]],
   ['disconnectedexception',['DisconnectedException',['../class_l_e_d_strip_1_1_disconnected_exception.html',1,'LEDStrip']]]
 ];

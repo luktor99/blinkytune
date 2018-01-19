@@ -63,6 +63,11 @@ public:
      */
     void stop();
 
+    /**
+     * Stops the effects controller and disconnects from the LED strip.
+     */
+    void disconnect();
+
 	/**
 	* Check if LED strip is connected.
 	* @return True if LED strip connected, otherwise false.

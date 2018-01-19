@@ -167,11 +167,16 @@ void EffectsController::stop() {
         stopNoSoundPipeline();
     else if (activePipeline == PIPELINE_SOUND)
         stopSoundPipeline();
+}
+
+void EffectsController::disconnect() {
+    // Stop the effects controller
+    stop();
 
     // Clear the LED strip
-		ledStrip_->clear();
-		ledStrip_->update();
-		ledStrip_.reset();
+    ledStrip_->clear();
+    ledStrip_->update();
+    ledStrip_.reset();
 }
 
 void EffectsController::setFPS(const float &fps) {

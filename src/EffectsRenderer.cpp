@@ -53,7 +53,7 @@ void EffectsRenderer::mainLoop() {
         // LED strip disconnected
 
         // TODO: send information to the main thread and handle the situation in GUI
-        // TODO: call EffectsController::getInstance().stop() in the main thread!!!
+        // TODO: call EffectsController::getInstance().disconnect() in the main thread!!!
     }
 }
 
