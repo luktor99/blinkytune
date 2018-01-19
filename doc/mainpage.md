@@ -112,8 +112,8 @@ Oprócz tego wykorzystywane są zaawansowane elementy języka C++, takie jak:
 
 ## Statystyki
 - liczba linii kodu (obliczona za pomocą narzędzia [SLOCCount](https://www.dwheeler.com/sloccount/)): 1990
-- liczba testów jednostkowych: 5
-- liczba godzin pracy nad projektem: ~150
+- liczba testów jednostkowych: 24
+- liczba godzin pracy nad projektem: ~200
 
 ## Napotkane problemy i dalszy rozwoju projektu
 Podczas implementacji programu napotykaliśmy głównie problemy związane z szeroko pojętą tematyką cyfrowego przetwarzania sygnałów.
