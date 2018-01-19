@@ -12,14 +12,14 @@ BOOST_AUTO_TEST_SUITE(AudioInputStreamTest)
 	Pa_Initialize();
 	//Sample rate must be over 1000 for this test
 	BOOST_CHECK_NO_THROW(AudioInputStream(AudioDevice(Pa_GetDefaultInputDevice()), SAMPLE_RATE, FRAMES_PER_BUFFER));
-	Pa_Terminate();
+	//Pa_Terminate();
     }
 
 	BOOST_AUTO_TEST_CASE(CheckIfThrows) {
 	Pa_Initialize();
 	//Sample rate must be under 1000 for this test
 	BOOST_CHECK_THROW(AudioInputStream(AudioDevice(Pa_GetDefaultInputDevice()), 0, 10), std::runtime_error);
-	Pa_Terminate();
+	//Pa_Terminate();
     }
 
 	BOOST_AUTO_TEST_CASE(CheckIfCanReadFromBuffer) {
@@ -29,14 +29,14 @@ BOOST_AUTO_TEST_SUITE(AudioInputStreamTest)
 		Pa_Initialize();
 		//Sample rate must be over 1000 for this test
 		BOOST_CHECK_NO_THROW(AudioInputStream(AudioDevice(Pa_GetDefaultInputDevice()), SAMPLE_RATE, FRAMES_PER_BUFFER).readSamples(&samplesBuffer));
-		Pa_Terminate();
+		//Pa_Terminate();
 	}
 
 	BOOST_AUTO_TEST_CASE(CheckIfThrowsIfImpossibleToReadFromBuffer) {
 		Pa_Initialize();
 		//Sample rate must be over 1000 for this test
 		BOOST_CHECK_THROW(AudioInputStream(AudioDevice(Pa_GetDefaultInputDevice()), SAMPLE_RATE, FRAMES_PER_BUFFER).readSamples(NULL), std::runtime_error);
-		Pa_Terminate();
+		//Pa_Terminate();
 	}
 
     

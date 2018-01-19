@@ -12,8 +12,8 @@ BOOST_AUTO_TEST_SUITE(SamplesCollectorTest)
 BOOST_AUTO_TEST_CASE(CheckIfInitializesStream) {
 	Pa_Initialize();
 	FIFOQueue<StereoSamplesBuffer> fifo(5);
-	BOOST_CHECK_NO_THROW(SamplesCollector(AudioInputStream(AudioDevice(Pa_GetDefaultInputDevice()), SAMPLE_RATE, FRAMES_PER_BUFFER),fifo));
-	Pa_Terminate();
+	AudioInputStream audioStream(AudioDevice(Pa_GetDefaultInputDevice()), SAMPLE_RATE, FRAMES_PER_BUFFER);
+	BOOST_CHECK_NO_THROW(SamplesCollector(audioStream,fifo));
 }
     
 BOOST_AUTO_TEST_SUITE_END()
