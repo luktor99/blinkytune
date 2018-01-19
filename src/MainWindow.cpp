@@ -66,11 +66,11 @@ void MainWindow::setupUi(void)
 	connectButton->setText("Connect");
 	connectButton->setObjectName("connectButton");
 	connectButton->setStyleSheet("QPushButton#connectButton {background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 : 1, \
-								  disconnect: 0 white, stop: 1 grey); border-style: solid; border-color: black;  border-width: 2px; border-radius: 5px;}"
+								  stop: 0 white, stop: 1 grey); border-style: solid; border-color: black;  border-width: 2px; border-radius: 5px;}"
 								 "QPushButton#connectButton:hover:!pressed {background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 : 1, \
-								  stop: 0 darkCyan, disconnect: 1 blue); border-style: solid; border-color: black;  border-width: 2px; border-radius: 5px;}"
+								  stop: 0 darkCyan, stop: 1 blue); border-style: solid; border-color: black;  border-width: 2px; border-radius: 5px;}"
 								 "QPushButton#connectButton:pressed {background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 : 1, \
-								  stop: 0 blue, disconnect: 1 darkCyan); border-style: solid; border-color: black;  border-width: 2px; border-radius: 5px;}");
+								  stop: 0 blue, stop: 1 darkCyan); border-style: solid; border-color: black;  border-width: 2px; border-radius: 5px;}");
 	
 	connectButton->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 	connectButton->setContentsMargins(20,20,20,20);
@@ -196,13 +196,13 @@ void MainWindow::pushDeviceToList(const char* deviceNameStr, const int& inputCha
 void MainWindow::setFocus(DeviceCard& device, bool isChecked) {
 	if (isChecked) {
 		device.devicePicture.setStyleSheet("QLabel:hover:!pressed { background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 1, y2 : 1, \
-											   stop: 0 yellow, disconnect: 1 white); border-style: solid; border-color: black;  border-width: 2px; border-radius: 20px;}" \
+											   stop: 0 yellow, stop: 1 white); border-style: solid; border-color: black;  border-width: 2px; border-radius: 20px;}" \
 											"QLabel { background-color:  qlineargradient(x1 : 0, y1 : 0, x2 : 1, y2 : 1, \
-											   stop: 0 darkCyan, disconnect: 1 blue); border-style: solid; border-color: black;  border-width: 2px; border-radius: 20px; }");
+											   stop: 0 darkCyan, stop: 1 blue); border-style: solid; border-color: black;  border-width: 2px; border-radius: 20px; }");
 	}
 	else {
 		device.devicePicture.setStyleSheet("QLabel:hover:!pressed { background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 1, y2 : 1, \
-											   stop: 0 yellow, disconnect: 1 white); border-style: solid; border-color: black;  border-width: 2px; border-radius: 20px;} \
+											   stop: 0 yellow, stop: 1 white); border-style: solid; border-color: black;  border-width: 2px; border-radius: 20px;} \
 											   QLabel{ border: none; background-color: black; }");
 	}
 	
@@ -220,6 +220,7 @@ void MainWindow::deviceClicked(DeviceCard& device) {
 	try {
         EffectsController::getInstance().stop();
 		EffectsController::getInstance().setAudioDevice(AudioDevice(device.getID()));
+
 	}
 	catch (...) {
 

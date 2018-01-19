@@ -28,7 +28,7 @@ void DeviceCard::setupUi()
     devicePicture.setMaximumSize(100, 100);
     devicePicture.setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 	devicePicture.setStyleSheet("QLabel:hover:!pressed { background-color: qlineargradient(x1 : 0, y1 : 0, x2 : 1, y2 : 1, \
-								 stop: 0 yellow, disconnect: 1 white); border-style: solid; border-color: black;  border-width: 2px; border-radius: 20px;} \
+								 stop: 0 yellow, stop: 1 white); border-style: solid; border-color: black;  border-width: 2px; border-radius: 20px;} \
 							     QLabel{ border: none; background-color: black; }");
 
     innerCardLayout->addWidget(&deviceName);
