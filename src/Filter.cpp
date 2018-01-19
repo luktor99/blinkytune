@@ -4,7 +4,7 @@
 
 #include "Filter.h"
 
-Filter::Filter(float alpha_inc, float alpha_dec) : alpha_inc_(alpha_inc), alpha_dec_(alpha_dec) {
+Filter::Filter(float alpha_inc, float alpha_dec) : alpha_inc_(alpha_inc), alpha_dec_(alpha_dec), value_(0.0f) {
 
 }
 
