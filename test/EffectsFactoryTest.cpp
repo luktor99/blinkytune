@@ -27,10 +27,10 @@ BOOST_AUTO_TEST_CASE(CheckProducedObjectsNames) {
 	EffectsFactory& interface = EffectsFactory::getInstance();
 	const std::vector<std::string> noSoundEffects = interface.getNoSoundEffects();
 	const std::vector<std::string> soundEffects = interface.getSoundEffects();
-	BOOST_CHECK(std::find(noSoundEffects.begin(), noSoundEffects.end(), "Still Color") != noSoundEffects.end());
-	BOOST_CHECK(std::find(noSoundEffects.begin(), noSoundEffects.end(), "Rainbow") != noSoundEffects.end());
-	BOOST_CHECK(std::find(soundEffects.begin(), soundEffects.end(), "Color Beat") != soundEffects.end());
-	BOOST_CHECK(std::find(soundEffects.begin(), soundEffects.end(), "Color Spectrum") != soundEffects.end());
+	BOOST_REQUIRE(std::find(noSoundEffects.begin(), noSoundEffects.end(), "Still Color") != noSoundEffects.end());
+	BOOST_REQUIRE(std::find(noSoundEffects.begin(), noSoundEffects.end(), "Rainbow") != noSoundEffects.end());
+	BOOST_REQUIRE(std::find(soundEffects.begin(), soundEffects.end(), "Color Beat") != soundEffects.end());
+	BOOST_REQUIRE(std::find(soundEffects.begin(), soundEffects.end(), "Color Spectrum") != soundEffects.end());
 }
     
 BOOST_AUTO_TEST_SUITE_END()
