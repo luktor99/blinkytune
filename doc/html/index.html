@@ -88,6 +88,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  Marcin Baran (Z59804)</p>
 <h2>Opis projektu</h2>
 <p>BlinkyTune to aplikacja, która na podstawie analizy strumienia audio kontroluje pasek adresowalnych diod LED RGB. Kolory poszczególnych diod dobierane są w taki sposób, aby generować ciekawe efekty świetlne, zsynchronizowane np. z odtwarzaną aktualnie muzyką. Użytkownik ma możliwość wyboru źródła analizowanego dźwięku, jednego z dostępnych efektów, a także wartości jego ustawień. Każdy efekt posiada indywidualny zbiór parametrów, które wpływają na jego zachowanie. Urządzenie, odpowiadające za wyświetlanie efektów świetlnych, złożone jest z paska 60 diod LED WS2812B, podłączonych do modułu opartego o układ Espressif ESP8266. Układ ten umożliwia podłączenie urządzenia do domowej sieci WiFi, a następnie komunikację z komputerem za pomocą protokołu UDP. Wykorzystanie łączności bezprzewodowej pozwala na wyświetlanie efektów z dala od komputera. Program dla modułu ESP8266, odpowiadający za odbieranie danych od aplikacji i sterowanie paskiem LED, nie wchodzi w skład projektu.</p>
+<h2>Interfejs użytkownika</h2>
+<p>Na potrzeby projektu został stworzony interfejs użytkownika, który umożliwia utworzenie połączenia z urządzeniem (po wpisaniu adresu IP), Wybranie urządzenia audio obsługującego przychodzące próbki audio oraz wybór i dostosowanie parametrów generowanego efektu świetlnego.sss</p>
+<div class="image">
+<img src="../GUI.png" />
+</div>
+ <p>Na interfejs składają się następujące panele:</p><ol type="1">
+<li>Pole wpisywania adresu IP, w którym użytkownik definiuje adres urządzenia, z którym chce się połączyć.</li>
+<li>Przycisk połączenia z urządzeniem. Jeżeli połączenie będzie udane, indykator 3 zaświeci się na zielono. Jeżeli użytkownik wpisze zły adres wyświetli się monit informujący o źle wpisanym adresie IP.</li>
+<li>Indykator pokazujący stan połączenia. Gdy jest zielony- udało się połączyć z urządzeniem, gdy czerwony- brak połączenia.</li>
+<li>Panel wyboru urządzenia audio pozwala za pomocą kliknięcia myszy zdefiniować systemowe urządzenie audio używane do uzyskania próbek audio.</li>
+<li>Panel wyboru efektu pozwala wybrać zdefiniowany efekt świetlny wyświetlany przez połączone urządzenie. Dopóki nie istnieje połączenie, panel jest nieaktywny.</li>
+<li>Panel wyboru ilości danych na sekundę, pozwala ustalić jak szybko przebiegała będzie animacja (możliwe wartości od 10 do 60 fps).</li>
+<li>Panel ustawień efektu pozwala na zdefiniowanie parametrów charakterystycznych dla danego efektu. W zależności od wybranego w panelu 6 efektu, możliwe parametry będą się zmieniać. Nowe parametry dla efektu ustawiane są za pomocą przycisku 'Send parameters'.</li>
+</ol>
 <h2>Zasada działania</h2>
 <h3>Protokół komunikacji z paskiem LED</h3>
 <p>Do przesyłania danych o składowych kolorów poszczególnych diod LED wykorzystywany jest protokół UDP. Pojedyncza ramka, stanowiąca podstawę działania systemu komunikacji, ma następującą strukturę: </p><table class="doxtable">

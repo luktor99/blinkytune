@@ -4,6 +4,7 @@ var searchData=
   ['send',['send',['../class_u_d_p_sender.html#a7d5b37e8b52e8a15e50ccac5c6d79add',1,'UDPSender']]],
   ['setactiveeffect',['setActiveEffect',['../class_effects_controller.html#a04ea274921c0144e8c88eb08de0bc2ad',1,'EffectsController']]],
   ['setaudiodevice',['setAudioDevice',['../class_effects_controller.html#a5c9b8f4c2c1b5868b8489726fed94b5a',1,'EffectsController']]],
+  ['setcontentlayout',['setContentLayout',['../class_collapse_widget.html#a03a254307e65f5c950a85bfac2d6c76e',1,'CollapseWidget']]],
   ['setdeviceid',['setDeviceID',['../class_device_card.html#a7cf1f858d4705931dcae06cdcf4b28eb',1,'DeviceCard']]],
   ['setdeviceinputchannels',['setDeviceInputChannels',['../class_device_card.html#afc8102b2ec6f125890e702f57cd75f37',1,'DeviceCard']]],
   ['setdevicename',['setDeviceName',['../class_device_card.html#adc48f495eea3be8da3cf8411a2273155',1,'DeviceCard']]],

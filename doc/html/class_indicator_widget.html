@@ -92,6 +92,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">IndicatorWidget Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;IndicatorWidget.h&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for IndicatorWidget:</div>
 <div class="dyncontent">
@@ -109,25 +111,132 @@ Collaboration diagram for IndicatorWidget:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa42e127fefb27bf6d8f5c4c698ef809e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa42e127fefb27bf6d8f5c4c698ef809e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>IndicatorWidget</b> (const QColor &amp;color, QWidget *parent=nullptr)</td></tr>
+<tr class="memitem:aa42e127fefb27bf6d8f5c4c698ef809e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_indicator_widget.html#aa42e127fefb27bf6d8f5c4c698ef809e">IndicatorWidget</a> (const QColor &amp;color, QWidget *parent=nullptr)</td></tr>
 <tr class="separator:aa42e127fefb27bf6d8f5c4c698ef809e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60685e227c69e36c06b5fe1f50b777fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60685e227c69e36c06b5fe1f50b777fd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>changeColor</b> (const QColor &amp;color)</td></tr>
+<tr class="memitem:a60685e227c69e36c06b5fe1f50b777fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_indicator_widget.html#a60685e227c69e36c06b5fe1f50b777fd">changeColor</a> (const QColor &amp;color)</td></tr>
 <tr class="separator:a60685e227c69e36c06b5fe1f50b777fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a4a22e641490a349dba3d9e43c8f92f11"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a22e641490a349dba3d9e43c8f92f11"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>paintEvent</b> (QPaintEvent *) override</td></tr>
+<tr class="memitem:a4a22e641490a349dba3d9e43c8f92f11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_indicator_widget.html#a4a22e641490a349dba3d9e43c8f92f11">paintEvent</a> (QPaintEvent *) override</td></tr>
 <tr class="separator:a4a22e641490a349dba3d9e43c8f92f11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a6f6365aff5e42993f17c442b4bae793f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f6365aff5e42993f17c442b4bae793f"></a>
-QColor&#160;</td><td class="memItemRight" valign="bottom"><b>m_color</b></td></tr>
+<tr class="memitem:a6f6365aff5e42993f17c442b4bae793f"><td class="memItemLeft" align="right" valign="top">QColor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_indicator_widget.html#a6f6365aff5e42993f17c442b4bae793f">m_color</a></td></tr>
 <tr class="separator:a6f6365aff5e42993f17c442b4bae793f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Object represents Qt custom widget to mimic LED diode (main functionality is changing colors) </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="aa42e127fefb27bf6d8f5c4c698ef809e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IndicatorWidget::IndicatorWidget </td>
+          <td>(</td>
+          <td class="paramtype">const QColor &amp;&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constructor. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">color</td><td>Reference to QColor to set initial color of indicator </td></tr>
+    <tr><td class="paramname">parent</td><td>Sets parent widget of the indicator. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a60685e227c69e36c06b5fe1f50b777fd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IndicatorWidget::changeColor </td>
+          <td>(</td>
+          <td class="paramtype">const QColor &amp;&#160;</td>
+          <td class="paramname"><em>color</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function enabling color change. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">color</td><td>Reference to QColor to set color of indicator </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4a22e641490a349dba3d9e43c8f92f11"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IndicatorWidget::paintEvent </td>
+          <td>(</td>
+          <td class="paramtype">QPaintEvent *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Overriden event to change color of the widget </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>Pointer indicating event. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Field Documentation</h2>
+<a class="anchor" id="a6f6365aff5e42993f17c442b4bae793f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QColor IndicatorWidget::m_color</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Stored widget color value. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>IndicatorWidget.h</li>
 <li>IndicatorWidget.cpp</li>

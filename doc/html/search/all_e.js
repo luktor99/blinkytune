@@ -1,8 +1,9 @@
 var searchData=
 [
+  ['paintevent',['paintEvent',['../class_indicator_widget.html#a4a22e641490a349dba3d9e43c8f92f11',1,'IndicatorWidget']]],
   ['params',['Params',['../struct_rainbow_1_1_params.html',1,'Rainbow']]],
-  ['params',['Params',['../struct_color_beat_1_1_params.html',1,'ColorBeat']]],
   ['params',['Params',['../struct_still_color_1_1_params.html',1,'StillColor']]],
+  ['params',['Params',['../struct_color_beat_1_1_params.html',1,'ColorBeat']]],
   ['params',['Params',['../struct_color_spectrum_1_1_params.html',1,'ColorSpectrum']]],
   ['pipeline_5fnone',['PIPELINE_NONE',['../class_effects_controller.html#a88a2e05ed6750a906ad4d18e895b675ea2d6cd77c9d4582006a3e06910734f23a',1,'EffectsController']]],
   ['pipeline_5fnosound',['PIPELINE_NOSOUND',['../class_effects_controller.html#a88a2e05ed6750a906ad4d18e895b675ea13f48383de2a852805a8e734d09e08ff',1,'EffectsController']]],

@@ -5,6 +5,7 @@ var searchData=
   ['activepipelinetype',['activePipelineType',['../class_effects_controller.html#a88a2e05ed6750a906ad4d18e895b675e',1,'EffectsController']]],
   ['alpha_5fdec_5f',['alpha_dec_',['../class_filter.html#a74856e090e948ff5f4c0ea989bacbfc3',1,'Filter']]],
   ['analysisfifo_5f',['analysisFIFO_',['../class_effects_controller.html#a4a6d933006727bbef63357a06525156c',1,'EffectsController']]],
+  ['animationduration',['animationDuration',['../class_collapse_widget.html#a04e12d4fd20123f92a652b203c905dd4',1,'CollapseWidget']]],
   ['animationwidgetlayout',['animationWidgetLayout',['../class_main_window.html#a1b35a923273d6ea2ca038e20d89c92c8',1,'MainWindow']]],
   ['audiodevice',['AudioDevice',['../class_audio_device.html',1,'AudioDevice'],['../class_audio_device.html#a8e18dd52d65d2f511ff801b7315d51dd',1,'AudioDevice::AudioDevice()']]],
   ['audiodevice_5f',['audioDevice_',['../class_effects_controller.html#a947a32f967e16d73112d07b3e7222982',1,'EffectsController']]],

@@ -6,5 +6,6 @@ var searchData=
   ['connectbutton',['connectButton',['../class_main_window.html#a8835e774cd6f83d2ee1dd2cf2c05a6bb',1,'MainWindow']]],
   ['connectionsettingslayout',['connectionSettingsLayout',['../class_main_window.html#abbaeb02dd18cb3c5c6f55fce157ded05',1,'MainWindow']]],
   ['connectionstatusindicator',['connectionStatusIndicator',['../class_main_window.html#a7587be2661134ecb301b63e51de8b8fa',1,'MainWindow']]],
+  ['contentarea',['contentArea',['../class_collapse_widget.html#a671660a5fe0a9cf9441f552d9c7c83fd',1,'CollapseWidget']]],
   ['cvempty_5f',['cvEmpty_',['../class_f_i_f_o_queue.html#ac73dfc88ffbc547f45e546d32aa6533e',1,'FIFOQueue']]]
 ];

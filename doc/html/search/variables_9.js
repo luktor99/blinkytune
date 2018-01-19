@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['m_5f',['m_',['../class_f_i_f_o_queue.html#afca3015fdbfe4cc41e77ae5cebb98a6e',1,'FIFOQueue']]],
-  ['mainwindowlayout',['mainWindowLayout',['../class_main_window.html#aa3ec0e685fbf6c0af35ceb94b34b22b0',1,'MainWindow']]],
-  ['manimationpropertiespanel',['mAnimationPropertiesPanel',['../class_main_window.html#a1f17c7f2f2d96a1f723acdf76366c2d3',1,'MainWindow']]],
-  ['mdeviceselectionpanel',['mDeviceSelectionPanel',['../class_main_window.html#a90225ff5b1bf9867ec03dbcf48eb12a2',1,'MainWindow']]],
-  ['melfiltersr_5f',['melFiltersR_',['../class_spectrum_analyzer.html#a893456d6f519621b1c3283f43da1f430',1,'SpectrumAnalyzer']]],
-  ['mutex_5f',['mutex_',['../class_effect.html#adab97818fe8d50b9bff56c2727f1a67c',1,'Effect']]]
+  ['ledstrip',['ledStrip',['../class_main_window.html#aeb99691d6856d91fda23fb130b1be828',1,'MainWindow']]],
+  ['ledstrip_5f',['ledStrip_',['../class_effects_controller.html#a6093ee82c9a7b4e27d2ff98971f6e02f',1,'EffectsController::ledStrip_()'],['../class_effects_renderer.html#aff35342396e2587f179914219edc9ffe',1,'EffectsRenderer::ledStrip_()']]],
+  ['length_5f',['length_',['../class_l_e_d_strip.html#adc930aa69f0545ed40ad949672a51ab1',1,'LEDStrip']]]
 ];
