@@ -18,9 +18,10 @@ void SamplesCollector::mainLoop() {
 
     try {
         stream_.readSamples(&samplesBuffer);
-    }catch(const std::runtime_error& error){
+    }catch(std::runtime_error){
         //Debugging info
         std::cout << "SamplesCollector: Can't read samples from stream" << std::endl;
+        return;
     }
 
     outputFIFO_.push(new StereoSamplesBuffer(samplesBufferL, samplesBufferR));
