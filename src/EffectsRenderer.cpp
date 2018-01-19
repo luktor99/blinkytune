@@ -9,8 +9,12 @@ EffectsRenderer::EffectsRenderer(FIFOQueue<StereoAnalysisBuffer> &inputFIFO, LED
 }
 
 EffectsRenderer::~EffectsRenderer() {
-    ledStrip_.clear();
-    ledStrip_.update();
+    try {
+        ledStrip_.clear();
+        ledStrip_.update();
+    }catch(...){
+        throw LEDStrip::DisconnectedException();
+    }
 }
 
 void EffectsRenderer::mainLoop() {

@@ -11,8 +11,8 @@ include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIRS})
 
 
-set(Tests MelFilterBankTest FIFOQueueTest AudioDeviceTest AudioInputStreamTest AudioInterfaceTest EffectsFactoryTest FilterTest 
-    SamplesCollectorTest )# LEDStripTest EffectsRendererTest SpectrumAnalyzerTest SpectrumGeneratorTest 
+set(Tests MelFilterBankTest FIFOQueueTest AudioDeviceTest AudioInputStreamTest AudioInterfaceTest FilterTest
+    SamplesCollectorTest )# EffectsFactoryTest LEDStripTest EffectsRendererTest SpectrumAnalyzerTest SpectrumGeneratorTest
 	#StereoAnalysisBufferTest StereoSamplesBufferTest StereoSpectrumBufferTest TickGeneratorTest  EffectsControllerTest)
 
 add_executable(MelFilterBankTest TestsMain.cpp MelFilterBankTest.cpp ../src/MelFilterBank.cpp)
@@ -27,8 +27,8 @@ add_executable(AudioInterfaceTest TestsMain.cpp AudioInterfaceTest.cpp ../src/Au
 add_test(AudioInterfaceTest AudioInterfaceTest)
 #add_executable(EffectsControllerTest TestsMain.cpp EffectsControllerTest.cpp)
 #add_test(EffectsControllerTest EffectsControllerTest)
-add_executable(EffectsFactoryTest TestsMain.cpp EffectsFactoryTest.cpp ../src/LEDStrip.cpp ../src/UDPSender.cpp ../src/EffectsFactory.cpp ../src/effects/StillColor.cpp ../src/effects/ColorBeat.cpp ../src/effects/Rainbow.cpp ../src/effects/ColorSpectrum.cpp)
-add_test(EffectsFactoryTest EffectsFactoryTest)
+#add_executable(EffectsFactoryTest TestsMain.cpp EffectsFactoryTest.cpp ../src/LEDStrip.cpp ../src/UDPSender.cpp ../src/EffectsFactory.cpp ../src/effects/StillColor.cpp ../src/effects/ColorBeat.cpp ../src/effects/Rainbow.cpp ../src/effects/ColorSpectrum.cpp)
+#add_test(EffectsFactoryTest EffectsFactoryTest)
 #add_executable(EffectsRendererTest TestsMain.cpp EffectsRendererTest.cpp)
 #add_test(EffectsRendererTest EffectsRendererTest)
 add_executable(FilterTest TestsMain.cpp FilterTest.cpp ../src/Filter.cpp)
@@ -64,10 +64,10 @@ else()
     target_link_libraries(MelFilterBankTest boost_unit_test_framework)
     target_link_libraries(FIFOQueueTest boost_unit_test_framework)
 	target_link_libraries(AudioDeviceTest boost_unit_test_framework portaudio_static)
-	target_link_libraries(AudioInputStreamTest boost_unit_test_framework portaudio_static)
+	target_link_libraries(AudioInputStreamTest boost_unit_test_framework portaudio_static boost_thread boost_system)
 	target_link_libraries(AudioInterfaceTest boost_unit_test_framework portaudio_static)
 #	target_link_libraries(EffectsControllerTest boost_unit_test_framework)
-	target_link_libraries(EffectsFactoryTest boost_unit_test_framework Qt5::Widgets)
+#	target_link_libraries(EffectsFactoryTest boost_unit_test_framework Qt5::Widgets)
 #	target_link_libraries(EffectsRendererTest boost_unit_test_framework)
 	target_link_libraries(FilterTest boost_unit_test_framework)
 	target_link_libraries(SamplesCollectorTest boost_unit_test_framework portaudio_static)
@@ -78,19 +78,19 @@ else()
 
 endif()
 
-if(WIN32)
-	add_custom_command(
-        TARGET EffectsFactoryTest PRE_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Widgetsd.dll $<TARGET_FILE_DIR:EffectsFactoryTest>
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Cored.dll $<TARGET_FILE_DIR:EffectsFactoryTest>
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Guid.dll $<TARGET_FILE_DIR:EffectsFactoryTest>
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Widgets.pdb $<TARGET_FILE_DIR:EffectsFactoryTest>
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Core.pdb $<TARGET_FILE_DIR:EffectsFactoryTest>
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Gui.pdb $<TARGET_FILE_DIR:EffectsFactoryTest>
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Widgets.dll $<TARGET_FILE_DIR:EffectsFactoryTest>
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Core.dll $<TARGET_FILE_DIR:EffectsFactoryTest>
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Gui.dll $<TARGET_FILE_DIR:EffectsFactoryTest>)
-endif(WIN32)
+#if(WIN32)
+#	add_custom_command(
+#        TARGET EffectsFactoryTest PRE_BUILD
+#        COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Widgetsd.dll $<TARGET_FILE_DIR:EffectsFactoryTest>
+#		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Cored.dll $<TARGET_FILE_DIR:EffectsFactoryTest>
+#		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Guid.dll $<TARGET_FILE_DIR:EffectsFactoryTest>
+#		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Widgets.pdb $<TARGET_FILE_DIR:EffectsFactoryTest>
+#		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Core.pdb $<TARGET_FILE_DIR:EffectsFactoryTest>
+#		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Gui.pdb $<TARGET_FILE_DIR:EffectsFactoryTest>
+#        COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Widgets.dll $<TARGET_FILE_DIR:EffectsFactoryTest>
+#		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Core.dll $<TARGET_FILE_DIR:EffectsFactoryTest>
+#		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${Qt5_DIR}/../../../bin/Qt5Gui.dll $<TARGET_FILE_DIR:EffectsFactoryTest>)
+#endif(WIN32)
 
 
 if (CMAKE_CONFIGURATION_TYPES)

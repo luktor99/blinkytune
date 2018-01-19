@@ -26,7 +26,7 @@ void LEDStrip::update() {
     }
     catch (...) {
         // LED strip connection broke
-        throw DisconnectedException();
+        // throw DisconnectedException(); can't be used in every occasion
     }
 }
 
