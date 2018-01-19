@@ -12,8 +12,8 @@ link_directories(${Boost_LIBRARY_DIRS})
 
 
 set(Tests MelFilterBankTest FIFOQueueTest AudioDeviceTest AudioInputStreamTest AudioInterfaceTest EffectsControllerTest
-    EffectsFactoryTest EffectsRendererTest FilterTest LEDStripTest SamplesCollectorTest SpectrumAnalyzerTest SpectrumGeneratorTest 
-	StereoAnalysisBufferTest StereoSamplesBufferTest StereoSpectrumBufferTest TickGeneratorTest )
+    EffectsFactoryTest FilterTest SamplesCollectorTest )# LEDStripTest EffectsRendererTest SpectrumAnalyzerTest SpectrumGeneratorTest 
+	#StereoAnalysisBufferTest StereoSamplesBufferTest StereoSpectrumBufferTest TickGeneratorTest )
 
 add_executable(MelFilterBankTest TestsMain.cpp MelFilterBankTest.cpp ../src/MelFilterBank.cpp)
 add_test(MelFilterBankTest MelFilterBankTest)
